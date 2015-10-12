@@ -14,6 +14,7 @@ class FCEquationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.webView.opaque = false
         
         let frac = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(), RHSSymbol: FCNumberSymbol(value: 1000)))
         let par = FCParenthesesSymbol(childSymbol: frac)
@@ -21,6 +22,7 @@ class FCEquationViewController: UIViewController {
         NSLog(mainEquation.htmlRepresentation())
         
         self.webView.loadHTMLString(mainEquation.htmlRepresentation(), baseURL: nil)
+        NSLog("asd")
     }
 
 }

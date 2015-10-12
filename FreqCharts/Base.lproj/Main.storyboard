@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ynf-5M-xQa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--Bubbles Collection View Controller-->
+        <scene sceneID="9y5-v3-s8l">
+            <objects>
+                <collectionViewController storyboardIdentifier="FCBubblesCollectionViewController" id="Ynf-5M-xQa" customClass="FCBubblesCollectionViewController" customModule="FreqCharts" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fjd-bK-N4d">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dYs-v2-A2V" customClass="FCBubbleCollectionViewFlowLayout" customModule="FreqCharts" customModuleProvider="target">
+                            <size key="itemSize" width="173" height="119"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="V6G-kN-N7J" customClass="FCBubbleCollectionViewCell" customModule="FreqCharts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="173" height="119"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="173" height="119"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSH-yg-PHg">
+                                            <rect key="frame" x="0.0" y="0.0" width="173" height="119"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="zSH-yg-PHg" firstAttribute="top" secondItem="V6G-kN-N7J" secondAttribute="top" id="5lm-xe-u79"/>
+                                    <constraint firstAttribute="trailing" secondItem="zSH-yg-PHg" secondAttribute="trailing" id="8iG-wr-me4"/>
+                                    <constraint firstAttribute="bottom" secondItem="zSH-yg-PHg" secondAttribute="bottom" id="bbj-jM-C2d"/>
+                                    <constraint firstItem="zSH-yg-PHg" firstAttribute="leading" secondItem="V6G-kN-N7J" secondAttribute="leading" id="qye-sV-lcQ"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Ynf-5M-xQa" id="fZP-yd-iYl"/>
+                            <outlet property="delegate" destination="Ynf-5M-xQa" id="qNT-bz-SDE"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9EX-u3-FZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="507" y="-322"/>
+        </scene>
         <!--Equation View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -18,10 +66,10 @@
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVh-of-5lC">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="UVh-of-5lC" secondAttribute="trailing" id="au2-Ij-3uK"/>
                             <constraint firstItem="UVh-of-5lC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="icT-3v-b0h"/>

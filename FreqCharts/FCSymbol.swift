@@ -24,9 +24,10 @@ class FCEquation: NSObject, FCSymbol {
     }
     
     func htmlRepresentation() -> String {
-        return "<math>" +
+        let colorString = "FFFFFF"
+        return "<body style=\"background:none\"><math><mstyle mathcolor=" + colorString + ">" +
                 self.mainSymbol.htmlRepresentation() +
-                "</math>"
+                "</mstyle></math></body>"
     }
 }
 
