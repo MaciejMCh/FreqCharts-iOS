@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		525D0C301BCBC8E700EFFC31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D0C2F1BCBC8E700EFFC31 /* AppDelegate.swift */; };
-		525D0C321BCBC8E700EFFC31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D0C311BCBC8E700EFFC31 /* ViewController.swift */; };
+		525D0C321BCBC8E700EFFC31 /* FCEquationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D0C311BCBC8E700EFFC31 /* FCEquationViewController.swift */; };
 		525D0C351BCBC8E700EFFC31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525D0C331BCBC8E700EFFC31 /* Main.storyboard */; };
 		525D0C371BCBC8E700EFFC31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 525D0C361BCBC8E700EFFC31 /* Assets.xcassets */; };
 		525D0C3A1BCBC8E700EFFC31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525D0C381BCBC8E700EFFC31 /* LaunchScreen.storyboard */; };
 		525D0C451BCBC8E700EFFC31 /* FreqChartsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D0C441BCBC8E700EFFC31 /* FreqChartsTests.swift */; };
+		525D0C501BCBD35F00EFFC31 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 525D0C4F1BCBD35F00EFFC31 /* test.html */; settings = {ASSET_TAGS = (); }; };
+		525D0C521BCBD79500EFFC31 /* FCSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D0C511BCBD79500EFFC31 /* FCSymbol.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +30,7 @@
 /* Begin PBXFileReference section */
 		525D0C2C1BCBC8E700EFFC31 /* FreqCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreqCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525D0C2F1BCBC8E700EFFC31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		525D0C311BCBC8E700EFFC31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		525D0C311BCBC8E700EFFC31 /* FCEquationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCEquationViewController.swift; sourceTree = "<group>"; };
 		525D0C341BCBC8E700EFFC31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		525D0C361BCBC8E700EFFC31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		525D0C391BCBC8E700EFFC31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +38,8 @@
 		525D0C401BCBC8E700EFFC31 /* FreqChartsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreqChartsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		525D0C441BCBC8E700EFFC31 /* FreqChartsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreqChartsTests.swift; sourceTree = "<group>"; };
 		525D0C461BCBC8E700EFFC31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		525D0C4F1BCBD35F00EFFC31 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
+		525D0C511BCBD79500EFFC31 /* FCSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCSymbol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +82,13 @@
 			isa = PBXGroup;
 			children = (
 				525D0C2F1BCBC8E700EFFC31 /* AppDelegate.swift */,
-				525D0C311BCBC8E700EFFC31 /* ViewController.swift */,
+				525D0C311BCBC8E700EFFC31 /* FCEquationViewController.swift */,
 				525D0C331BCBC8E700EFFC31 /* Main.storyboard */,
 				525D0C361BCBC8E700EFFC31 /* Assets.xcassets */,
 				525D0C381BCBC8E700EFFC31 /* LaunchScreen.storyboard */,
 				525D0C3B1BCBC8E700EFFC31 /* Info.plist */,
+				525D0C4F1BCBD35F00EFFC31 /* test.html */,
+				525D0C511BCBD79500EFFC31 /* FCSymbol.swift */,
 			);
 			path = FreqCharts;
 			sourceTree = "<group>";
@@ -178,6 +184,7 @@
 			files = (
 				525D0C3A1BCBC8E700EFFC31 /* LaunchScreen.storyboard in Resources */,
 				525D0C371BCBC8E700EFFC31 /* Assets.xcassets in Resources */,
+				525D0C501BCBD35F00EFFC31 /* test.html in Resources */,
 				525D0C351BCBC8E700EFFC31 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,8 +203,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525D0C321BCBC8E700EFFC31 /* ViewController.swift in Sources */,
+				525D0C321BCBC8E700EFFC31 /* FCEquationViewController.swift in Sources */,
 				525D0C301BCBC8E700EFFC31 /* AppDelegate.swift in Sources */,
+				525D0C521BCBD79500EFFC31 /* FCSymbol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
