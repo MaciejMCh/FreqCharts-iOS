@@ -22,7 +22,11 @@ class FCBubbleViewModel: NSObject {
     }
     
     func connect(bubble: FCBubbleViewModel) {
+        if (self.connections .contains(bubble)) {
+            return
+        }
         self.connections.append(bubble)
+        NSLog("connecitons " + String(radius) + String(self.connections))
     }
     
     func isConnected(bubble: FCBubbleViewModel) -> Bool {

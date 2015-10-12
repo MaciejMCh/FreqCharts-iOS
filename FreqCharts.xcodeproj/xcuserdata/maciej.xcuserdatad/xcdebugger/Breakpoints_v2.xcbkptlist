@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FreqCharts/FCBubbleCollectionViewFlowLayout.swift"
-            timestampString = "466365205.27011"
+            filePath = "FreqCharts/FCBubbleViewModel.swift"
+            timestampString = "466367618.800986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "finalBubbleFrame(_:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "connect(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

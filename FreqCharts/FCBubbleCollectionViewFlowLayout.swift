@@ -12,6 +12,8 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     private var cache = [UICollectionViewLayoutAttributes]()
     
+    private var circles:[Circle] = [Circle]()
+    
     private var viewModels: [FCBubbleViewModel] = [
         FCBubbleViewModel(radius: 100),
         FCBubbleViewModel(radius: 130),
@@ -32,6 +34,8 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     ]
     
     override func prepareLayout() {
+        
+        
         
         var index = 0
         for viewModel in self.viewModels {
@@ -75,8 +79,7 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     func finalBubbleFrame(index: NSInteger) -> CGRect {
         let spacing: CGFloat = 10
         let radius = CGFloat(viewModels[index].radius)
-        
-//        NSLog(String(index) + " " + String(radius))
+        let currentBubble = viewModels[index]
         
         if (index == 0) {
             var origin = CGPointMake(CGRectGetMidX(self.collectionView!.bounds), CGRectGetMidY(self.collectionView!.bounds))
@@ -94,7 +97,6 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return CGRectMake(origin.x, origin.y, radius, radius)
         }
         
-        else if (index == 2) {
         
         for firstBubble in self.viewModels {
             for secondBubble in self.viewModels {
@@ -108,20 +110,28 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
                     let firstRadius = CGFloat(firstBubble.radius)
                     let secondRadius = CGFloat(secondBubble.radius)
                     
-                    var circle1 = Circle(cx: Float(firstMid.x), cy: Float(firstMid.y), cr: Float(firstRadius + radius + spacing))
-                    var circle2 = Circle(cx: Float(secondMid.x), cy: Float(secondMid.y), cr: Float(secondRadius + radius + spacing))
+                    var circle1 = Circle(cx: Float(firstMid.x), cy: Float(firstMid.y), cr: Float((firstRadius / 2) + (radius / 2) + spacing))
+                    var circle2 = Circle(cx: Float(secondMid.x), cy: Float(secondMid.y), cr: Float((secondRadius / 2) + (radius / 2) + spacing))
+                    
                     
                     let intersecitons = circle1.intersections(circle2)
                     let intersection = intersecitons[1];
                     
+                    var isValid = true
+                    for circle in self.circles {
+                        if (Circle(cx: intersection.x, cy: intersection.y, cr: Float(radius)).intersects(circle)) {
+                            isValid = false
+                            break;
+                        }
+                    }
                     
+                    if !isValid {
+                        continue
+                    }
                     
-                    NSLog(String(intersection.x) + " " + String(intersection.y))
+                    self.circles.append(Circle(cx: intersection.x, cy: intersection.y, cr: Float(radius)))
                     var rect: CGRect =  CGRectMake(CGFloat(intersecitons[1].x) - (radius / 2), CGFloat(intersecitons[1].y) - (radius / 2), radius, radius)
-                    rect = CGRectMake(CGFloat(intersecitons[1].x) - radius, CGFloat(intersecitons[1].y) - radius, radius, radius)
-                    NSLog(String(rect))
-                    
-                    
+
                     return rect
                     
                 } else {
@@ -130,9 +140,6 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 
             }
         }
-            
-        }
-        
         return CGRectZero
     }
     
@@ -194,6 +201,12 @@ class Circle {
         let x4 = P2.x - h*(P1.y - P0.y)/d;
         let y4 = P2.y + h*(P1.x - P0.x)/d;
         return [Point(px: x3, py: y3), Point(px: x4, py: y4)]
+    }
+    
+    func intersects(c: Circle) -> Bool {
+        let C0 = Point(px: x, py: y)
+        let C1 = Point(px: c.x, py: c.y)
+        return C0.distance(C1) <= r + c.r
     }
     
 }
