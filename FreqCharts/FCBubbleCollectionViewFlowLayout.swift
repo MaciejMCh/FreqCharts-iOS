@@ -176,7 +176,7 @@ class Circle: NSObject {
     var x, y, r, left: CGFloat;
     
     override var description: String { get {
-        return String(x) + "," + String(y)
+        return "" + "," + String(y)
         }}
     
     init(cr: CGFloat) {
@@ -255,7 +255,7 @@ class Foam {
         let minYCircle = self.circles.sort { (first, second) -> Bool in return first.y - first.r < second.y - second.r }[0]
         let minY = minYCircle.y - minYCircle.r
         let maxYCircle = self.circles.sort { (first, second) -> Bool in return first.y + first.r > second.y + second.r }[0]
-        let maxY = maxXCircle.y + maxXCircle.r
+        let maxY = maxYCircle.y + maxYCircle.r
         
         self.size = CGSizeMake(maxX - minX, maxY - minY)
         

@@ -15,28 +15,39 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     
     private var viewModels: [FCBubbleViewModel] = [
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 60),
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 20),
+        FCBubbleViewModel(radius: 80),
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 90),
+        FCBubbleViewModel(radius: 60),
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 60),
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 20),
+        FCBubbleViewModel(radius: 80),
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 90),
+        FCBubbleViewModel(radius: 60),
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 60),
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 20),
+        FCBubbleViewModel(radius: 80),
         FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 90),
+        FCBubbleViewModel(radius: 60),
         FCBubbleViewModel(radius: 50),
-    ]
-    
-    private var colors: [UIColor] = [
-        UIColor(white: 1.0, alpha: 1.0),
-        UIColor(white: 1.0, alpha: 0.9),
-        UIColor(white: 1.0, alpha: 0.8),
-        UIColor(white: 1.0, alpha: 0.7),
-        UIColor(white: 1.0, alpha: 0.6),
-        UIColor(white: 1.0, alpha: 0.5),
-        UIColor(white: 1.0, alpha: 0.4),
-        UIColor(white: 1.0, alpha: 0.3),
-        UIColor(white: 1.0, alpha: 0.2),
-        UIColor(white: 1.0, alpha: 0.1),
+        FCBubbleViewModel(radius: 40),
+        
+        
     ]
     
     override func viewDidLoad() {
@@ -53,7 +64,7 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> FCBubbleCollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FCBubbleCollectionViewCell
     
-        cell.backgroundColor = self.colors[indexPath.row]
+        cell.backgroundColor = UIColor.whiteColor()
         // Configure the cell
     
         cell.layer.cornerRadius = CGFloat(self.viewModels[indexPath.row].radius)
