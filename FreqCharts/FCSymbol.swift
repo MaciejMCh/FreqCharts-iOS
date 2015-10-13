@@ -13,6 +13,12 @@ protocol spierdolonyNSCodingWSwifcie {
     func dictionaryValue() -> [String: AnyObject]
 }
 
+class FCSymbolSizeCalculator {
+    class func calculateSizeOfEquation(equation: FCEquation, completionBlock: (size: CGSize) -> ()) {
+        completionBlock(size: CGSizeMake(100, 100))
+    }
+}
+
 class FCSymbolParser {
     class func parse(dictionary: [String: AnyObject]) -> FCSymbol {
         let className = "FreqCharts." + Array(dictionary.keys)[0]
@@ -29,12 +35,17 @@ protocol FCSymbol: spierdolonyNSCodingWSwifcie {
 }
 
 class FCEquation: NSObject, FCSymbol {
-    private let mainSymbol: FCSymbol
-    private let font: UIFont
+    private var mainSymbol: FCSymbol
+    private var font: UIFont
+    private var displayingSize: CGSize?
     
     init(mainSymbol: FCSymbol, font: UIFont) {
         self.mainSymbol = mainSymbol
         self.font = font
+        super.init()
+        FCSymbolSizeCalculator.calculateSizeOfEquation(self) { (size) -> () in
+            self.displayingSize = size
+        }
     }
     
     override init() {
