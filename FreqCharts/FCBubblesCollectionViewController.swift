@@ -19,40 +19,9 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         return mainEquation
     }
     
-    private var viewModels: [FCBubbleViewModel]!// = [
-//        FCBubbleViewModel(radius: 70, equation: self.equation),
-//        FCBubbleViewModel(radius: 90, equation: self.equation),
-//        FCBubbleViewModel(radius: 110, equation: self.equation),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 20),
-//        FCBubbleViewModel(radius: 80),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 40),
-//        FCBubbleViewModel(radius: 90),
-//        FCBubbleViewModel(radius: 60),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 40),
-//        FCBubbleViewModel(radius: 60),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 20),
-//        FCBubbleViewModel(radius: 80),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 40),
-//        FCBubbleViewModel(radius: 90),
-//        FCBubbleViewModel(radius: 60),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 40),
-//        FCBubbleViewModel(radius: 60),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 20),
-//        FCBubbleViewModel(radius: 80),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 40),
-//        FCBubbleViewModel(radius: 90),
-//        FCBubbleViewModel(radius: 60),
-//        FCBubbleViewModel(radius: 50),
-//        FCBubbleViewModel(radius: 40),
-//    ]
+    private var viewModels: [FCBubbleViewModel]!
+    
+    private var calculator = FCSymbolSizeCalculator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +38,9 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         let dict = self.equation.dictionaryValue()
 //        let eq = FCEquation(dictionary: dict)
         let eq = FCSymbolParser.parse(dict)
+        self.calculator.calculateSizeOfEquation(self.equation) { (size) -> () in
+            NSLog(String(size))
+        }
         
     
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)

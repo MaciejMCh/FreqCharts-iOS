@@ -13,10 +13,27 @@ protocol spierdolonyNSCodingWSwifcie {
     func dictionaryValue() -> [String: AnyObject]
 }
 
-class FCSymbolSizeCalculator {
-    class func calculateSizeOfEquation(equation: FCEquation, completionBlock: (size: CGSize) -> ()) {
-        completionBlock(size: CGSizeMake(100, 100))
+class FCSymbolSizeCalculator: NSObject, UIWebViewDelegate {
+    
+    private var webView = UIWebView(frame: CGRectMake(0, 0, 400, 400))
+    private var completionBlock: ((size: CGSize) -> ())!
+    
+    func calculateSizeOfEquation(equation: FCEquation, completionBlock: (size: CGSize) -> ()) {
+        self.completionBlock = completionBlock
+        self.webView.delegate = self
+        self.webView.loadHTMLString(equation.htmlRepresentation(), baseURL: nil)
     }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        var frame = webView.frame
+        frame.size.height = 1
+        frame.size.width = 1
+        webView.frame = frame
+        var fittingSize = webView.sizeThatFits(CGSizeZero)
+        frame.size = fittingSize
+        self.completionBlock(size: CGSizeMake(CGRectGetWidth(frame), CGRectGetHeight(frame)))
+    }
+    
 }
 
 class FCSymbolParser {
@@ -42,10 +59,6 @@ class FCEquation: NSObject, FCSymbol {
     init(mainSymbol: FCSymbol, font: UIFont) {
         self.mainSymbol = mainSymbol
         self.font = font
-        super.init()
-        FCSymbolSizeCalculator.calculateSizeOfEquation(self) { (size) -> () in
-            self.displayingSize = size
-        }
     }
     
     override init() {
