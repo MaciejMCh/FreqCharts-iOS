@@ -9,6 +9,21 @@
 import Foundation
 import UIKit
 
+extension UIView {
+    
+    func pb_takeSnapshot() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
+        
+        drawViewHierarchyInRect(self.bounds, afterScreenUpdates: true)
+        
+        // old style: layer.renderInContext(UIGraphicsGetCurrentContext())
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+
 protocol spierdolonyNSCodingWSwifcie {
     func dictionaryValue() -> [String: AnyObject]
 }
@@ -25,6 +40,9 @@ class FCSymbolSizeCalculator: NSObject, UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
+        
+        let image = webView.pb_takeSnapshot()
+        
         var frame = webView.frame
         frame.size.height = 1
         frame.size.width = 1
