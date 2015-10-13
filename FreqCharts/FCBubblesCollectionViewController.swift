@@ -64,7 +64,12 @@ class FCBubblesCollectionViewController: UICollectionViewController {
             FCBubbleViewModel(radius: 110, equation: self.equation),
             ]
         
-        NSKeyedArchiver.archiveRootObject(self.viewModels, toFile: self.storagePath())
+//        NSKeyedArchiver.archiveRootObject(self.viewModels, toFile: self.storagePath())
+        
+        let dict = self.equation.dictionaryValue()
+//        let eq = FCEquation(dictionary: dict)
+        let eq = FCSymbolParser.parse(dict)
+        
     
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)

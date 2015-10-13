@@ -9,7 +9,21 @@
 import Foundation
 import UIKit
 
-protocol FCSymbol {
+protocol spierdolonyNSCodingWSwifcie {
+    func dictionaryValue() -> [String: AnyObject]
+}
+
+class FCSymbolParser {
+    class func parse(dictionary: [String: AnyObject]) -> FCSymbol {
+        let className = "FreqCharts." + Array(dictionary.keys)[0]
+        let parseClass = NSClassFromString(className)!
+        let parseDict: [String: AnyObject] = dictionary[Array(dictionary.keys)[0]]! as! [String : AnyObject]
+        let object = FCSwiftShitness.instantiateClass(parseClass, dictionary: parseDict)
+        return object as! FCSymbol
+    }
+}
+
+protocol FCSymbol: spierdolonyNSCodingWSwifcie {
     func htmlRepresentation() -> String
 //    func responseForFrequency(frequency: Double) -> Double
 }
@@ -23,12 +37,27 @@ class FCEquation: NSObject, FCSymbol {
         self.font = font
     }
     
+    override init() {
+        self.mainSymbol = FCNullSymbol()
+        self.font = UIFont()
+    }
+    
     func htmlRepresentation() -> String {
         let colorString = "2F92E5"
         return "<body style=\"background:none\"><math><mstyle mathcolor=" + colorString + ">" +
                 self.mainSymbol.htmlRepresentation() +
                 "</mstyle></math></body>"
     }
+    
+    func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["mainSymbol": self.mainSymbol.dictionaryValue()]]
+    }
+    
+    init(dictionary: [String: AnyObject]) {
+        self.mainSymbol = FCSymbolParser.parse(dictionary["mainSymbol"]! as! [String : AnyObject])
+        self.font = UIFont()
+    }
+    
 }
 
 class FCNumberSymbol: NSObject, FCSymbol {
@@ -50,11 +79,23 @@ class FCNumberSymbol: NSObject, FCSymbol {
         
         return "<mn>" + numberString + "</mn>"
     }
+    
+    func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["value": self.value]]
+    }
+    
+    init(dictionary: [String: AnyObject]) {
+        self.value = dictionary["value"] as! Double
+    }
 }
 
 class FCNullSymbol: NSObject, FCSymbol {
     func htmlRepresentation() -> String {
         return "<mn>0</mn>"
+    }
+    
+    func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): "null"]
     }
 }
 
@@ -74,6 +115,14 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
             self.childSymbol.htmlRepresentation()
         "</mfenced>"
     }
+    
+    func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["childSymbol" : self.childSymbol.dictionaryValue()]]
+    }
+    
+    init(dictionary: [String: AnyObject]) {
+        self.childSymbol = FCSymbolParser.parse(dictionary["childSymbol"]! as! [String : AnyObject])
+    }
 }
 
 class FCOperatorSymbol: NSObject, FCSymbol {
@@ -89,6 +138,14 @@ class FCOperatorSymbol: NSObject, FCSymbol {
     
     func htmlRepresentation() -> String {
         return "<mtext>S</mtext>"
+    }
+    
+    func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["multipler" : self.multipler]]
+    }
+    
+    init(dictionary: [String: AnyObject]) {
+        self.multipler = dictionary["multipler"] as! Double
     }
     
 }
@@ -113,6 +170,15 @@ class FCFractionSymbol: NSObject, FCSymbol {
                 "<mrow>" +
                 self.underSymbol.htmlRepresentation() +
                 "</mrow></mfrac>"
+    }
+    
+    func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["overSymbol": self.overSymbol.dictionaryValue(), "underSymbol": self.underSymbol.dictionaryValue()]]
+    }
+    
+    init(dictionary: [String: AnyObject]) {
+        self.overSymbol = FCSymbolParser.parse(dictionary["overSymbol"]! as! [String : AnyObject])
+        self.underSymbol = FCSymbolParser.parse(dictionary["underSymbol"]! as! [String : AnyObject])
     }
 }
 
@@ -140,11 +206,25 @@ class FCSidedSymbol: NSObject, FCSymbol {
                 "</mo>" +
                 self.RHSSymbol.htmlRepresentation()
     }
+    
+    func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": self.operationSymbol]]
+    }
 }
 
 class FCAddSymbol: FCSidedSymbol {
     init(LHSSymbol: FCSymbol, RHSSymbol: FCSymbol) {
         super.init(LHSSymbol: LHSSymbol, RHSSymbol: RHSSymbol, operatorSymbol: "+")
+    }
+    
+    override func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": "+"]]
+    }
+    init(dictionary: [String: AnyObject]) {
+        super.init()
+        self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
+        self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
+        self.operationSymbol = dictionary["oeprator"] as! String
     }
 }
 

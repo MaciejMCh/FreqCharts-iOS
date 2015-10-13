@@ -11,3 +11,5 @@
 
 
 #endif /* FreqCharts_Bridging_Header_h */
+
+#import "FCSwiftShitness.h"
