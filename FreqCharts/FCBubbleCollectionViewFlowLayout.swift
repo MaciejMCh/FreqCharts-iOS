@@ -14,6 +14,7 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     private var calculatedCircles:[Circle] = [Circle]()
     private var notCalculatedCircles:[Circle] = [Circle]()
+    private var foam: Foam = Foam()
     
     private var viewModels: [FCBubbleViewModel] = [
         FCBubbleViewModel(radius: 50),
@@ -35,17 +36,39 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     ]
     
     override func prepareLayout() {
+        self.notCalculatedCircles = [Circle]()
         for viewModel in self.viewModels {
             self.notCalculatedCircles.append(Circle(cr: CGFloat(viewModel.radius)))
         }
         self.calculateCache()
     }
     
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        var layoutAttributes = [UICollectionViewLayoutAttributes]()
+        for attributes in attributesCache {
+            if CGRectIntersectsRect(attributes.frame, rect) {
+                if (attributes.indexPath.row > self.viewModels.count) {
+                    continue
+                }
+                layoutAttributes.append(attributes)
+            }
+        }
+        return layoutAttributes
+    }
+    
+    override func collectionViewContentSize() -> CGSize {
+        return self.foam.size
+    }
+    
     func calculateCache() {
+        self.calculatedCircles = [Circle]()
         for circle in self.notCalculatedCircles {
             self.calculateCirclePosition(circle)
         }
         
+        self.foam = Foam(circles: self.calculatedCircles)
+        
+        self.attributesCache = [UICollectionViewLayoutAttributes]()
         for circle in self.calculatedCircles {
             let layoutAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: self.calculatedCircles.indexOf(circle)!, inSection: 0))
             layoutAttributes.frame = circle.frame()
@@ -53,22 +76,12 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        var layoutAttributes = [UICollectionViewLayoutAttributes]()
-        for attributes in attributesCache {
-            if CGRectIntersectsRect(attributes.frame, rect) {
-                layoutAttributes.append(attributes)
-            }
-        }
-        return layoutAttributes
-    }
-    
     func calculateCirclePosition(circle: Circle) {
         let spacing: CGFloat = 10
         
         // First circle in the middle
         if (self.calculatedCircles.count == 0) {
-            let screenCenterPoint = CGPointMake(CGRectGetMidX(self.collectionView!.bounds), CGRectGetMidY(self.collectionView!.bounds))
+            let screenCenterPoint = CGPointMake(100, 100)
             circle.x = screenCenterPoint.x
             circle.y = screenCenterPoint.y
             self.calculatedCircles.append(circle)
@@ -120,7 +133,7 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         let validPossibilities = possibilities.filter{self.isCircleValid($0)}
         
-        let screenCenterPoint = Point(px: CGRectGetMidX(self.collectionView!.bounds), py: CGRectGetMidY(self.collectionView!.bounds))
+        let screenCenterPoint = Point(px: 100, py: 100)
         let sortedPossibilities = validPossibilities.sort { (first, second) -> Bool in
             return Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: first.x, py: first.y)) < Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: second.x, py: second.y))
         }
@@ -232,6 +245,38 @@ class Circle: NSObject {
     
     func desc() -> String {
         return String(r) + " " + String(x) + " " + String(y)
+    }
+}
+
+class Foam {
+    var circles: [Circle]
+    var size: CGSize
+    
+    init() {
+        self.circles = [Circle]()
+        self.size = CGSizeZero
+    }
+    
+    init(circles: [Circle]) {
+        self.circles = circles
+        
+        let minXCircle = self.circles.sort { (first, second) -> Bool in return first.x - first.r < second.x - second.r }[0]
+        let minX = minXCircle.x - minXCircle.r
+        let maxXCircle = self.circles.sort { (first, second) -> Bool in return first.x + first.r > second.x + second.r }[0]
+        let maxX = maxXCircle.x + maxXCircle.r
+        
+        let minYCircle = self.circles.sort { (first, second) -> Bool in return first.y - first.r < second.y - second.r }[0]
+        let minY = minYCircle.y - minYCircle.r
+        let maxYCircle = self.circles.sort { (first, second) -> Bool in return first.y + first.r > second.y + second.r }[0]
+        let maxY = maxXCircle.y + maxXCircle.r
+        
+        self.size = CGSizeMake(maxX - minX, maxY - minY)
+        
+        for circle in self.circles {
+            circle.x -= minX
+            circle.y -= minY
+        }
+        
     }
 }
 
