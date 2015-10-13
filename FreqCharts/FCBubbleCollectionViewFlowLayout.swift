@@ -119,13 +119,17 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
         
         let validPossibilities = possibilities.filter{self.isCircleValid($0)}
+        
+        let screenCenterPoint = Point(px: CGRectGetMidX(self.collectionView!.bounds), py: CGRectGetMidY(self.collectionView!.bounds))
         let sortedPossibilities = validPossibilities.sort { (first, second) -> Bool in
-            return first.r > second.r
+            return Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: first.x, py: first.y)) < Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: second.x, py: second.y))
         }
         
-        circle.x = validPossibilities[0].x
-        circle.y = validPossibilities[0].y
-        circle.connections = validPossibilities[0].connections
+        let chosencircle = sortedPossibilities[0]
+        
+        circle.x = chosencircle.x
+        circle.y = chosencircle.y
+        circle.connections = chosencircle.connections
         self.calculatedCircles.append(circle)
         
         
@@ -227,10 +231,8 @@ class Circle: NSObject {
     }
     
     func desc() -> String {
-//        return String(r) + " " + String(x) + " " + String(y)
-        return String(r)
+        return String(r) + " " + String(x) + " " + String(y)
     }
-    
 }
 
 
