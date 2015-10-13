@@ -10,13 +10,21 @@ import UIKit
 
 class FCBubbleCollectionViewCell: UICollectionViewCell {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    var webView = UIWebView ()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
+        self.clipsToBounds = true
+        
+        self.webView.backgroundColor = UIColor.redColor()
+        
+        
+        self.contentView.addSubview(self.webView)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
 }

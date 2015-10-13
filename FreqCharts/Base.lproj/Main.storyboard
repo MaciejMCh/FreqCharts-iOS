@@ -55,7 +55,7 @@
         <!--Equation View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FCEquationViewController" customModule="FreqCharts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FCEquationViewController" id="BYZ-38-t0r" customClass="FCEquationViewController" customModule="FreqCharts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -64,16 +64,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVh-of-5lC">
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UVh-of-5lC">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.96470588239999999" green="0.24313725489999999" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="UVh-of-5lC" secondAttribute="trailing" id="au2-Ij-3uK"/>
                             <constraint firstItem="UVh-of-5lC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="icT-3v-b0h"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UVh-of-5lC" secondAttribute="bottom" id="k9z-8W-aiU"/>
                             <constraint firstItem="UVh-of-5lC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="kJC-yn-3Df"/>
                         </constraints>
                     </view>
@@ -83,6 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="482" y="398"/>
         </scene>
     </scenes>
 </document>

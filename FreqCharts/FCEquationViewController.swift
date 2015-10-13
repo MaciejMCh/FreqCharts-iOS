@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import WebKit
 
-class FCEquationViewController: UIViewController {
+class FCEquationViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet var webView: UIWebView!
 
@@ -21,9 +22,30 @@ class FCEquationViewController: UIViewController {
         var mainEquation = FCEquation(mainSymbol: par, font: UIFont.systemFontOfSize(16, weight: UIFontWeightLight))
         NSLog(mainEquation.htmlRepresentation())
         
+        self.webView.delegate = self
         self.webView.loadHTMLString(mainEquation.htmlRepresentation(), baseURL: nil)
-        NSLog("asd")
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        var frame = webView.frame
+        frame.size.height = 1
+        frame.size.width = 1
+        webView.frame = frame
+        var fittingSize = webView.sizeThatFits(CGSizeZero)
+        frame.size = fittingSize
+        webView.frame = frame
+        NSLog(String(frame))
+    }
+    
+    func displayEquation(equation: FCEquation) {
+        
+        if (self.webView == nil) {
+            self.webView = UIWebView()
+            self.webView.delegate = self
+            self.view.addSubview(self.webView)
+        }
+        
+        self.webView.loadHTMLString(equation.htmlRepresentation(), baseURL: nil)
     }
 
 }
-

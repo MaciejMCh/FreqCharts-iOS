@@ -12,65 +12,72 @@ private let reuseIdentifier = "FCBubbleCollectionViewCell"
 
 class FCBubblesCollectionViewController: UICollectionViewController {
 
+    private var equation: FCEquation {
+        let frac = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(), RHSSymbol: FCNumberSymbol(value: 1000)))
+        let par = FCParenthesesSymbol(childSymbol: frac)
+        let mainEquation = FCEquation(mainSymbol: par, font: UIFont.systemFontOfSize(16, weight: UIFontWeightLight))
+        return mainEquation
+    }
     
-    private var viewModels: [FCBubbleViewModel] = [
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 20),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 90),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 20),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 90),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 20),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 90),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 40),
-        
-        
-    ]
+    private var viewModels: [FCBubbleViewModel]!// = [
+//        FCBubbleViewModel(radius: 70, equation: self.equation),
+//        FCBubbleViewModel(radius: 90, equation: self.equation),
+//        FCBubbleViewModel(radius: 110, equation: self.equation),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 20),
+//        FCBubbleViewModel(radius: 80),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 40),
+//        FCBubbleViewModel(radius: 90),
+//        FCBubbleViewModel(radius: 60),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 40),
+//        FCBubbleViewModel(radius: 60),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 20),
+//        FCBubbleViewModel(radius: 80),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 40),
+//        FCBubbleViewModel(radius: 90),
+//        FCBubbleViewModel(radius: 60),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 40),
+//        FCBubbleViewModel(radius: 60),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 20),
+//        FCBubbleViewModel(radius: 80),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 40),
+//        FCBubbleViewModel(radius: 90),
+//        FCBubbleViewModel(radius: 60),
+//        FCBubbleViewModel(radius: 50),
+//        FCBubbleViewModel(radius: 40),
+//    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        self.viewModels = [
+            FCBubbleViewModel(radius: 70, equation: self.equation),
+            FCBubbleViewModel(radius: 90, equation: self.equation),
+            FCBubbleViewModel(radius: 110, equation: self.equation),
+            ]
+    
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
-        
-//        self.collectionView!.contentOffset = CGPointMake((self.collectionViewLayout.collectionViewContentSize().width / 2) - (CGRectGetWidth(self.collectionView!.bounds) / 2), (self.collectionViewLayout.collectionViewContentSize().height / 2) - (CGRectGetHeight(self.collectionView!.bounds) / 2))
         NSLog(String(self.collectionView!.collectionViewLayout.collectionViewContentSize()))
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return self.viewModels.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> FCBubbleCollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FCBubbleCollectionViewCell
     
-        cell.backgroundColor = UIColor.whiteColor()
-        // Configure the cell
-    
         cell.layer.cornerRadius = CGFloat(self.viewModels[indexPath.row].radius)
+        cell.webView.loadHTMLString(self.viewModels[indexPath.row].equation.htmlRepresentation(), baseURL: nil)
         
         return cell
     }

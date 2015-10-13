@@ -11,14 +11,17 @@ import UIKit
 class FCBubbleViewModel: NSObject {
 
     var radius: Float
+    var equation: FCEquation
     var connections: [FCBubbleViewModel] = [FCBubbleViewModel]()
     
     override init() {
         self.radius = 20
+        self.equation = FCEquation(mainSymbol: FCNullSymbol(), font: UIFont.systemFontOfSize(18))
     }
     
-    init(radius: Float) {
+    init(radius: Float, equation: FCEquation) {
         self.radius = radius;
+        self.equation = equation
     }
     
     func connect(bubble: FCBubbleViewModel) {
