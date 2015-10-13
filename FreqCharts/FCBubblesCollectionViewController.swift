@@ -63,6 +63,8 @@ class FCBubblesCollectionViewController: UICollectionViewController {
             FCBubbleViewModel(radius: 90, equation: self.equation),
             FCBubbleViewModel(radius: 110, equation: self.equation),
             ]
+        
+        NSKeyedArchiver.archiveRootObject(self.viewModels, toFile: self.storagePath())
     
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
@@ -80,6 +82,12 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         cell.webView.loadHTMLString(self.viewModels[indexPath.row].equation.htmlRepresentation(), baseURL: nil)
         
         return cell
+    }
+    
+    func storagePath() -> String {
+        var storageDirectory = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).last as String!
+        storageDirectory = storageDirectory + "/models"
+        return storageDirectory
     }
     
 }
