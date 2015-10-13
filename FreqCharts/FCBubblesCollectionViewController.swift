@@ -33,19 +33,23 @@ class FCBubblesCollectionViewController: UICollectionViewController {
             FCBubbleViewModel(radius: 110, equation: self.equation),
             ]
         
-//        NSKeyedArchiver.archiveRootObject(self.viewModels, toFile: self.storagePath())
         
-        let dict = self.equation.dictionaryValue()
-//        let eq = FCEquation(dictionary: dict)
-        let eq = FCSymbolParser.parse(dict)
         self.calculator.calculateSizeOfEquation(self.equation) { (size) -> () in
+            self.dupa(self.equation, size: size)
+//            self.equation.displayingSize = size
+//            NSKeyedArchiver.archiveRootObject([self.equation.dictionaryValue()], toFile: self.storagePath())
             NSLog(String(size))
         }
         
-    
+        
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
         NSLog(String(self.collectionView!.collectionViewLayout.collectionViewContentSize()))
+    }
+    
+    func dupa(eq: FCEquation, size: CGSize) {
+        eq.displayingSize = size
+        NSKeyedArchiver.archiveRootObject([eq.dictionaryValue()], toFile: self.storagePath())
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

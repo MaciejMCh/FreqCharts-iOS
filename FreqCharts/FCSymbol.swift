@@ -49,7 +49,7 @@ class FCSymbolSizeCalculator: NSObject, UIWebViewDelegate {
         webView.frame = frame
         var fittingSize = webView.sizeThatFits(CGSizeZero)
         frame.size = fittingSize
-        self.completionBlock(size: CGSizeMake(CGRectGetWidth(frame), CGRectGetHeight(frame)))
+        self.completionBlock(size: fittingSize)
     }
     
 }
@@ -72,7 +72,7 @@ protocol FCSymbol: spierdolonyNSCodingWSwifcie {
 class FCEquation: NSObject, FCSymbol {
     private var mainSymbol: FCSymbol
     private var font: UIFont
-    private var displayingSize: CGSize?
+    var displayingSize: CGSize?
     
     init(mainSymbol: FCSymbol, font: UIFont) {
         self.mainSymbol = mainSymbol
@@ -92,7 +92,13 @@ class FCEquation: NSObject, FCSymbol {
     }
     
     func dictionaryValue() -> [String: AnyObject] {
-        return [String(self.classForCoder): ["mainSymbol": self.mainSymbol.dictionaryValue()]]
+        var dict: [String: AnyObject] = ["mainSymbol": self.mainSymbol.dictionaryValue()]
+        if (self.displayingSize != nil) {
+            dict["width"] = self.displayingSize!.width
+            dict["height"] = self.displayingSize!.height
+        }
+        
+        return [String(self.classForCoder): dict]
     }
     
     init(dictionary: [String: AnyObject]) {
