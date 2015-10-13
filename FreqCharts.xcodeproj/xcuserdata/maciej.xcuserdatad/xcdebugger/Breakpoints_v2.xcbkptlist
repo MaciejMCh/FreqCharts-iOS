@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FreqCharts/FCBubbleViewModel.swift"
-            timestampString = "466367618.800986"
+            filePath = "FreqCharts/FCBubbleCollectionViewFlowLayout.swift"
+            timestampString = "466418931.027546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "connect(_:)"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "calculateCirclePosition(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

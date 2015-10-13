@@ -10,64 +10,52 @@ import UIKit
 
 class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
-    private var cache = [UICollectionViewLayoutAttributes]()
+    private var attributesCache = [UICollectionViewLayoutAttributes]()
     
-    private var circles:[Circle] = [Circle]()
+    private var calculatedCircles:[Circle] = [Circle]()
+    private var notCalculatedCircles:[Circle] = [Circle]()
     
     private var viewModels: [FCBubbleViewModel] = [
-        FCBubbleViewModel(radius: 100),
-        FCBubbleViewModel(radius: 130),
         FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 30),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 100),
+        FCBubbleViewModel(radius: 65),
+        FCBubbleViewModel(radius: 25),
         FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 140),
+        FCBubbleViewModel(radius: 30),
+        FCBubbleViewModel(radius: 15),
+        FCBubbleViewModel(radius: 30),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 20),
         FCBubbleViewModel(radius: 70),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 90),
-        FCBubbleViewModel(radius: 120),
-        FCBubbleViewModel(radius: 200)
+        FCBubbleViewModel(radius: 35),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 45),
+        FCBubbleViewModel(radius: 60),
+        FCBubbleViewModel(radius: 100)
     ]
     
     override func prepareLayout() {
-        
-        
-        
-        var index = 0
         for viewModel in self.viewModels {
-            
-            let indexPath = NSIndexPath(forItem: index, inSection: 0)
-            let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-            attributes.frame = self.finalBubbleFrame(indexPath.row)
-            cache.append(attributes)
-            
-            index += 1
+            self.notCalculatedCircles.append(Circle(cr: CGFloat(viewModel.radius)))
+        }
+        self.calculateCache()
+    }
+    
+    func calculateCache() {
+        for circle in self.notCalculatedCircles {
+            self.calculateCirclePosition(circle)
         }
         
-//        if cache.isEmpty {
-//            
-//            for item in 0 ..< collectionView!.numberOfItemsInSection(0) {
-//                
-//                let indexPath = NSIndexPath(forItem: item, inSection: 0)
-//                
-//                // 5
-//                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-//                attributes.frame = self.finalBubbleFrame(indexPath.row)
-//                cache.append(attributes)
-//                
-//            }
-//        }
+        for circle in self.calculatedCircles {
+            let layoutAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: self.calculatedCircles.indexOf(circle)!, inSection: 0))
+            layoutAttributes.frame = circle.frame()
+            self.attributesCache.append(layoutAttributes)
+        }
     }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
-        
-        for attributes in cache {
+        for attributes in attributesCache {
             if CGRectIntersectsRect(attributes.frame, rect) {
                 layoutAttributes.append(attributes)
             }
@@ -75,84 +63,89 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return layoutAttributes
     }
     
-    
-    func finalBubbleFrame(index: NSInteger) -> CGRect {
+    func calculateCirclePosition(circle: Circle) {
         let spacing: CGFloat = 10
-        let radius = CGFloat(viewModels[index].radius)
-        let currentBubble = viewModels[index]
         
-        if (index == 0) {
-            var origin = CGPointMake(CGRectGetMidX(self.collectionView!.bounds), CGRectGetMidY(self.collectionView!.bounds))
-            origin.x -= radius / 2
-            origin.y -= radius / 2
-            return CGRectMake(origin.x, origin.y, radius, radius)
-        } else if (index == 1) {
-            let firstFrame = self.finalBubbleFrame(0)
-            var origin = CGPointMake(CGRectGetMinX(firstFrame), CGRectGetMinY(firstFrame))
-            origin.y -= radius + spacing
-            origin.x += (CGRectGetWidth(firstFrame) - radius) / 2
-    
-            viewModels[0].connect(viewModels[1])
-            
-            return CGRectMake(origin.x, origin.y, radius, radius)
+        // First circle in the middle
+        if (self.calculatedCircles.count == 0) {
+            let screenCenterPoint = CGPointMake(CGRectGetMidX(self.collectionView!.bounds), CGRectGetMidY(self.collectionView!.bounds))
+            circle.x = screenCenterPoint.x
+            circle.y = screenCenterPoint.y
+            self.calculatedCircles.append(circle)
+            return
         }
         
+        // Second circle above first
+        if (self.calculatedCircles.count == 1) {
+            circle.x = self.calculatedCircles[0].x
+            circle.y = self.calculatedCircles[0].y - self.calculatedCircles[0].r - circle.r - spacing
+            
+            circle.connect(self.calculatedCircles[0])
+            self.calculatedCircles.append(circle)
+            return
+        }
         
-        for firstBubble in self.viewModels {
-            for secondBubble in self.viewModels {
-                if (firstBubble == secondBubble) {
+        // Next are calculated
+        var possibilities: [Circle] = [Circle]()
+        
+        // Iterate through circle pairs
+        for firstCircle in self.calculatedCircles {
+            for secondCircle in self.calculatedCircles {
+                // Dont check same circles
+                if (firstCircle == secondCircle) {
                     continue
                 }
                 
-                if (firstBubble.isConnected(secondBubble)) {
-                    let firstMid = CGPointMake(CGRectGetMidX(self.finalBubbleFrame(self.viewModels.indexOf(firstBubble)!)), CGRectGetMidY(self.finalBubbleFrame(self.viewModels.indexOf(firstBubble)!)))
-                    let secondMid = CGPointMake(CGRectGetMidX(self.finalBubbleFrame(self.viewModels.indexOf(secondBubble)!)), CGRectGetMidY(self.finalBubbleFrame(self.viewModels.indexOf(secondBubble)!)))
-                    let firstRadius = CGFloat(firstBubble.radius)
-                    let secondRadius = CGFloat(secondBubble.radius)
-                    
-                    var circle1 = Circle(cx: Float(firstMid.x), cy: Float(firstMid.y), cr: Float((firstRadius / 2) + (radius / 2) + spacing))
-                    var circle2 = Circle(cx: Float(secondMid.x), cy: Float(secondMid.y), cr: Float((secondRadius / 2) + (radius / 2) + spacing))
-                    
-                    
-                    let intersecitons = circle1.intersections(circle2)
-                    let intersection = intersecitons[1];
-                    
-                    var isValid = true
-                    for circle in self.circles {
-                        if (Circle(cx: intersection.x, cy: intersection.y, cr: Float(radius)).intersects(circle)) {
-                            isValid = false
-                            break;
-                        }
-                    }
-                    
-                    if !isValid {
-                        continue
-                    }
-                    
-                    self.circles.append(Circle(cx: intersection.x, cy: intersection.y, cr: Float(radius)))
-                    var rect: CGRect =  CGRectMake(CGFloat(intersecitons[1].x) - (radius / 2), CGFloat(intersecitons[1].y) - (radius / 2), radius, radius)
-
-                    return rect
-                    
-                } else {
+                // Dont check if not connected circles
+                if (!firstCircle.isConnected(secondCircle)) {
                     continue
                 }
                 
+                // Calculate intersections
+                let extendedFirstCircle = Circle(cx: firstCircle.x, cy: firstCircle.y, cr: firstCircle.r + spacing + circle.r)
+                let extendedSecondCircle = Circle(cx: secondCircle.x, cy: secondCircle.y, cr: secondCircle.r + spacing + circle.r)
+                
+                var intersections = extendedFirstCircle.intersections(extendedSecondCircle)
+                
+                // Chose one possible circle
+                let firstPosibility = Circle(cx: intersections[0].x, cy: intersections[0].y, cr: circle.r)
+                firstPosibility.connect(firstCircle)
+                let secondPossibility = Circle(cx: intersections[1].x, cy: intersections[1].y, cr: circle.r)
+                secondPossibility.connect(firstCircle)
+                
+                possibilities.append(firstPosibility)
+                possibilities.append(secondPossibility)
             }
         }
-        return CGRectZero
+        
+        let validPossibilities = possibilities.filter{self.isCircleValid($0)}
+        let sortedPossibilities = validPossibilities.sort { (first, second) -> Bool in
+            return first.r > second.r
+        }
+        
+        circle.x = validPossibilities[0].x
+        circle.y = validPossibilities[0].y
+        circle.connections = validPossibilities[0].connections
+        self.calculatedCircles.append(circle)
+        
+        
     }
     
-    func vectorLength(point: CGPoint) -> CGFloat {
-        return CGFloat(hypotf(Float(point.x), Float(point.y)))
+    func isCircleValid(circle: Circle) -> Bool {
+        for iteratingCircle in self.calculatedCircles {
+            if (iteratingCircle.intersects(circle)) {
+                return false
+            }
+        }
+        return true
     }
-
+    
 }
 
-class Point{
-    var x, y: Float!
+class Point {
+    var x, y: CGFloat!
     
-    init(px: Float, py: Float) {
+    init(px: CGFloat, py: CGFloat) {
         x = px;
         y = py;
     }
@@ -165,7 +158,7 @@ class Point{
         return Point(px: x + p2.x, py: y + p2.y);
     }
     
-    func distance(p2: Point) -> Float {
+    func distance(p2: Point) -> CGFloat {
         return sqrt((x - p2.x)*(x - p2.x) + (y - p2.y)*(y - p2.y));
     }
     
@@ -174,15 +167,22 @@ class Point{
         return Point(px: x/length, py: y/length);
     }
     
-    func scale(s: Float) -> Point {
+    func scale(s: CGFloat) -> Point {
     return Point(px: x*s, py: y*s);
     }   
 }
 
-class Circle {
-    var x, y, r, left: Float;
+class Circle: NSObject {
+    var x, y, r, left: CGFloat;
     
-    init(cx: Float,cy: Float, cr: Float) {
+    init(cr: CGFloat) {
+        x = 0
+        y = 0
+        r = cr
+        left = -cr
+    }
+    
+    init(cx: CGFloat,cy: CGFloat, cr: CGFloat) {
         x = cx;
         y = cy;
         r = cr;
@@ -207,6 +207,28 @@ class Circle {
         let C0 = Point(px: x, py: y)
         let C1 = Point(px: c.x, py: c.y)
         return C0.distance(C1) <= r + c.r
+    }
+    
+    func frame() -> CGRect {
+        return CGRectMake(x-r, y-r, r*2, r*2)
+    }
+    
+    var connections: [Circle] = [Circle]()
+    
+    func connect(circle: Circle) {
+        if (self.connections.contains(circle)) {
+            return
+        }
+        self.connections.append(circle)
+    }
+    
+    func isConnected(circle: Circle) -> Bool {
+        return self.connections.contains(circle)
+    }
+    
+    func desc() -> String {
+//        return String(r) + " " + String(x) + " " + String(y)
+        return String(r)
     }
     
 }

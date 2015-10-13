@@ -14,22 +14,22 @@ class FCBubblesCollectionViewController: UICollectionViewController {
 
     
     private var viewModels: [FCBubbleViewModel] = [
-        FCBubbleViewModel(radius: 100),
-        FCBubbleViewModel(radius: 130),
         FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 30),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 100),
+        FCBubbleViewModel(radius: 65),
+        FCBubbleViewModel(radius: 25),
         FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 140),
+        FCBubbleViewModel(radius: 30),
+        FCBubbleViewModel(radius: 15),
+        FCBubbleViewModel(radius: 30),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 20),
         FCBubbleViewModel(radius: 70),
-        FCBubbleViewModel(radius: 80),
-        FCBubbleViewModel(radius: 90),
-        FCBubbleViewModel(radius: 120),
-        FCBubbleViewModel(radius: 200)
+        FCBubbleViewModel(radius: 35),
+        FCBubbleViewModel(radius: 40),
+        FCBubbleViewModel(radius: 45),
+        FCBubbleViewModel(radius: 60),
+        FCBubbleViewModel(radius: 100)
     ]
     
     override func viewDidLoad() {
@@ -56,7 +56,7 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         cell.backgroundColor = UIColor.whiteColor()
         // Configure the cell
     
-        cell.layer.cornerRadius = CGFloat(self.viewModels[indexPath.row].radius / 2)
+        cell.layer.cornerRadius = CGFloat(self.viewModels[indexPath.row].radius)
         
         return cell
     }
