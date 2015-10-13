@@ -53,7 +53,10 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).viewModels = self.viewModels
+        (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
+        
+//        self.collectionView!.contentOffset = CGPointMake((self.collectionViewLayout.collectionViewContentSize().width / 2) - (CGRectGetWidth(self.collectionView!.bounds) / 2), (self.collectionViewLayout.collectionViewContentSize().height / 2) - (CGRectGetHeight(self.collectionView!.bounds) / 2))
+        NSLog(String(self.collectionView!.collectionViewLayout.collectionViewContentSize()))
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -16,15 +16,7 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private var notCalculatedCircles:[Circle] = [Circle]()
     private var foam: Foam = Foam()
     
-    var viewModels: [FCBubbleViewModel] = [FCBubbleViewModel]()
-    
-    override func prepareLayout() {
-        self.notCalculatedCircles = [Circle]()
-        for viewModel in self.viewModels {
-            self.notCalculatedCircles.append(Circle(cr: CGFloat(viewModel.radius)))
-        }
-        self.calculateCache()
-    }
+    private var viewModels: [FCBubbleViewModel] = [FCBubbleViewModel]()
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
@@ -41,6 +33,16 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     override func collectionViewContentSize() -> CGSize {
         return self.foam.size
+    }
+    
+    func passViewModels(viewModels: [FCBubbleViewModel]) {
+        self.viewModels = viewModels
+        self.notCalculatedCircles = [Circle]()
+        for viewModel in self.viewModels {
+            self.notCalculatedCircles.append(Circle(cr: CGFloat(viewModel.radius)))
+        }
+        self.calculateCache()
+        self.collectionView!.contentOffset = CGPointMake((self.collectionViewContentSize().width / 2) - (CGRectGetWidth(self.collectionView!.bounds) / 2), (self.collectionViewContentSize().height / 2) - (CGRectGetHeight(self.collectionView!.bounds) / 2))
     }
     
     func calculateCache() {

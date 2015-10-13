@@ -15,4 +15,8 @@ class FCBubbleCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = UIColor.whiteColor()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
 }
