@@ -106,8 +106,10 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 // Chose one possible circle
                 let firstPosibility = Circle(cx: intersections[0].x, cy: intersections[0].y, cr: circle.r)
                 firstPosibility.connect(firstCircle)
+                firstPosibility.connect(secondCircle)
                 let secondPossibility = Circle(cx: intersections[1].x, cy: intersections[1].y, cr: circle.r)
                 secondPossibility.connect(firstCircle)
+                secondPossibility.connect(secondCircle)
                 
                 possibilities.append(firstPosibility)
                 possibilities.append(secondPossibility)
@@ -121,14 +123,12 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: first.x, py: first.y)) < Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: second.x, py: second.y))
         }
         
-        let chosencircle = sortedPossibilities[0]
+        let chosencircle = validPossibilities[0]
         
         circle.x = chosencircle.x
         circle.y = chosencircle.y
         circle.connections = chosencircle.connections
         self.calculatedCircles.append(circle)
-        
-        
     }
     
     func isCircleValid(circle: Circle) -> Bool {
@@ -174,6 +174,10 @@ class Point {
 
 class Circle: NSObject {
     var x, y, r, left: CGFloat;
+    
+    override var description: String { get {
+        return String(x) + "," + String(y)
+        }}
     
     init(cr: CGFloat) {
         x = 0

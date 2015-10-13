@@ -24,9 +24,19 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         FCBubbleViewModel(radius: 50),
         FCBubbleViewModel(radius: 50),
         FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 50),
-        
-        
+    ]
+    
+    private var colors: [UIColor] = [
+        UIColor(white: 1.0, alpha: 1.0),
+        UIColor(white: 1.0, alpha: 0.9),
+        UIColor(white: 1.0, alpha: 0.8),
+        UIColor(white: 1.0, alpha: 0.7),
+        UIColor(white: 1.0, alpha: 0.6),
+        UIColor(white: 1.0, alpha: 0.5),
+        UIColor(white: 1.0, alpha: 0.4),
+        UIColor(white: 1.0, alpha: 0.3),
+        UIColor(white: 1.0, alpha: 0.2),
+        UIColor(white: 1.0, alpha: 0.1),
     ]
     
     override func viewDidLoad() {
@@ -34,15 +44,7 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).viewModels = self.viewModels
     }
-
-    // MARK: UICollectionViewDataSource
-
-//    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-
-
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return self.viewModels.count
@@ -51,43 +53,12 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> FCBubbleCollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FCBubbleCollectionViewCell
     
-        cell.backgroundColor = UIColor.whiteColor()
+        cell.backgroundColor = self.colors[indexPath.row]
         // Configure the cell
     
         cell.layer.cornerRadius = CGFloat(self.viewModels[indexPath.row].radius)
         
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
-    }
-    */
-
 }
