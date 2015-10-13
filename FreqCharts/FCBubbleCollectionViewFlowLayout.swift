@@ -16,24 +16,7 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private var notCalculatedCircles:[Circle] = [Circle]()
     private var foam: Foam = Foam()
     
-    private var viewModels: [FCBubbleViewModel] = [
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 65),
-        FCBubbleViewModel(radius: 25),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 30),
-        FCBubbleViewModel(radius: 15),
-        FCBubbleViewModel(radius: 30),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 20),
-        FCBubbleViewModel(radius: 70),
-        FCBubbleViewModel(radius: 35),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 45),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 100)
-    ]
+    var viewModels: [FCBubbleViewModel] = [FCBubbleViewModel]()
     
     override func prepareLayout() {
         self.notCalculatedCircles = [Circle]()
@@ -81,7 +64,7 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         // First circle in the middle
         if (self.calculatedCircles.count == 0) {
-            let screenCenterPoint = CGPointMake(100, 100)
+            let screenCenterPoint = CGPointZero
             circle.x = screenCenterPoint.x
             circle.y = screenCenterPoint.y
             self.calculatedCircles.append(circle)
@@ -133,7 +116,7 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         let validPossibilities = possibilities.filter{self.isCircleValid($0)}
         
-        let screenCenterPoint = Point(px: 100, py: 100)
+        let screenCenterPoint = Point(px: 0, py: 0)
         let sortedPossibilities = validPossibilities.sort { (first, second) -> Bool in
             return Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: first.x, py: first.y)) < Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: second.x, py: second.y))
         }

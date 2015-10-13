@@ -15,26 +15,24 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     
     private var viewModels: [FCBubbleViewModel] = [
         FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 65),
-        FCBubbleViewModel(radius: 25),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 30),
-        FCBubbleViewModel(radius: 15),
-        FCBubbleViewModel(radius: 30),
-        FCBubbleViewModel(radius: 40),
         FCBubbleViewModel(radius: 50),
-        FCBubbleViewModel(radius: 20),
-        FCBubbleViewModel(radius: 70),
-        FCBubbleViewModel(radius: 35),
-        FCBubbleViewModel(radius: 40),
-        FCBubbleViewModel(radius: 45),
-        FCBubbleViewModel(radius: 60),
-        FCBubbleViewModel(radius: 100)
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 50),
+        FCBubbleViewModel(radius: 50),
+        
+        
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).viewModels = self.viewModels
     }
 
     // MARK: UICollectionViewDataSource
@@ -47,7 +45,7 @@ class FCBubblesCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 16
+        return self.viewModels.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> FCBubbleCollectionViewCell {

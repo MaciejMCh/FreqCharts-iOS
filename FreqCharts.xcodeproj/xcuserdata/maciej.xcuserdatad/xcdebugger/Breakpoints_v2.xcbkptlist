@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FreqCharts/FCBubbleCollectionViewFlowLayout.swift"
-            timestampString = "466423258.81839"
+            timestampString = "466423744.709298"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "init(circles:)"
             landmarkType = "5">
          </BreakpointContent>
