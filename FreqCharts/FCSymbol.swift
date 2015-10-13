@@ -30,7 +30,7 @@ protocol spierdolonyNSCodingWSwifcie {
 
 class FCSymbolSizeCalculator: NSObject, UIWebViewDelegate {
     
-    private var webView = UIWebView(frame: CGRectMake(0, 0, 400, 400))
+    private var webView = UIWebView(frame: CGRectMake(0, 0, 10, 10))
     private var completionBlock: ((size: CGSize) -> ())!
     
     func calculateSizeOfEquation(equation: FCEquation, completionBlock: (size: CGSize) -> ()) {
