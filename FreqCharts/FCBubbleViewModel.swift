@@ -24,6 +24,11 @@ class FCBubbleViewModel: NSObject {
         self.equation = equation
     }
     
+    init(equation: FCEquation) {
+        self.radius = Float(equation.displayingSize!.width / 2)
+        self.equation = equation
+    }
+    
     func connect(bubble: FCBubbleViewModel) {
         if (self.connections .contains(bubble)) {
             return

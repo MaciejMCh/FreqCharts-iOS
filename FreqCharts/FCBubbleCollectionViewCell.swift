@@ -29,8 +29,8 @@ class FCBubbleCollectionViewCell: UICollectionViewCell {
     func initConstraints() {
         self.webView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.widthConstraint = NSLayoutConstraint(item: self.webView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
-        self.heightConstraint = NSLayoutConstraint(item: self.webView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
+        self.heightConstraint = NSLayoutConstraint(item: self.webView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
+        self.widthConstraint = NSLayoutConstraint(item: self.webView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
         
         let xCenterConstraint = NSLayoutConstraint(item: self.contentView, attribute: .CenterX, relatedBy: .Equal, toItem: self.webView, attribute: .CenterX, multiplier: 1, constant: 0)
         let yCenterConstraint = NSLayoutConstraint(item: self.contentView, attribute: .CenterY, relatedBy: .Equal, toItem: self.webView, attribute: .CenterY, multiplier: 1, constant: 0)

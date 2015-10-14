@@ -27,20 +27,27 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         
-        self.viewModels = [
-            FCBubbleViewModel(radius: 70, equation: self.equation),
-            FCBubbleViewModel(radius: 90, equation: self.equation),
-            FCBubbleViewModel(radius: 110, equation: self.equation),
-            ]
+//        self.viewModels = [
+//            FCBubbleViewModel(radius: 70, equation: self.equation),
+//            FCBubbleViewModel(radius: 90, equation: self.equation),
+//            FCBubbleViewModel(radius: 110, equation: self.equation),
+//            ]
+//        
+//        
+//        self.calculator.calculateSizeOfEquation(self.equation) { (size) -> () in
+//            self.dupa(self.equation, size: size)
+////            self.equation.displayingSize = size
+////            NSKeyedArchiver.archiveRootObject([self.equation.dictionaryValue()], toFile: self.storagePath())
+//            NSLog(String(size))
+//        }
+        
+        let array: [[String: AnyObject]] = NSKeyedUnarchiver.unarchiveObjectWithFile(self.storagePath()) as! [[String: AnyObject]]
         
         
-        self.calculator.calculateSizeOfEquation(self.equation) { (size) -> () in
-            self.dupa(self.equation, size: size)
-//            self.equation.displayingSize = size
-//            NSKeyedArchiver.archiveRootObject([self.equation.dictionaryValue()], toFile: self.storagePath())
-            NSLog(String(size))
+        self.viewModels = [FCBubbleViewModel]()
+        for dict in array {
+            self.viewModels.append(FCBubbleViewModel(equation: FCSymbolParser.parse(dict) as! FCEquation))
         }
-        
         
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
@@ -61,6 +68,8 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     
         cell.layer.cornerRadius = CGFloat(self.viewModels[indexPath.row].radius)
         cell.webView.loadHTMLString(self.viewModels[indexPath.row].equation.htmlRepresentation(), baseURL: nil)
+        cell.widthConstraint.constant = self.viewModels[indexPath.row].equation.displayingSize!.width
+        cell.heightConstraint.constant = self.viewModels[indexPath.row].equation.displayingSize!.height
         
         return cell
     }

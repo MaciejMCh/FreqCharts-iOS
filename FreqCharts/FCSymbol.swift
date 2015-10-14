@@ -103,6 +103,7 @@ class FCEquation: NSObject, FCSymbol {
     
     init(dictionary: [String: AnyObject]) {
         self.mainSymbol = FCSymbolParser.parse(dictionary["mainSymbol"]! as! [String : AnyObject])
+        self.displayingSize = CGSizeMake(CGFloat(dictionary["width"] as! NSNumber), CGFloat(dictionary["height"] as! NSNumber))
         self.font = UIFont()
     }
     
