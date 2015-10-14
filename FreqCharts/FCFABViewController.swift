@@ -29,15 +29,21 @@ class FCFABViewController: UIViewController {
         let model = CATransform3DConcat(scale, translation)
         
         animation.toValue = NSValue(CATransform3D: model)
-        animation.duration = 0.3
+        animation.duration = 1.0
         animation.fillMode = kCAFillModeForwards
+        animation.timingFunction = CAMediaTimingFunction(controlPoints: 0.1, 1, 0.1, 1)
         animation.removedOnCompletion = false
-        self.FAB.layer.addAnimation(animation, forKey: "transform")
-        
-        
-        
-        
-        
+        self.FAB.layer.addAnimation(animation, forKey: "grow bubble")
+    }
+    
+    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+        var animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.toValue = NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 1))
+        animation.duration = 0.5
+        animation.fillMode = kCAFillModeForwards
+        animation.timingFunction = CAMediaTimingFunction(controlPoints: 0.1, 1, 0.1, 1)
+        animation.removedOnCompletion = false
+        self.FAB.layer.addAnimation(animation, forKey: "explode bubble")
     }
 
 }
