@@ -7,7 +7,7 @@
         <!--View Controller-->
         <scene sceneID="Lxe-vl-pbZ">
             <objects>
-                <viewController id="Uve-xa-34r" sceneMemberID="viewController">
+                <viewController id="Uve-xa-34r" customClass="FCFABViewController" customModule="FreqCharts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3XX-0p-6Ad"/>
                         <viewControllerLayoutGuide type="bottom" id="Qn6-Xd-ne0"/>
@@ -39,6 +39,9 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="5ZT-u7-hY1"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,10 +54,31 @@
                             <constraint firstAttribute="trailing" secondItem="gqc-yM-cle" secondAttribute="trailing" constant="15" id="tuw-6W-ax8"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="FAB" destination="gqc-yM-cle" id="v1z-4y-d8D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9m-2C-k6V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-191" y="-322"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="XY9-ED-YNt">
+            <objects>
+                <viewController id="cfd-0r-I4f" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="96s-b7-ws8"/>
+                        <viewControllerLayoutGuide type="bottom" id="03O-nH-sAT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FDz-p3-IQS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fww-gB-UzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-191" y="398"/>
         </scene>
         <!--Bubbles Collection View Controller-->
         <scene sceneID="9y5-v3-s8l">
@@ -133,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="482" y="398"/>
+            <point key="canvasLocation" x="1174" y="-322"/>
         </scene>
     </scenes>
 </document>
