@@ -24,6 +24,9 @@ class FCBubbleCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(self.webView)
         
         self.initConstraints()
+        
+        
+        self.webView.alpha = 0.0
     }
     
     func initConstraints() {

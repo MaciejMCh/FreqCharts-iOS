@@ -10,37 +10,43 @@ import UIKit
 
 class FCCreateEquationViewController: UIViewController {
     
-    @IBOutlet var operation: UIView!
-    @IBOutlet var propeller: UIView!
+    @IBOutlet var equationBubble: UIView!
+    @IBOutlet var operatorsContainer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        self.enterAnimation()
+
         let timer = NSTimer(timeInterval: 0.01, target: self, selector: Selector("animate"), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
-        
-//        self.rotateImageView()
     }
-
-    func rotateImageView() {
+    
+    //MARK: enter animation
+    
+    func enterAnimation() {
+        equationBubble.transform = CGAffineTransformMakeScale(0, 0)
+        equationBubble.alpha = 0.0
         
-        
-        
-        
-        
-        UIView.animateWithDuration(10.0, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
-            self.propeller.transform = CGAffineTransformRotate(self.propeller.transform, CGFloat(M_PI_2))
-            }) { (finished) -> Void in
-                self.rotateImageView()
+        for operatorBubble in self.operatorsContainer.subviews {
+            operatorBubble.transform = CGAffineTransformMakeScale(0, 0)
         }
         
+        UIView.animateWithDuration(0.1) { () -> Void in
+            self.equationBubble.transform = CGAffineTransformIdentity
+            self.equationBubble.alpha = 1.0
+            
+            for operatorBubble in self.operatorsContainer.subviews {
+                operatorBubble.transform = CGAffineTransformIdentity
+            }
+        }
     }
+    
+    //MARK: spinning animation
     
     func animate() {
         let circleRadius = CGFloat(25)
         let middle = CGPointMake(CGRectGetMidX(self.view.frame) - circleRadius, CGRectGetMidY(self.view.frame) - circleRadius)
-        var radius = Double(CGRectGetWidth(self.view.frame) / 2) - Double(circleRadius) - 15
+        let radius = Double(CGRectGetWidth(self.view.frame) / 2) - Double(circleRadius) - 15
         let speed = Double(0.1)
         let dAngle = M_PI_4
         
@@ -75,18 +81,8 @@ class FCCreateEquationViewController: UIViewController {
         offset += dAngle
         x7.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
         y7.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
-        
     }
     
-    @IBAction func Add(sender: AnyObject) {
-//        NSLog(String(self.operation.layer.presentationLayer()))
-//        NSLog("Add!")
-    }
-    
-    
-    
-    
-    // animations
     @IBOutlet var x0: NSLayoutConstraint!
     @IBOutlet var y0: NSLayoutConstraint!
     @IBOutlet var x1: NSLayoutConstraint!

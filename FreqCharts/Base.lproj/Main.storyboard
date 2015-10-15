@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cfd-0r-I4f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uve-xa-34r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -262,7 +262,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="FG6-pG-iJQ" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="0YX-0a-I5G"/>
                                     <constraint firstItem="BrR-9D-u5h" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="1KU-9p-R6J"/>
@@ -283,7 +283,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PQn-V5-esw" firstAttribute="centerY" secondItem="FDz-p3-IQS" secondAttribute="centerY" id="7UB-cY-Wpn"/>
                             <constraint firstItem="PQn-V5-esw" firstAttribute="centerX" secondItem="FDz-p3-IQS" secondAttribute="centerX" id="NxY-HV-mRc"/>
@@ -295,7 +295,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="operation" destination="ZZ6-DP-b46" id="61S-8s-aKK"/>
+                        <outlet property="equationBubble" destination="PQn-V5-esw" id="fUM-dr-f3p"/>
+                        <outlet property="operatorsContainer" destination="bdw-Jm-Je8" id="IQk-Hs-pbx"/>
                         <outlet property="x0" destination="Jqc-Ei-pOW" id="awa-a3-lkw"/>
                         <outlet property="x1" destination="xx5-9s-WPf" id="SYf-ue-Tkv"/>
                         <outlet property="x2" destination="r7i-LP-xjS" id="5I2-tH-j3r"/>
