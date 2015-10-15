@@ -29,7 +29,9 @@ class FCFABViewController: UIViewController {
         let yDiff = CGRectGetMinY(initialFrame) - centeredY
         let translation = CATransform3DMakeTranslation(-xDiff, -yDiff, 0)
         
-        let scale = CATransform3DMakeScale(4, 4, 1)
+        
+        let factor = (CGRectGetWidth(self.view.frame) - 30) / CGRectGetWidth(FAB.frame)
+        let scale = CATransform3DMakeScale(factor, factor, 1)
         let model = CATransform3DConcat(scale, translation)
         
         animation.toValue = NSValue(CATransform3D: model)
