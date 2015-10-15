@@ -15,7 +15,7 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     private var equation: FCEquation {
         let frac = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(), RHSSymbol: FCNumberSymbol(value: 1000)))
         let par = FCParenthesesSymbol(childSymbol: frac)
-        let mainEquation = FCEquation(mainSymbol: par, font: UIFont.systemFontOfSize(16, weight: UIFontWeightLight))
+        let mainEquation = FCEquation(mainSymbol: par, font: UIFont())
         return mainEquation
     }
     
@@ -44,12 +44,12 @@ class FCBubblesCollectionViewController: UICollectionViewController {
 //            FCBubbleViewModel(radius: 90, equation: self.equation),
 //            FCBubbleViewModel(radius: 110, equation: self.equation),
 //            ]
-//        
+//
 //        
 //        self.calculator.calculateSizeOfEquation(self.equation) { (size) -> () in
 //            self.dupa(self.equation, size: size)
 ////            self.equation.displayingSize = size
-////            NSKeyedArchiver.archiveRootObject([self.equation.dictionaryValue()], toFile: self.storagePath())
+//            NSKeyedArchiver.archiveRootObject([self.equation.dictionaryValue()], toFile: self.storagePath())
 //            NSLog(String(size))
 //        }
         

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uve-xa-34r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cfd-0r-I4f">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -77,9 +78,21 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-V5-esw" customClass="FCCircleView" customModule="FreqCharts" customModuleProvider="target">
                                 <rect key="frame" x="80" y="80" width="440" height="440"/>
+                                <subviews>
+                                    <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUo-3q-K17">
+                                        <rect key="frame" x="100" y="156" width="240" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="bdc-AQ-0SV"/>
+                                            <constraint firstAttribute="height" constant="100" id="kbv-vP-LhO"/>
+                                        </constraints>
+                                    </webView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="ZUo-3q-K17" firstAttribute="centerX" secondItem="PQn-V5-esw" secondAttribute="centerX" id="QLJ-3K-6ER"/>
                                     <constraint firstAttribute="width" secondItem="PQn-V5-esw" secondAttribute="height" multiplier="1:1" id="ZYx-Yl-Ics"/>
+                                    <constraint firstItem="ZUo-3q-K17" firstAttribute="centerY" secondItem="PQn-V5-esw" secondAttribute="centerY" id="iZO-Yd-9y3"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdw-Jm-Je8" userLabel="circlesContainer">
@@ -103,8 +116,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="2xv-MI-4k3"/>
-                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="WsK-8j-vsH"/>
+                                            <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="djG-wS-pjV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FG6-pG-iJQ" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
@@ -125,8 +137,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="GLX-7B-TzB"/>
-                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="DNf-DR-DMf"/>
+                                            <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="vOz-CN-Q7Q"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIU-pG-6jR" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
@@ -147,8 +158,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="1lB-vo-jvB"/>
-                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="Wcv-XH-81A"/>
+                                            <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="sFP-hv-Mlo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQB-sU-UlS" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
@@ -169,8 +179,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="4Qs-DE-Auv"/>
-                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="dLT-xs-B1z"/>
+                                            <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="0z3-DD-92a"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGF-Ie-8k7" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
@@ -191,8 +200,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="zzh-IN-9YQ"/>
-                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="Lwe-Bz-Wem"/>
+                                            <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="17y-gC-0Vl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BrR-9D-u5h" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
@@ -213,8 +221,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="B66-P2-FNO"/>
-                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="hxJ-oo-756"/>
+                                            <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="xIx-Ef-BDl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="087-nL-vCH" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
@@ -235,8 +242,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="G6r-v3-rxj"/>
-                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="rvj-Du-RXo"/>
+                                            <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="Obk-Tz-AdE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mZ-pG-Xde" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
@@ -257,8 +263,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="vGd-bF-mqU"/>
-                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="8BF-kW-GIC"/>
+                                            <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="gtc-ti-zlu"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -295,8 +300,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="b0" destination="ZZ6-DP-b46" id="LqE-oG-bMQ"/>
+                        <outlet property="b1" destination="FG6-pG-iJQ" id="jQr-1P-qPa"/>
+                        <outlet property="b2" destination="ZIU-pG-6jR" id="Mp2-5j-agR"/>
+                        <outlet property="b3" destination="GQB-sU-UlS" id="XWp-jb-HBA"/>
+                        <outlet property="b4" destination="vGF-Ie-8k7" id="cNl-ew-1KI"/>
+                        <outlet property="b5" destination="BrR-9D-u5h" id="Eot-Wx-KCh"/>
+                        <outlet property="b6" destination="087-nL-vCH" id="579-TD-LKE"/>
+                        <outlet property="b7" destination="4mZ-pG-Xde" id="0r3-cL-6ja"/>
                         <outlet property="equationBubble" destination="PQn-V5-esw" id="fUM-dr-f3p"/>
                         <outlet property="operatorsContainer" destination="bdw-Jm-Je8" id="IQk-Hs-pbx"/>
+                        <outlet property="webView" destination="ZUo-3q-K17" id="7fs-Od-YPK"/>
                         <outlet property="x0" destination="Jqc-Ei-pOW" id="awa-a3-lkw"/>
                         <outlet property="x1" destination="xx5-9s-WPf" id="SYf-ue-Tkv"/>
                         <outlet property="x2" destination="r7i-LP-xjS" id="5I2-tH-j3r"/>

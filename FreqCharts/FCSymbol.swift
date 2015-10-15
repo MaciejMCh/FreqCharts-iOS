@@ -86,7 +86,7 @@ class FCEquation: NSObject, FCSymbol {
     
     func htmlRepresentation() -> String {
         let colorString = "2F92E5"
-        return "<body style=\"background:none\"><math><mstyle mathcolor=" + colorString + ">" +
+        return "<body style=\"background:none\"><math><mstyle mathsize='2.0em' mathcolor=" + colorString + ">" +
                 self.mainSymbol.htmlRepresentation() +
                 "</mstyle></math></body>"
     }
@@ -140,7 +140,7 @@ class FCNumberSymbol: NSObject, FCSymbol {
 
 class FCNullSymbol: NSObject, FCSymbol {
     func htmlRepresentation() -> String {
-        return "<mn>0</mn>"
+        return "<mn mathcolor=FF0000>▢</mn>"
     }
     
     func dictionaryValue() -> [String: AnyObject] {
