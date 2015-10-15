@@ -70,12 +70,6 @@ protocol FCSymbol: spierdolonyNSCodingWSwifcie {
 //    func responseForFrequency(frequency: Double) -> Double
 }
 
-//extension FCSymbol {
-//    func view(color: UIColor, font: UIFont) -> UIView {
-//        return UIView()
-//    }
-//}
-
 class FCEquation: NSObject, FCSymbol {
     private var mainSymbol: FCSymbol
     private var font: UIFont
@@ -164,7 +158,7 @@ class FCNullSymbol: NSObject, FCSymbol {
     
     func view(color: UIColor, font: UIFont) -> UIView {
         let view = UIView()
-        view.backgroundColor = UIColor.greenColor()
+        view.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.5)
         view.autoSetDimensionsToSize(CGSizeMake(20, 30))
         return view
     }
@@ -273,17 +267,22 @@ class FCFractionSymbol: NSObject, FCSymbol {
         container.addSubview(viewOver)
         
         line.autoSetDimension(.Height, toSize: 1)
-        line.autoSetDimension(.Width, toSize: 40)
         line.autoPinEdgeToSuperviewEdge(.Leading)
         line.autoPinEdgeToSuperviewEdge(.Trailing)
         
-        viewUnder.autoPinEdgeToSuperviewEdge(.Top)
-        viewUnder.autoPinEdge(.Bottom, toEdge: .Top, ofView: line)
+        viewOver.autoPinEdgeToSuperviewEdge(.Top)
+        viewOver.autoPinEdge(.Bottom, toEdge: .Top, ofView: line)
+        viewOver.autoAlignAxisToSuperviewAxis(.Vertical)
+        
+        viewUnder.autoPinEdgeToSuperviewEdge(.Bottom)
+        viewUnder.autoPinEdge(.Top, toEdge: .Bottom, ofView: line)
         viewUnder.autoAlignAxisToSuperviewAxis(.Vertical)
         
-        viewOver.autoPinEdgeToSuperviewEdge(.Bottom)
-        viewOver.autoPinEdge(.Top, toEdge: .Bottom, ofView: line)
-        viewOver.autoAlignAxisToSuperviewAxis(.Vertical)
+        
+        line.autoMatchDimension(.Width, toDimension: .Width, ofView: viewUnder, withMultiplier: 1.0, relation: NSLayoutRelation.GreaterThanOrEqual)
+        let constraint = line.autoMatchDimension(.Width, toDimension: .Width, ofView: viewOver, withMultiplier: 1.0, relation: NSLayoutRelation.Equal)
+        constraint.priority = 100
+        
         
         return container
     }
@@ -337,13 +336,15 @@ class FCSidedSymbol: NSObject, FCSymbol {
         LHSView.autoAlignAxisToSuperviewAxis(.Horizontal)
         
         operatorLabel.autoPinEdge(.Leading, toEdge: .Trailing, ofView: LHSView)
-        operatorLabel.autoSetDimension(.Height, toSize: 30)
         operatorLabel.autoPinEdgeToSuperviewEdge(.Top)
         operatorLabel.autoPinEdgeToSuperviewEdge(.Bottom)
         
         RHSView.autoPinEdge(.Leading, toEdge: .Trailing, ofView: operatorLabel)
         RHSView.autoPinEdgeToSuperviewEdge(.Trailing)
         RHSView.autoAlignAxisToSuperviewAxis(.Horizontal)
+        
+        operatorLabel.autoMatchDimension(.Height, toDimension: .Height, ofView: LHSView, withOffset: 0.0, relation: NSLayoutRelation.GreaterThanOrEqual)
+        operatorLabel.autoMatchDimension(.Height, toDimension: .Height, ofView: RHSView, withOffset: 0.0, relation: NSLayoutRelation.Equal).priority -= 1
         
         return container
     }

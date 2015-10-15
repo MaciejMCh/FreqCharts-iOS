@@ -26,7 +26,7 @@ class FCEquationView: UIView {
         let par = FCParenthesesSymbol(childSymbol: frac)
         var mainEquation = FCEquation(mainSymbol: par, font: UIFont())
         
-        mainEquation = FCEquation(mainSymbol: FCFractionSymbol(overSymbol: FCNullSymbol(), underSymbol: FCAddSymbol(LHSSymbol: FCNullSymbol(), RHSSymbol: FCNullSymbol())), font: UIFont())
+        mainEquation = FCEquation(mainSymbol: FCFractionSymbol(overSymbol: FCAddSymbol(LHSSymbol: FCNullSymbol(), RHSSymbol: FCFractionSymbol()), underSymbol: FCNullSymbol()), font: UIFont())
         
         let equationContainer = UIView()
 //        equationContainer.backgroundColor = UIColor.greenColor()
