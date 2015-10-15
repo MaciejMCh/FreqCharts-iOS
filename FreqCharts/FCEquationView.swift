@@ -20,13 +20,12 @@ class FCEquationView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.grayColor()
         
         let frac = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(), RHSSymbol: FCNumberSymbol(value: 1000)))
         let par = FCParenthesesSymbol(childSymbol: frac)
         var mainEquation = FCEquation(mainSymbol: par, font: UIFont())
         
-        mainEquation = FCEquation(mainSymbol: FCFractionSymbol(overSymbol: FCAddSymbol(LHSSymbol: FCNullSymbol(), RHSSymbol: FCFractionSymbol()), underSymbol: FCNullSymbol()), font: UIFont())
+        mainEquation = FCEquation(mainSymbol: FCFractionSymbol(overSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 23), RHSSymbol: FCFractionSymbol(overSymbol: FCNullSymbol(), underSymbol: FCNumberSymbol(value: 15))), underSymbol: FCNullSymbol()), font: UIFont())
         
         let equationContainer = UIView()
 //        equationContainer.backgroundColor = UIColor.greenColor()
@@ -45,24 +44,10 @@ class FCEquationView: UIView {
 //        equationContainer.autoSetDimensionsToSize(CGSizeMake(50, 50))
         
         equationContainer.autoCenterInSuperview()
-        
-//        label.autoCenterInSuperview()
+
         eqView.autoPinEdgesToSuperviewEdges()
         
         
     }
-    
-    
-//    func viewForSymbol(symbol: FCSymbol) -> UIView {
-//        
-//        return UIView()
-////        switch (symbol.classForCoder()) {
-////            
-////        }
-//    }
-//    
-//    func viewForEquation() -> UIView {
-//        return UIView()
-//    }
 
 }

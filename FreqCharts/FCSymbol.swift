@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+class FCNumberFormatter {
+    class func stringForDouble(double: Double) -> String {
+        var string = NSString(format: "%.1f", double)
+        string = string.stringByReplacingOccurrencesOfString(".0", withString: "")
+        return string as String
+    }
+}
+
 extension UIView {
     
     func pb_takeSnapshot() -> UIImage {
@@ -143,7 +151,11 @@ class FCNumberSymbol: NSObject, FCSymbol {
     }
     
     func view(color: UIColor, font: UIFont) -> UIView {
-        return UIView()
+        let label = UILabel()
+        label.font = font
+        label.textColor = color
+        label.text = FCNumberFormatter.stringForDouble(self.value)
+        return label
     }
 }
 
@@ -217,8 +229,15 @@ class FCOperatorSymbol: NSObject, FCSymbol {
         self.multipler = dictionary["multipler"] as! Double
     }
     
+
     func view(color: UIColor, font: UIFont) -> UIView {
-        return UIView()
+        let label = UILabel()
+        label.font = font
+        label.textColor = color
+        var string = FCNumberFormatter.stringForDouble(self.multipler) + "s"
+        string.stringByReplacingOccurrencesOfString("1s", withString: "s")
+        label.text = string
+        return label
     }
     
 }
