@@ -75,12 +75,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-V5-esw">
-                                <rect key="frame" x="225" y="225" width="150" height="150"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-V5-esw" customClass="FCCircleView" customModule="FreqCharts" customModuleProvider="target">
+                                <rect key="frame" x="80" y="80" width="440" height="440"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PQn-V5-esw" secondAttribute="height" multiplier="1:1" id="ZYx-Yl-Ics"/>
-                                    <constraint firstAttribute="width" constant="150" id="roV-vM-KoL"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdw-Jm-Je8" userLabel="circlesContainer">
@@ -291,6 +290,7 @@
                             <constraint firstItem="03O-nH-sAT" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="bottom" id="PHi-qe-R91"/>
                             <constraint firstAttribute="trailing" secondItem="bdw-Jm-Je8" secondAttribute="trailing" id="VTV-Np-GWJ"/>
                             <constraint firstItem="bdw-Jm-Je8" firstAttribute="top" secondItem="FDz-p3-IQS" secondAttribute="top" id="gPE-2b-Lhe"/>
+                            <constraint firstItem="PQn-V5-esw" firstAttribute="leading" secondItem="FDz-p3-IQS" secondAttribute="leading" constant="80" id="hdf-Bf-AhR"/>
                             <constraint firstItem="bdw-Jm-Je8" firstAttribute="leading" secondItem="FDz-p3-IQS" secondAttribute="leading" id="tCr-m9-BkV"/>
                         </constraints>
                     </view>
