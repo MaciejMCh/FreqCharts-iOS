@@ -12,7 +12,7 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet var equationBubble: UIView!
     @IBOutlet var operatorsContainer: UIView!
-    @IBOutlet var webView: UIWebView!
+//    @IBOutlet var webView: UIWebView!
     
     var currentMovingButton: FCMovingButton?
     
@@ -25,24 +25,24 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
         
         self.operatorsContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: Selector("draggingPending:")))
         
-        self.webView.delegate = self
-        self.webView.loadHTMLString(FCEquation(mainSymbol: FCFractionSymbol(), font: UIFont()).htmlRepresentation(), baseURL: nil)
+//        self.webView.delegate = self
+//        self.webView.loadHTMLString(FCEquation(mainSymbol: FCFractionSymbol(), font: UIFont()).htmlRepresentation(), baseURL: nil)
     }
     @IBAction func movingButtonStartDraggingAction(sender: FCMovingButton) {
-        self.findNulls()
+//        self.findNulls()
         self.currentMovingButton = sender
     }
     
-    func findNulls() {
-        let snapshot = self.webView.pb_takeSnapshot()
-        let points = (ImageProcessor.sharedProcessor().findNullsInImage(snapshot, inColor: UIColor.redColor()) as! [CGPointWrapper]).map { (input) -> CGPoint in
-            return input.point
-        }
-        
-        
-        
-        NSLog("ss")
-    }
+//    func findNulls() {
+//        let snapshot = self.webView.pb_takeSnapshot()
+//        let points = (ImageProcessor.sharedProcessor().findNullsInImage(snapshot, inColor: UIColor.redColor()) as! [CGPointWrapper]).map { (input) -> CGPoint in
+//            return input.point
+//        }
+//        
+//        
+//        
+//        NSLog("ss")
+//    }
     
     func draggingPending(gestureRecognizer: UIPanGestureRecognizer) {
         switch(gestureRecognizer.state) {

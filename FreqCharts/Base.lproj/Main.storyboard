@@ -79,20 +79,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-V5-esw" customClass="FCCircleView" customModule="FreqCharts" customModuleProvider="target">
                                 <rect key="frame" x="80" y="80" width="440" height="440"/>
                                 <subviews>
-                                    <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUo-3q-K17">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PQV-eo-Ft8" customClass="FCEquationView" customModule="FreqCharts" customModuleProvider="target">
                                         <rect key="frame" x="100" y="156" width="240" height="128"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="bdc-AQ-0SV"/>
-                                            <constraint firstAttribute="height" constant="100" id="kbv-vP-LhO"/>
+                                            <constraint firstAttribute="height" constant="100" id="Phh-eF-KEP"/>
+                                            <constraint firstAttribute="width" constant="100" id="unf-Rw-M2I"/>
                                         </constraints>
-                                    </webView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ZUo-3q-K17" firstAttribute="centerX" secondItem="PQn-V5-esw" secondAttribute="centerX" id="QLJ-3K-6ER"/>
+                                    <constraint firstItem="PQV-eo-Ft8" firstAttribute="centerY" secondItem="PQn-V5-esw" secondAttribute="centerY" id="AuH-ze-jEG"/>
+                                    <constraint firstItem="PQV-eo-Ft8" firstAttribute="centerX" secondItem="PQn-V5-esw" secondAttribute="centerX" id="LG6-0K-Ngz"/>
                                     <constraint firstAttribute="width" secondItem="PQn-V5-esw" secondAttribute="height" multiplier="1:1" id="ZYx-Yl-Ics"/>
-                                    <constraint firstItem="ZUo-3q-K17" firstAttribute="centerY" secondItem="PQn-V5-esw" secondAttribute="centerY" id="iZO-Yd-9y3"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdw-Jm-Je8" userLabel="circlesContainer">
@@ -245,8 +245,8 @@
                                             <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="Obk-Tz-AdE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mZ-pG-Xde" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
-                                        <rect key="frame" x="275" y="285" width="50" height="50"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mZ-pG-Xde" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="2pf-pb-pET"/>
@@ -310,7 +310,6 @@
                         <outlet property="b7" destination="4mZ-pG-Xde" id="0r3-cL-6ja"/>
                         <outlet property="equationBubble" destination="PQn-V5-esw" id="fUM-dr-f3p"/>
                         <outlet property="operatorsContainer" destination="bdw-Jm-Je8" id="IQk-Hs-pbx"/>
-                        <outlet property="webView" destination="ZUo-3q-K17" id="7fs-Od-YPK"/>
                         <outlet property="x0" destination="Jqc-Ei-pOW" id="awa-a3-lkw"/>
                         <outlet property="x1" destination="xx5-9s-WPf" id="SYf-ue-Tkv"/>
                         <outlet property="x2" destination="r7i-LP-xjS" id="5I2-tH-j3r"/>

@@ -66,8 +66,15 @@ class FCSymbolParser {
 
 protocol FCSymbol: spierdolonyNSCodingWSwifcie {
     func htmlRepresentation() -> String
+    func view(color: UIColor, font: UIFont) -> UIView
 //    func responseForFrequency(frequency: Double) -> Double
 }
+
+//extension FCSymbol {
+//    func view(color: UIColor, font: UIFont) -> UIView {
+//        return UIView()
+//    }
+//}
 
 class FCEquation: NSObject, FCSymbol {
     private var mainSymbol: FCSymbol
@@ -107,6 +114,10 @@ class FCEquation: NSObject, FCSymbol {
         self.font = UIFont()
     }
     
+    func view(color: UIColor, font: UIFont) -> UIView {
+        return self.mainSymbol.view(color, font: font)
+    }
+    
 }
 
 class FCNumberSymbol: NSObject, FCSymbol {
@@ -136,6 +147,10 @@ class FCNumberSymbol: NSObject, FCSymbol {
     init(dictionary: [String: AnyObject]) {
         self.value = dictionary["value"] as! Double
     }
+    
+    func view(color: UIColor, font: UIFont) -> UIView {
+        return UIView()
+    }
 }
 
 class FCNullSymbol: NSObject, FCSymbol {
@@ -145,6 +160,13 @@ class FCNullSymbol: NSObject, FCSymbol {
     
     func dictionaryValue() -> [String: AnyObject] {
         return [String(self.classForCoder): "null"]
+    }
+    
+    func view(color: UIColor, font: UIFont) -> UIView {
+        let view = UIView()
+        view.backgroundColor = UIColor.greenColor()
+        view.autoSetDimensionsToSize(CGSizeMake(20, 30))
+        return view
     }
 }
 
@@ -172,6 +194,10 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
     init(dictionary: [String: AnyObject]) {
         self.childSymbol = FCSymbolParser.parse(dictionary["childSymbol"]! as! [String : AnyObject])
     }
+    
+    func view(color: UIColor, font: UIFont) -> UIView {
+        return UIView()
+    }
 }
 
 class FCOperatorSymbol: NSObject, FCSymbol {
@@ -195,6 +221,10 @@ class FCOperatorSymbol: NSObject, FCSymbol {
     
     init(dictionary: [String: AnyObject]) {
         self.multipler = dictionary["multipler"] as! Double
+    }
+    
+    func view(color: UIColor, font: UIFont) -> UIView {
+        return UIView()
     }
     
 }
@@ -229,6 +259,34 @@ class FCFractionSymbol: NSObject, FCSymbol {
         self.overSymbol = FCSymbolParser.parse(dictionary["overSymbol"]! as! [String : AnyObject])
         self.underSymbol = FCSymbolParser.parse(dictionary["underSymbol"]! as! [String : AnyObject])
     }
+    
+    func view(color: UIColor, font: UIFont) -> UIView {
+        let line = UIView()
+        line.backgroundColor = color
+        
+        let viewUnder = self.underSymbol.view(color, font: font)
+        let viewOver = self.overSymbol.view(color, font: font)
+        
+        let container = UIView()
+        container.addSubview(line)
+        container.addSubview(viewUnder)
+        container.addSubview(viewOver)
+        
+        line.autoSetDimension(.Height, toSize: 1)
+        line.autoSetDimension(.Width, toSize: 40)
+        line.autoPinEdgeToSuperviewEdge(.Leading)
+        line.autoPinEdgeToSuperviewEdge(.Trailing)
+        
+        viewUnder.autoPinEdgeToSuperviewEdge(.Top)
+        viewUnder.autoPinEdge(.Bottom, toEdge: .Top, ofView: line)
+        viewUnder.autoAlignAxisToSuperviewAxis(.Vertical)
+        
+        viewOver.autoPinEdgeToSuperviewEdge(.Bottom)
+        viewOver.autoPinEdge(.Top, toEdge: .Bottom, ofView: line)
+        viewOver.autoAlignAxisToSuperviewAxis(.Vertical)
+        
+        return container
+    }
 }
 
 class FCSidedSymbol: NSObject, FCSymbol {
@@ -259,6 +317,10 @@ class FCSidedSymbol: NSObject, FCSymbol {
     func dictionaryValue() -> [String: AnyObject] {
         return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": self.operationSymbol]]
     }
+    
+    func view(color: UIColor, font: UIFont) -> UIView {
+        return UIView()
+    }
 }
 
 class FCAddSymbol: FCSidedSymbol {
@@ -275,5 +337,6 @@ class FCAddSymbol: FCSidedSymbol {
         self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
         self.operationSymbol = dictionary["oeprator"] as! String
     }
+    
 }
 

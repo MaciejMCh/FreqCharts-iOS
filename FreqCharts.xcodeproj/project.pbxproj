@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5229E9F91BCFF71D00B7276D /* FCEquationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229E9F81BCFF71D00B7276D /* FCEquationView.swift */; settings = {ASSET_TAGS = (); }; };
+		5229EA041BCFFA4300B7276D /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229E9FC1BCFFA4300B7276D /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
+		5229EA051BCFFA4300B7276D /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229E9FE1BCFFA4300B7276D /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
+		5229EA061BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229EA001BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		525BA07A1BCBF30900D00556 /* FCBubblesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA0791BCBF30900D00556 /* FCBubblesCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		525BA07C1BCBF37A00D00556 /* FCBubbleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA07B1BCBF37A00D00556 /* FCBubbleViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		525BA07E1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA07D1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -42,6 +45,15 @@
 
 /* Begin PBXFileReference section */
 		5229E9F81BCFF71D00B7276D /* FCEquationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCEquationView.swift; sourceTree = "<group>"; };
+		5229E9FB1BCFFA4300B7276D /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		5229E9FC1BCFFA4300B7276D /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		5229E9FD1BCFFA4300B7276D /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		5229E9FE1BCFFA4300B7276D /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		5229E9FF1BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		5229EA001BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		5229EA011BCFFA4300B7276D /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		5229EA021BCFFA4300B7276D /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		5229EA031BCFFA4300B7276D /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		525BA0791BCBF30900D00556 /* FCBubblesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubblesCollectionViewController.swift; sourceTree = "<group>"; };
 		525BA07B1BCBF37A00D00556 /* FCBubbleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubbleViewModel.swift; sourceTree = "<group>"; };
 		525BA07D1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubbleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +101,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5229E9FA1BCFFA2900B7276D /* pl */ = {
+			isa = PBXGroup;
+			children = (
+				5229E9FB1BCFFA4300B7276D /* ALView+PureLayout.h */,
+				5229E9FC1BCFFA4300B7276D /* ALView+PureLayout.m */,
+				5229E9FD1BCFFA4300B7276D /* NSArray+PureLayout.h */,
+				5229E9FE1BCFFA4300B7276D /* NSArray+PureLayout.m */,
+				5229E9FF1BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.h */,
+				5229EA001BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m */,
+				5229EA011BCFFA4300B7276D /* PureLayout.h */,
+				5229EA021BCFFA4300B7276D /* PureLayout+Internal.h */,
+				5229EA031BCFFA4300B7276D /* PureLayoutDefines.h */,
+			);
+			name = pl;
+			sourceTree = "<group>";
+		};
 		525D0C231BCBC8E700EFFC31 = {
 			isa = PBXGroup;
 			children = (
@@ -118,9 +146,10 @@
 				525D0C3B1BCBC8E700EFFC31 /* Info.plist */,
 				525D0C4F1BCBD35F00EFFC31 /* test.html */,
 				525D0C511BCBD79500EFFC31 /* FCSymbol.swift */,
-				525BA0791BCBF30900D00556 /* FCBubblesCollectionViewController.swift */,
+				5229E9FA1BCFFA2900B7276D /* pl */,
 				525BA07B1BCBF37A00D00556 /* FCBubbleViewModel.swift */,
 				525BA07D1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift */,
+				525BA0791BCBF30900D00556 /* FCBubblesCollectionViewController.swift */,
 				525BA07F1BCBF5A600D00556 /* FCBubbleCollectionViewFlowLayout.swift */,
 				525BA0851BCC1E9800D00556 /* FreqCharts-Bridging-Header.h */,
 				52A2CD561BCD6898000A7B0E /* FCSwiftShitness.h */,
@@ -256,14 +285,17 @@
 				529E23051BCFABEE008A1EBA /* FCCircleView.swift in Sources */,
 				52A2CD581BCD6898000A7B0E /* FCSwiftShitness.m in Sources */,
 				52A0C8921BCEA952000504FD /* FCMovingView.swift in Sources */,
+				5229EA041BCFFA4300B7276D /* ALView+PureLayout.m in Sources */,
 				525D0C301BCBC8E700EFFC31 /* AppDelegate.swift in Sources */,
 				52A0C8901BCE9D7D000504FD /* FCMovingButton.swift in Sources */,
 				5229E9F91BCFF71D00B7276D /* FCEquationView.swift in Sources */,
 				529E23101BCFE0AF008A1EBA /* FCRectCreator.swift in Sources */,
 				529E230B1BCFDBB6008A1EBA /* ImageProcess.m in Sources */,
+				5229EA061BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m in Sources */,
 				525BA07E1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift in Sources */,
 				52A0C88C1BCE9006000504FD /* FCCreateEquationViewController.swift in Sources */,
 				525BA0801BCBF5A600D00556 /* FCBubbleCollectionViewFlowLayout.swift in Sources */,
+				5229EA051BCFFA4300B7276D /* NSArray+PureLayout.m in Sources */,
 				525D0C521BCBD79500EFFC31 /* FCSymbol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
