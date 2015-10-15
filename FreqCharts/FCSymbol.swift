@@ -319,7 +319,33 @@ class FCSidedSymbol: NSObject, FCSymbol {
     }
     
     func view(color: UIColor, font: UIFont) -> UIView {
-        return UIView()
+        let container = UIView()
+        
+        let LHSView = self.LHSSymbol.view(color, font: font)
+        let RHSView = self.RHSSymbol.view(color, font: font)
+        
+        let operatorLabel = UILabel()
+        operatorLabel.text = self.operationSymbol
+        operatorLabel.textColor = color
+        operatorLabel.font = font
+        
+        container.addSubview(LHSView)
+        container.addSubview(RHSView)
+        container.addSubview(operatorLabel)
+        
+        LHSView.autoPinEdgeToSuperviewEdge(.Leading)
+        LHSView.autoAlignAxisToSuperviewAxis(.Horizontal)
+        
+        operatorLabel.autoPinEdge(.Leading, toEdge: .Trailing, ofView: LHSView)
+        operatorLabel.autoSetDimension(.Height, toSize: 30)
+        operatorLabel.autoPinEdgeToSuperviewEdge(.Top)
+        operatorLabel.autoPinEdgeToSuperviewEdge(.Bottom)
+        
+        RHSView.autoPinEdge(.Leading, toEdge: .Trailing, ofView: operatorLabel)
+        RHSView.autoPinEdgeToSuperviewEdge(.Trailing)
+        RHSView.autoAlignAxisToSuperviewAxis(.Horizontal)
+        
+        return container
     }
 }
 
