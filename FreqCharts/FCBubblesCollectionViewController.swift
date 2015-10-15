@@ -23,6 +23,18 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     
     private var calculator = FCSymbolSizeCalculator()
     
+    func exitAnimation() {
+        for cell in self.collectionView!.visibleCells() {
+            let animation = CABasicAnimation(keyPath: "transform.scale")
+            animation.toValue = NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 1))
+            animation.duration = 0.5
+            animation.fillMode = kCAFillModeForwards
+            animation.timingFunction = CAMediaTimingFunction(controlPoints: 0.1, 1, 0.1, 1)
+            animation.removedOnCompletion = false
+            cell.layer.addAnimation(animation, forKey: "explode bubble")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,7 +58,9 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         
         self.viewModels = [FCBubbleViewModel]()
         for dict in array {
-            self.viewModels.append(FCBubbleViewModel(equation: FCSymbolParser.parse(dict) as! FCEquation))
+            for index in 1...30 {
+                self.viewModels.append(FCBubbleViewModel(equation: FCSymbolParser.parse(dict) as! FCEquation))
+            }
         }
         
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)

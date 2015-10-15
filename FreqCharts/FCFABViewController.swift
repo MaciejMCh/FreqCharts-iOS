@@ -10,9 +10,13 @@ import UIKit
 
 class FCFABViewController: UIViewController {
     
+    private var childController: FCBubblesCollectionViewController!
+    
     @IBOutlet var FAB: UIButton!
     
     @IBAction func FABAction(sender: AnyObject) {
+        
+        self.childController.exitAnimation()
         
         var animation = CABasicAnimation(keyPath: "transform")
         animation.delegate = self
@@ -44,6 +48,21 @@ class FCFABViewController: UIViewController {
         animation.timingFunction = CAMediaTimingFunction(controlPoints: 0.1, 1, 0.1, 1)
         animation.removedOnCompletion = false
         self.FAB.layer.addAnimation(animation, forKey: "explode bubble")
+        
+        self.showCreatingController()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.childController = segue.destinationViewController as! FCBubblesCollectionViewController
+    }
+    
+    
+    func showCreatingController() {
+        var newVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FCCreateEquationViewController")
+        self.addChildViewController(newVC)
+        newVC.didMoveToParentViewController(self)
+        self.view.addSubview(newVC.view)
+        newVC.view.frame = self.view.frame
     }
 
 }

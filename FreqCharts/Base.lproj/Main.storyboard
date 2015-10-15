@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uve-xa-34r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cfd-0r-I4f">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -62,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="-191" y="-322"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Equation View Controller-->
         <scene sceneID="XY9-ED-YNt">
             <objects>
-                <viewController id="cfd-0r-I4f" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FCCreateEquationViewController" id="cfd-0r-I4f" customClass="FCCreateEquationViewController" customModule="FreqCharts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="96s-b7-ws8"/>
                         <viewControllerLayoutGuide type="bottom" id="03O-nH-sAT"/>
@@ -73,8 +74,217 @@
                     <view key="view" contentMode="scaleToFill" id="FDz-p3-IQS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-V5-esw">
+                                <rect key="frame" x="225" y="225" width="150" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PQn-V5-esw" secondAttribute="height" multiplier="1:1" id="ZYx-Yl-Ics"/>
+                                    <constraint firstAttribute="width" constant="150" id="roV-vM-KoL"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdw-Jm-Je8" userLabel="circlesContainer">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ6-DP-b46" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="mYK-6I-XBo"/>
+                                            <constraint firstAttribute="height" constant="50" id="yLx-Jr-OMn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.2666666667" green="0.75686274509999996" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="2xv-MI-4k3"/>
+                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="WsK-8j-vsH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FG6-pG-iJQ" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="fq9-Fd-UaE"/>
+                                            <constraint firstAttribute="height" constant="50" id="jWR-3K-8m9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.2666666667" green="0.75686274509999996" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="GLX-7B-TzB"/>
+                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="DNf-DR-DMf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIU-pG-6jR" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Yfd-fS-eRe"/>
+                                            <constraint firstAttribute="height" constant="50" id="zPa-PI-Ytx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.2666666667" green="0.75686274509999996" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="1lB-vo-jvB"/>
+                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="Wcv-XH-81A"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQB-sU-UlS" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="b9B-jR-DCw"/>
+                                            <constraint firstAttribute="width" constant="50" id="mMU-pb-lFb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.2666666667" green="0.75686274509999996" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="4Qs-DE-Auv"/>
+                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="dLT-xs-B1z"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGF-Ie-8k7" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="1Ik-Tk-5G2"/>
+                                            <constraint firstAttribute="width" constant="50" id="ay5-ug-NIp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.2666666667" green="0.75686274509999996" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="zzh-IN-9YQ"/>
+                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="Lwe-Bz-Wem"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BrR-9D-u5h" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="Etj-Mp-Hzu"/>
+                                            <constraint firstAttribute="height" constant="50" id="eXj-1k-vGL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.2666666667" green="0.75686274509999996" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="B66-P2-FNO"/>
+                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="hxJ-oo-756"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="087-nL-vCH" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="O52-U2-IWg"/>
+                                            <constraint firstAttribute="height" constant="50" id="spl-CY-qM2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.2666666667" green="0.75686274509999996" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="G6r-v3-rxj"/>
+                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="rvj-Du-RXo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mZ-pG-Xde" customClass="FCMovingButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="275" y="265" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="2pf-pb-pET"/>
+                                            <constraint firstAttribute="height" constant="50" id="lBo-BA-Wdy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.2666666667" green="0.75686274509999996" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Add:" destination="cfd-0r-I4f" eventType="touchUpInside" id="vGd-bF-mqU"/>
+                                            <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="8BF-kW-GIC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ZZ6-DP-b46" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="Jqc-Ei-pOW"/>
+                                    <constraint firstItem="ZZ6-DP-b46" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="VzP-qR-aK3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="PQn-V5-esw" firstAttribute="centerY" secondItem="FDz-p3-IQS" secondAttribute="centerY" id="7UB-cY-Wpn"/>
+                            <constraint firstItem="bdw-Jm-Je8" firstAttribute="top" secondItem="96s-b7-ws8" secondAttribute="bottom" id="Nm5-ro-9Y0"/>
+                            <constraint firstItem="PQn-V5-esw" firstAttribute="centerX" secondItem="FDz-p3-IQS" secondAttribute="centerX" id="NxY-HV-mRc"/>
+                            <constraint firstItem="03O-nH-sAT" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="bottom" id="PHi-qe-R91"/>
+                            <constraint firstAttribute="trailing" secondItem="bdw-Jm-Je8" secondAttribute="trailing" id="VTV-Np-GWJ"/>
+                            <constraint firstItem="bdw-Jm-Je8" firstAttribute="leading" secondItem="FDz-p3-IQS" secondAttribute="leading" id="tCr-m9-BkV"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="operation" destination="ZZ6-DP-b46" id="61S-8s-aKK"/>
+                        <outlet property="x0" destination="Jqc-Ei-pOW" id="awa-a3-lkw"/>
+                        <outlet property="y0" destination="VzP-qR-aK3" id="lC6-M6-1gw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fww-gB-UzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

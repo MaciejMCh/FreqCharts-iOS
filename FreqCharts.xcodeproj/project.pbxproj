@@ -20,6 +20,9 @@
 		525D0C501BCBD35F00EFFC31 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 525D0C4F1BCBD35F00EFFC31 /* test.html */; settings = {ASSET_TAGS = (); }; };
 		525D0C521BCBD79500EFFC31 /* FCSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D0C511BCBD79500EFFC31 /* FCSymbol.swift */; settings = {ASSET_TAGS = (); }; };
 		52A0C88A1BCE82B2000504FD /* FCFABViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0C8891BCE82B2000504FD /* FCFABViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		52A0C88C1BCE9006000504FD /* FCCreateEquationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0C88B1BCE9006000504FD /* FCCreateEquationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		52A0C8901BCE9D7D000504FD /* FCMovingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0C88F1BCE9D7D000504FD /* FCMovingButton.swift */; settings = {ASSET_TAGS = (); }; };
+		52A0C8921BCEA952000504FD /* FCMovingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0C8911BCEA952000504FD /* FCMovingView.swift */; settings = {ASSET_TAGS = (); }; };
 		52A2CD581BCD6898000A7B0E /* FCSwiftShitness.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A2CD571BCD6898000A7B0E /* FCSwiftShitness.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,9 @@
 		525D0C4F1BCBD35F00EFFC31 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		525D0C511BCBD79500EFFC31 /* FCSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCSymbol.swift; sourceTree = "<group>"; };
 		52A0C8891BCE82B2000504FD /* FCFABViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCFABViewController.swift; sourceTree = "<group>"; };
+		52A0C88B1BCE9006000504FD /* FCCreateEquationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCCreateEquationViewController.swift; sourceTree = "<group>"; };
+		52A0C88F1BCE9D7D000504FD /* FCMovingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCMovingButton.swift; sourceTree = "<group>"; };
+		52A0C8911BCEA952000504FD /* FCMovingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCMovingView.swift; sourceTree = "<group>"; };
 		52A2CD561BCD6898000A7B0E /* FCSwiftShitness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSwiftShitness.h; sourceTree = "<group>"; };
 		52A2CD571BCD6898000A7B0E /* FCSwiftShitness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSwiftShitness.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +117,9 @@
 				52A2CD561BCD6898000A7B0E /* FCSwiftShitness.h */,
 				52A2CD571BCD6898000A7B0E /* FCSwiftShitness.m */,
 				52A0C8891BCE82B2000504FD /* FCFABViewController.swift */,
+				52A0C88B1BCE9006000504FD /* FCCreateEquationViewController.swift */,
+				52A0C88F1BCE9D7D000504FD /* FCMovingButton.swift */,
+				52A0C8911BCEA952000504FD /* FCMovingView.swift */,
 			);
 			path = FreqCharts;
 			sourceTree = "<group>";
@@ -231,8 +240,11 @@
 				525D0C321BCBC8E700EFFC31 /* FCEquationViewController.swift in Sources */,
 				525BA07A1BCBF30900D00556 /* FCBubblesCollectionViewController.swift in Sources */,
 				52A2CD581BCD6898000A7B0E /* FCSwiftShitness.m in Sources */,
+				52A0C8921BCEA952000504FD /* FCMovingView.swift in Sources */,
 				525D0C301BCBC8E700EFFC31 /* AppDelegate.swift in Sources */,
+				52A0C8901BCE9D7D000504FD /* FCMovingButton.swift in Sources */,
 				525BA07E1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift in Sources */,
+				52A0C88C1BCE9006000504FD /* FCCreateEquationViewController.swift in Sources */,
 				525BA0801BCBF5A600D00556 /* FCBubbleCollectionViewFlowLayout.swift in Sources */,
 				525D0C521BCBD79500EFFC31 /* FCSymbol.swift in Sources */,
 			);
