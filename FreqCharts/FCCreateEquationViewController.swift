@@ -40,12 +40,42 @@ class FCCreateEquationViewController: UIViewController {
     func animate() {
         let circleRadius = CGFloat(25)
         let middle = CGPointMake(CGRectGetMidX(self.view.frame) - circleRadius, CGRectGetMidY(self.view.frame) - circleRadius)
-        var radius = Double(150)
-        let speed = Double(2)
+        var radius = Double(CGRectGetWidth(self.view.frame) / 2) - Double(circleRadius) - 15
+        let speed = Double(0.1)
+        let dAngle = M_PI_4
         
         var offset = Double(0)
-        x0.constant = CGFloat(radius * sin(CACurrentMediaTime() * speed)) + middle.x
-        y0.constant = CGFloat(radius * cos(CACurrentMediaTime() * speed)) + middle.y
+        x0.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
+        y0.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
+        
+        offset += dAngle
+        x1.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
+        y1.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
+        
+        offset += dAngle
+        x2.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
+        y2.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
+        
+        offset += dAngle
+        x3.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
+        y3.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
+        
+        offset += dAngle
+        x4.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
+        y4.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
+        
+        offset += dAngle
+        x5.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
+        y5.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
+    
+        offset += dAngle
+        x6.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
+        y6.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
+        
+        offset += dAngle
+        x7.constant = CGFloat(radius * sin((CACurrentMediaTime() * speed) + offset)) + middle.x
+        y7.constant = CGFloat(radius * cos((CACurrentMediaTime() * speed) + offset)) + middle.y
+        
     }
     
     @IBAction func Add(sender: AnyObject) {
