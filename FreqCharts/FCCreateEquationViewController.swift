@@ -23,15 +23,16 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
         case "×": completion(FCMultipleSymbol())
         case "÷": completion(FCFractionSymbol())
         case "()": completion(FCParenthesesSymbol())
-        
+            
         case "#": self.pickNumber({ (number) -> () in
             completion(FCNumberSymbol(value: number))
         })
         case "s": self.pickNumber({ (number) -> () in
             completion(FCOperatorSymbol(multipler: number))
         })
-            
-            
+        case "x#": self.pickNumber({ (number) -> () in
+            completion(FCPowerSymbol(exponent: Int(number)))
+        })
             
         default: break
         }

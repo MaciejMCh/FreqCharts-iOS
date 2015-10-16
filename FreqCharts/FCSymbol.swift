@@ -528,5 +528,62 @@ class FCMultipleSymbol: FCSidedSymbol {
         self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
         self.operationSymbol = dictionary["oeprator"] as! String
     }
+    
+}
+
+class FCPowerSymbol: NSObject, FCSymbol {
+    private var baseSymbol: FCSymbol!
+    private var exponent: Int!
+    
+    init(exponent: Int) {
+        super.init()
+        self.baseSymbol = FCNullSymbol(parent: self)
+        self.exponent = exponent
+    }
+    
+    override init() {
+        super.init()
+        self.baseSymbol = FCNullSymbol(parent: self)
+        self.exponent = 0
+    }
+    
+    func htmlRepresentation() -> String {
+        return ""
+    }
+    
+    func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["exponent" : self.exponent]]
+    }
+    
+    init(dictionary: [String: AnyObject]) {
+        self.exponent = dictionary["exponent"] as! Int
+    }
+    
+    func view(color: UIColor, font: UIFont) -> UIView {
+        let container = UIView()
+        let baseView = self.baseSymbol.view(color, font: font)
+        let exponentLabel = UILabel()
+        exponentLabel.textColor = color
+        exponentLabel.font = UIFont(name: font.fontName, size: font.pointSize / CGFloat(2))
+        exponentLabel.text = String(self.exponent)
+        container.addSubview(baseView)
+        container.addSubview(exponentLabel)
+        
+        exponentLabel.autoPinEdgeToSuperviewEdge(.Top)
+        exponentLabel.autoPinEdgeToSuperviewEdge(.Trailing)
+        exponentLabel.autoPinEdge(.Leading, toEdge: .Trailing, ofView: baseView)
+        
+        baseView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Trailing)
+        
+        return container
+    }
+    
+    func nulls() -> [FCNullSymbol] {
+        return self.baseSymbol.nulls()
+    }
+    
+    func fillNull(null: AnyObject, symbol: AnyObject) {
+        self.baseSymbol = symbol as! FCSymbol
+    }
 }
 
