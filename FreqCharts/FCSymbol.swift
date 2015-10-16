@@ -199,8 +199,13 @@ class FCNullSymbol: NSObject, FCSymbol {
     
     func view(color: UIColor, font: UIFont) -> UIView {
         let view = FCDropView()
-        view.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.5)
-        view.autoSetDimensionsToSize(CGSizeMake(20, 30))
+        
+        view.layer.cornerRadius = 5
+        view.layer.borderColor = FCMovingButton.greenColor.CGColor
+        view.layer.borderWidth = 2
+        view.backgroundColor = FCMovingButton.greenColor.colorWithAlphaComponent(0.4)
+        
+        view.autoSetDimensionsToSize(CGSizeMake(font.pointSize, font.pointSize / 2 * 3))
         self.nullView = view
         return view
     }
