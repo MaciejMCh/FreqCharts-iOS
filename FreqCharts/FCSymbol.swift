@@ -242,10 +242,12 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
         let container = UIView()
         let leftParenthesis = UIImageView()
         leftParenthesis.translatesAutoresizingMaskIntoConstraints = false
-        leftParenthesis.image = UIImage(named: "leftPar")
+        leftParenthesis.image = UIImage(named: "leftPar")!.imageWithRenderingMode(.AlwaysTemplate)
+        leftParenthesis.tintColor = color
         let rightParenthesis = UIImageView()
         rightParenthesis.translatesAutoresizingMaskIntoConstraints = false
-        rightParenthesis.image = UIImage(named: "rightPar")
+        rightParenthesis.image = UIImage(named: "rightPar")!.imageWithRenderingMode(.AlwaysTemplate)
+        rightParenthesis.tintColor = color
         container.addSubview(childView)
         container.addSubview(leftParenthesis)
         container.addSubview(rightParenthesis)

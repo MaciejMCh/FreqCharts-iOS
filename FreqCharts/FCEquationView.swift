@@ -25,7 +25,7 @@ class FCEquationView: UIView {
         let par = FCParenthesesSymbol(childSymbol: frac)
         var mainEquation = FCEquation(mainSymbol: par, font: UIFont())
         
-        mainEquation = FCEquation()
+        mainEquation = FCEquation(mainSymbol: FCParenthesesSymbol(), font: UIFont())
         self.equation = mainEquation
         self.update()
     }
