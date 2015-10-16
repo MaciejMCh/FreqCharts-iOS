@@ -238,7 +238,37 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
     }
     
     func view(color: UIColor, font: UIFont) -> UIView {
-        return UIView()
+        let childView = self.childSymbol.view(color, font: font)
+        let container = UIView()
+        let leftParenthesis = UIImageView()
+        leftParenthesis.translatesAutoresizingMaskIntoConstraints = false
+        leftParenthesis.image = UIImage(named: "leftPar")
+        let rightParenthesis = UIImageView()
+        rightParenthesis.translatesAutoresizingMaskIntoConstraints = false
+        rightParenthesis.image = UIImage(named: "rightPar")
+        container.addSubview(childView)
+        container.addSubview(leftParenthesis)
+        container.addSubview(rightParenthesis)
+        
+        childView.autoPinEdgeToSuperviewEdge(.Top)
+        childView.autoPinEdgeToSuperviewEdge(.Bottom)
+        
+        childView.autoPinEdge(.Leading, toEdge: .Trailing, ofView: leftParenthesis)
+        childView.autoPinEdge(.Trailing, toEdge: .Leading, ofView: rightParenthesis)
+        
+        leftParenthesis.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Trailing)
+        rightParenthesis.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Leading)
+        
+//        leftParenthesis.autoMatchDimension(.Width, toDimension: .Height, ofView: leftParenthesis, withMultiplier: 0.2)
+//        rightParenthesis.autoMatchDimension(.Width, toDimension: .Height, ofView: rightParenthesis, withMultiplier: 0.2)
+        
+        leftParenthesis.autoSetDimension(.Width, toSize: 5)
+        rightParenthesis.autoSetDimension(.Width, toSize: 5)
+        
+        
+        childView.backgroundColor = UIColor.redColor()
+        
+        return container
     }
     
     func nulls() -> [FCNullSymbol] {
