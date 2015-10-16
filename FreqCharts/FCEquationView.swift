@@ -21,12 +21,7 @@ class FCEquationView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        let frac = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(), RHSSymbol: FCNumberSymbol(value: 1000)))
-        let par = FCParenthesesSymbol(childSymbol: frac)
-        var mainEquation = FCEquation(mainSymbol: par, font: UIFont())
-        
-        mainEquation = FCEquation(mainSymbol: FCParenthesesSymbol(), font: UIFont())
-        self.equation = mainEquation
+        self.equation = FCEquation()
         self.update()
     }
     
@@ -36,7 +31,7 @@ class FCEquationView: UIView {
         }
         
         let equationContainer = UIView()
-        let eqView = self.equation.view(UIColor .blueColor(), font: UIFont.systemFontOfSize(20))
+        let eqView = self.equation.view(FCMovingButton.greenColor, font: UIFont.systemFontOfSize(25))
         equationContainer.addSubview(eqView)
         self.addSubview(equationContainer)
         equationContainer.autoCenterInSuperview()

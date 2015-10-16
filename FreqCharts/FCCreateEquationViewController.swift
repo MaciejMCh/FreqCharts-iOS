@@ -102,14 +102,6 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
             }
         }
         
-        
-        
-        
-//        self.currentMovingButton!.transform = CGAffineTransformMakeScale(0, 0)
-//        UIView.animateWithDuration(0.2) { () -> Void in
-//            self.currentMovingButton!.transform = CGAffineTransformIdentity
-//        }
-        
         let movingButton = self.currentMovingButton!
         movingButton.alpha = 1.0
         movingButton.backgroundColor = UIColor.whiteColor()
@@ -122,12 +114,6 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.currentMovingButton!.transform = CGAffineTransformIdentity
             }) { (finished) -> Void in
-//                    movingButton.alpha = 1.0
-//                    movingButton.backgroundColor = UIColor.whiteColor()
-//                    var attrString = movingButton.titleLabel!.attributedText!.mutableCopy()
-//                    attrString.removeAttribute(NSForegroundColorAttributeName, range: NSMakeRange(0, attrString.length))
-//                    attrString.addAttribute(NSForegroundColorAttributeName, value: FCMovingButton.greenColor, range: NSMakeRange(0, attrString.length))
-//                    movingButton.setAttributedTitle(attrString as! NSAttributedString, forState: .Normal)
         }
         
         self.currentMovingButton = nil
