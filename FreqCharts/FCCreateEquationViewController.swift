@@ -8,11 +8,13 @@
 
 import UIKit
 
-class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
+class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
     
     @IBOutlet var equationBubble: UIView!
     @IBOutlet var operatorsContainer: UIView!
     @IBOutlet var equationView: FCEquationView!
+    
+    var completion: ((Double)->())!
     
     var currentMovingButton: FCMovingButton?
     
@@ -38,8 +40,43 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.completion(Double(textField.text!)!)
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            textField.transform = CGAffineTransformMakeScale(0, 0)
+            }) { (finished) -> Void in
+                textField.removeFromSuperview()
+        }
+        
+        return true
+    }
+    
     func pickNumber(completion: (Double)->()) {
-        completion(12)
+        self.completion = completion
+        
+        let pickerTextView = UITextField()
+        pickerTextView.keyboardType = .NamePhonePad
+        pickerTextView.delegate = self
+        pickerTextView.textColor = FCMovingButton.greenColor
+        pickerTextView.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
+        pickerTextView.textAlignment = NSTextAlignment.Center
+        pickerTextView.font = UIFont.systemFontOfSize(100, weight: UIFontWeightThin)
+        self.view.addSubview(pickerTextView)
+        let height = CGRectGetWidth(self.view.frame) - 30
+        pickerTextView.layer.cornerRadius = height / 2
+        pickerTextView.layer.borderWidth = 10
+        pickerTextView.layer.borderColor = FCMovingButton.greenColor.CGColor
+        pickerTextView.backgroundColor = UIColor.whiteColor()
+        pickerTextView.autoSetDimensionsToSize(CGSizeMake(height, height))
+        pickerTextView.autoCenterInSuperview()
+        
+        pickerTextView.becomeFirstResponder()
+        
+        pickerTextView.transform = CGAffineTransformMakeScale(0, 0)
+        UIView.animateWithDuration(0.2) { () -> Void in
+            pickerTextView.transform = CGAffineTransformIdentity
+        }
     }
     
     override func viewDidLoad() {
