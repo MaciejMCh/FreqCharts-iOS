@@ -12,6 +12,8 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet var equationBubble: UIView!
     @IBOutlet var operatorsContainer: UIView!
+    @IBOutlet var equationView: FCEquationView!
+    
 //    @IBOutlet var webView: UIWebView!
     
     var currentMovingButton: FCMovingButton?
@@ -47,7 +49,7 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
     func draggingPending(gestureRecognizer: UIPanGestureRecognizer) {
         switch(gestureRecognizer.state) {
         case .Changed: self.updateDragging(gestureRecognizer.locationInView(self.view))
-        case .Ended: self.draggingFinish()
+        case .Ended: self.draggingFinish(gestureRecognizer.locationInView(self.view))
         default: break
         }
     }
@@ -65,15 +67,33 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    func draggingFinish() {
+    func draggingFinish(var point: CGPoint) {
+        point.x -= 25
+        point.y -= 25
         if (self.currentMovingButton == nil) {
             return
         }
+        
+        
+        
+        
+//        let eq = self.equationView.equation.nulls()[0].nullView!.frame.
+        for nullView in self.equationView.equation.nulls().map({ (input) -> UIView in
+            return input.nullView!
+        }) {
+//            NSLog(String(nullView.convertPoint(point, fromView: nil)) + " contains " + String(nullView.frame))
+            if (nullView.frame.contains(nullView.convertPoint(point, fromView: nil))) {
+                NSLog("intersects!")
+            }
+        }
+        
+        
         self.currentMovingButton!.transform = CGAffineTransformMakeScale(0, 0)
         UIView.animateWithDuration(0.2) { () -> Void in
             self.currentMovingButton!.transform = CGAffineTransformIdentity
         }
         self.currentMovingButton = nil
+        
     }
     
     //MARK: enter animation

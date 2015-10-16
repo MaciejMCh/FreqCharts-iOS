@@ -16,7 +16,7 @@ class FCBubbleViewModel: NSObject {
     
     override init() {
         self.radius = 20
-        self.equation = FCEquation(mainSymbol: FCNullSymbol(), font: UIFont.systemFontOfSize(18))
+        self.equation = FCEquation()
     }
     
     init(radius: Float, equation: FCEquation) {

@@ -11,6 +11,7 @@
 		5229EA041BCFFA4300B7276D /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229E9FC1BCFFA4300B7276D /* ALView+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		5229EA051BCFFA4300B7276D /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229E9FE1BCFFA4300B7276D /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		5229EA061BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229EA001BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
+		5229EA0A1BD0138B00B7276D /* FCDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229EA091BD0138B00B7276D /* FCDropView.swift */; settings = {ASSET_TAGS = (); }; };
 		525BA07A1BCBF30900D00556 /* FCBubblesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA0791BCBF30900D00556 /* FCBubblesCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		525BA07C1BCBF37A00D00556 /* FCBubbleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA07B1BCBF37A00D00556 /* FCBubbleViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		525BA07E1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA07D1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -54,6 +55,7 @@
 		5229EA011BCFFA4300B7276D /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
 		5229EA021BCFFA4300B7276D /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
 		5229EA031BCFFA4300B7276D /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
+		5229EA091BD0138B00B7276D /* FCDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCDropView.swift; sourceTree = "<group>"; };
 		525BA0791BCBF30900D00556 /* FCBubblesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubblesCollectionViewController.swift; sourceTree = "<group>"; };
 		525BA07B1BCBF37A00D00556 /* FCBubbleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubbleViewModel.swift; sourceTree = "<group>"; };
 		525BA07D1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubbleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				525D0C2F1BCBC8E700EFFC31 /* AppDelegate.swift */,
+				5229EA091BD0138B00B7276D /* FCDropView.swift */,
 				525D0C311BCBC8E700EFFC31 /* FCEquationViewController.swift */,
 				525D0C331BCBC8E700EFFC31 /* Main.storyboard */,
 				525D0C361BCBC8E700EFFC31 /* Assets.xcassets */,
@@ -290,6 +293,7 @@
 				52A0C8901BCE9D7D000504FD /* FCMovingButton.swift in Sources */,
 				5229E9F91BCFF71D00B7276D /* FCEquationView.swift in Sources */,
 				529E23101BCFE0AF008A1EBA /* FCRectCreator.swift in Sources */,
+				5229EA0A1BD0138B00B7276D /* FCDropView.swift in Sources */,
 				529E230B1BCFDBB6008A1EBA /* ImageProcess.m in Sources */,
 				5229EA061BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m in Sources */,
 				525BA07E1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift in Sources */,

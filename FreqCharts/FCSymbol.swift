@@ -75,12 +75,24 @@ class FCSymbolParser {
 protocol FCSymbol: spierdolonyNSCodingWSwifcie {
     func htmlRepresentation() -> String
     func view(color: UIColor, font: UIFont) -> UIView
+    func nulls() -> [FCNullSymbol]
+    func fillNull(null: AnyObject, symbol: AnyObject)
 //    func responseForFrequency(frequency: Double) -> Double
+    
+}
+
+extension FCSymbol {
+    func nulls() -> [FCNullSymbol] {
+        return []
+    }
+    func fillNull(null: AnyObject, symbol: AnyObject) {
+        
+    }
 }
 
 class FCEquation: NSObject, FCSymbol {
-    private var mainSymbol: FCSymbol
-    private var font: UIFont
+    private var mainSymbol: FCSymbol!
+    private var font: UIFont!
     var displayingSize: CGSize?
     
     init(mainSymbol: FCSymbol, font: UIFont) {
@@ -89,7 +101,8 @@ class FCEquation: NSObject, FCSymbol {
     }
     
     override init() {
-        self.mainSymbol = FCNullSymbol()
+        super.init()
+        self.mainSymbol = FCNullSymbol(parent: self)
         self.font = UIFont()
     }
     
@@ -118,6 +131,14 @@ class FCEquation: NSObject, FCSymbol {
     
     func view(color: UIColor, font: UIFont) -> UIView {
         return self.mainSymbol.view(color, font: font)
+    }
+    
+    func nulls() -> [FCNullSymbol] {
+        return self.mainSymbol.nulls()
+    }
+    
+    func fillNull(null: AnyObject, symbol: AnyObject) {
+        self.mainSymbol = symbol as? FCSymbol
     }
     
 }
@@ -160,6 +181,14 @@ class FCNumberSymbol: NSObject, FCSymbol {
 }
 
 class FCNullSymbol: NSObject, FCSymbol {
+    
+    var nullView: UIView?
+    var parentSymbol: FCSymbol
+    
+    init(parent: FCSymbol) {
+        self.parentSymbol = parent
+    }
+    
     func htmlRepresentation() -> String {
         return "<mn mathcolor=FF0000>▢</mn>"
     }
@@ -169,18 +198,25 @@ class FCNullSymbol: NSObject, FCSymbol {
     }
     
     func view(color: UIColor, font: UIFont) -> UIView {
-        let view = UIView()
+        let view = FCDropView()
         view.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.5)
         view.autoSetDimensionsToSize(CGSizeMake(20, 30))
+        self.nullView = view
         return view
     }
+    
+    func nulls() -> [FCNullSymbol] {
+        return [self]
+    }
+    
 }
 
 class FCParenthesesSymbol: NSObject, FCSymbol {
-    private var childSymbol: FCSymbol
+    private var childSymbol: FCSymbol!
     
     override init() {
-        self.childSymbol = FCNullSymbol()
+        super.init()
+        self.childSymbol = FCNullSymbol(parent: self)
     }
     
     init(childSymbol: FCSymbol) {
@@ -203,6 +239,14 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
     
     func view(color: UIColor, font: UIFont) -> UIView {
         return UIView()
+    }
+    
+    func nulls() -> [FCNullSymbol] {
+        return self.childSymbol.nulls()
+    }
+    
+    func fillNull(null: AnyObject, symbol: AnyObject) {
+        self.childSymbol = symbol as? FCSymbol
     }
 }
 
@@ -243,12 +287,13 @@ class FCOperatorSymbol: NSObject, FCSymbol {
 }
 
 class FCFractionSymbol: NSObject, FCSymbol {
-    private var overSymbol: FCSymbol
-    private var underSymbol: FCSymbol
+    private var overSymbol: FCSymbol!
+    private var underSymbol: FCSymbol!
     
     override init() {
-        self.overSymbol = FCNullSymbol()
-        self.underSymbol = FCNullSymbol()
+        super.init()
+        self.overSymbol = FCNullSymbol(parent: self)
+        self.underSymbol = FCNullSymbol(parent: self)
     }
     
     init(overSymbol: FCSymbol, underSymbol: FCSymbol) {
@@ -302,19 +347,31 @@ class FCFractionSymbol: NSObject, FCSymbol {
         let constraint = line.autoMatchDimension(.Width, toDimension: .Width, ofView: viewOver, withMultiplier: 1.0, relation: NSLayoutRelation.Equal)
         constraint.priority = 100
         
-        
         return container
+    }
+    
+    func nulls() -> [FCNullSymbol] {
+        return underSymbol.nulls() + overSymbol.nulls()
+    }
+    
+    func fillNull(null: AnyObject, symbol: AnyObject) {
+        if (null === self.overSymbol as? AnyObject) {
+            self.overSymbol = symbol as? FCSymbol
+        } else {
+            self.underSymbol = symbol as? FCSymbol
+        }
     }
 }
 
 class FCSidedSymbol: NSObject, FCSymbol {
-    private var LHSSymbol: FCSymbol
-    private var RHSSymbol: FCSymbol
-    private var operationSymbol: String
+    private var LHSSymbol: FCSymbol!
+    private var RHSSymbol: FCSymbol!
+    private var operationSymbol: String!
     
     override init() {
-        self.LHSSymbol = FCNullSymbol()
-        self.RHSSymbol = FCNullSymbol()
+        super.init()
+        self.LHSSymbol = FCNullSymbol(parent: self)
+        self.RHSSymbol = FCNullSymbol(parent: self)
         self.operationSymbol = " "
     }
     
@@ -366,6 +423,18 @@ class FCSidedSymbol: NSObject, FCSymbol {
         operatorLabel.autoMatchDimension(.Height, toDimension: .Height, ofView: RHSView, withOffset: 0.0, relation: NSLayoutRelation.Equal).priority -= 1
         
         return container
+    }
+    
+    func nulls() -> [FCNullSymbol] {
+        return LHSSymbol.nulls() + RHSSymbol.nulls()
+    }
+    
+    func fillNull(null: AnyObject, symbol: AnyObject) {
+        if (null === self.LHSSymbol as? AnyObject) {
+            self.LHSSymbol = symbol as? FCSymbol
+        } else {
+            self.RHSSymbol = symbol as? FCSymbol
+        }
     }
 }
 

@@ -309,6 +309,7 @@
                         <outlet property="b6" destination="087-nL-vCH" id="579-TD-LKE"/>
                         <outlet property="b7" destination="4mZ-pG-Xde" id="0r3-cL-6ja"/>
                         <outlet property="equationBubble" destination="PQn-V5-esw" id="fUM-dr-f3p"/>
+                        <outlet property="equationView" destination="PQV-eo-Ft8" id="QR1-o3-JNo"/>
                         <outlet property="operatorsContainer" destination="bdw-Jm-Je8" id="IQk-Hs-pbx"/>
                         <outlet property="x0" destination="Jqc-Ei-pOW" id="awa-a3-lkw"/>
                         <outlet property="x1" destination="xx5-9s-WPf" id="SYf-ue-Tkv"/>
