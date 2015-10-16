@@ -457,6 +457,47 @@ class FCAddSymbol: FCSidedSymbol {
         self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
         self.operationSymbol = dictionary["oeprator"] as! String
     }
+}
+
+class FCSubstractSymbol: FCSidedSymbol {
+    init(LHSSymbol: FCSymbol, RHSSymbol: FCSymbol) {
+        super.init(LHSSymbol: LHSSymbol, RHSSymbol: RHSSymbol, operatorSymbol: "+")
+    }
     
+    override init() {
+        super.init()
+        self.operationSymbol = "-"
+    }
+    
+    override func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": "-"]]
+    }
+    init(dictionary: [String: AnyObject]) {
+        super.init()
+        self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
+        self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
+        self.operationSymbol = dictionary["oeprator"] as! String
+    }
+}
+
+class FCMultipleSymbol: FCSidedSymbol {
+    init(LHSSymbol: FCSymbol, RHSSymbol: FCSymbol) {
+        super.init(LHSSymbol: LHSSymbol, RHSSymbol: RHSSymbol, operatorSymbol: "")
+    }
+    
+    override init() {
+        super.init()
+        self.operationSymbol = ""
+    }
+    
+    override func dictionaryValue() -> [String: AnyObject] {
+        return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": ""]]
+    }
+    init(dictionary: [String: AnyObject]) {
+        super.init()
+        self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
+        self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
+        self.operationSymbol = dictionary["oeprator"] as! String
+    }
 }
 

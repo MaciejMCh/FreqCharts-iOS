@@ -19,9 +19,17 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
     func selectedSymbol(symbol: String, completion: (FCSymbol)->()) {
         switch (symbol) {
         case "+": completion(FCAddSymbol())
+        case "−": completion(FCSubstractSymbol())
+        case "×": completion(FCMultipleSymbol())
+        case "÷": completion(FCFractionSymbol())
+        
         case "#": self.pickNumber({ (number) -> () in
             completion(FCNumberSymbol(value: number))
         })
+        case "s": self.pickNumber({ (number) -> () in
+            completion(FCOperatorSymbol(multipler: number))
+        })
+            
             
             
         default: break
