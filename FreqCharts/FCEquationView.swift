@@ -25,33 +25,22 @@ class FCEquationView: UIView {
         let par = FCParenthesesSymbol(childSymbol: frac)
         var mainEquation = FCEquation(mainSymbol: par, font: UIFont())
         
-//        mainEquation = FCEquation(mainSymbol: FCFractionSymbol(overSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 23), RHSSymbol: FCFractionSymbol(overSymbol: FCNullSymbol(), underSymbol: FCNumberSymbol(value: 15))), underSymbol: FCNullSymbol()), font: UIFont())
-        
-        
         mainEquation = FCEquation()
         self.equation = mainEquation
+        self.update()
+    }
+    
+    func update() {
+        for view in self.subviews {
+            view .removeFromSuperview()
+        }
         
         let equationContainer = UIView()
-//        equationContainer.backgroundColor = UIColor.greenColor()
-        
-        var eqView = mainEquation.view(UIColor .blueColor(), font: UIFont.systemFontOfSize(20))
-        
-        
+        let eqView = self.equation.view(UIColor .blueColor(), font: UIFont.systemFontOfSize(20))
         equationContainer.addSubview(eqView)
-        
-        
         self.addSubview(equationContainer)
-        
-        
-//        equationContainer.autoPinEdgeToSuperviewEdge(.Top)
-//        equationContainer.autoPinEdgeToSuperviewEdge(.Leading)
-//        equationContainer.autoSetDimensionsToSize(CGSizeMake(50, 50))
-        
         equationContainer.autoCenterInSuperview()
-
         eqView.autoPinEdgesToSuperviewEdges()
-        
-        
     }
 
 }

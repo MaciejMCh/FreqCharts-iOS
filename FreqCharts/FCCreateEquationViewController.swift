@@ -78,12 +78,11 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
         
         
 //        let eq = self.equationView.equation.nulls()[0].nullView!.frame.
-        for nullView in self.equationView.equation.nulls().map({ (input) -> UIView in
-            return input.nullView!
-        }) {
+        for nullSymbol in self.equationView.equation.nulls() {
 //            NSLog(String(nullView.convertPoint(point, fromView: nil)) + " contains " + String(nullView.frame))
-            if (nullView.frame.contains(nullView.convertPoint(point, fromView: nil))) {
-                NSLog("intersects!")
+            if (nullSymbol.nullView!.frame.contains(nullSymbol.nullView!.convertPoint(point, fromView: nil))) {
+                nullSymbol.parentSymbol.fillNull(nullSymbol, symbol: FCNumberSymbol(value: 12))
+                self.equationView.update()
             }
         }
         
