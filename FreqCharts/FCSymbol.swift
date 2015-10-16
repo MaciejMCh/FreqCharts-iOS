@@ -259,14 +259,13 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
         leftParenthesis.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Trailing)
         rightParenthesis.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Leading)
         
-//        leftParenthesis.autoMatchDimension(.Width, toDimension: .Height, ofView: leftParenthesis, withMultiplier: 0.2)
-//        rightParenthesis.autoMatchDimension(.Width, toDimension: .Height, ofView: rightParenthesis, withMultiplier: 0.2)
+        leftParenthesis.autoMatchDimension(.Width, toDimension: .Height, ofView: leftParenthesis, withMultiplier: 0.2)
+        rightParenthesis.autoMatchDimension(.Width, toDimension: .Height, ofView: rightParenthesis, withMultiplier: 0.2)
         
-        leftParenthesis.autoSetDimension(.Width, toSize: 5)
-        rightParenthesis.autoSetDimension(.Width, toSize: 5)
-        
-        
-        childView.backgroundColor = UIColor.redColor()
+        leftParenthesis.setContentCompressionResistancePriority(100, forAxis: UILayoutConstraintAxis.Vertical)
+        rightParenthesis.setContentCompressionResistancePriority(100, forAxis: UILayoutConstraintAxis.Vertical)
+        leftParenthesis.setContentCompressionResistancePriority(100, forAxis: UILayoutConstraintAxis.Horizontal)
+        rightParenthesis.setContentCompressionResistancePriority(100, forAxis: UILayoutConstraintAxis.Horizontal)
         
         return container
     }
