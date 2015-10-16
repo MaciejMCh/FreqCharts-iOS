@@ -82,10 +82,9 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
             return
         }
         
-        NSLog(String(self.currentMovingButton!.titleLabel!.text))
         
         for nullSymbol in self.equationView.equation.nulls() {
-            if (nullSymbol.nullView!.frame.contains(nullSymbol.nullView!.convertPoint(point, fromView: nil))) {
+            if (CGRectMake(0, 0, CGRectGetWidth(nullSymbol.nullView!.frame), CGRectGetHeight(nullSymbol.nullView!.frame)).contains(nullSymbol.nullView!.convertPoint(point, fromView: nil))) {
                 self.selectedSymbol(self.currentMovingButton!.titleLabel!.text!, completion: { (newSymbol) -> () in
                     nullSymbol.parentSymbol.fillNull(nullSymbol, symbol: newSymbol as! AnyObject)
                     self.equationView.update()
