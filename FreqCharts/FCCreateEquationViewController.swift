@@ -14,9 +14,23 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var operatorsContainer: UIView!
     @IBOutlet var equationView: FCEquationView!
     
-//    @IBOutlet var webView: UIWebView!
-    
     var currentMovingButton: FCMovingButton?
+    
+    func selectedSymbol(symbol: String, completion: (FCSymbol)->()) {
+        switch (symbol) {
+        case "+": completion(FCAddSymbol())
+        case "#": self.pickNumber({ (number) -> () in
+            completion(FCNumberSymbol(value: number))
+        })
+            
+            
+        default: break
+        }
+    }
+    
+    func pickNumber(completion: (Double)->()) {
+        completion(12)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,25 +40,19 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
         
         self.operatorsContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: Selector("draggingPending:")))
-        
-//        self.webView.delegate = self
-//        self.webView.loadHTMLString(FCEquation(mainSymbol: FCFractionSymbol(), font: UIFont()).htmlRepresentation(), baseURL: nil)
     }
     @IBAction func movingButtonStartDraggingAction(sender: FCMovingButton) {
-//        self.findNulls()
         self.currentMovingButton = sender
+        
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.currentMovingButton!.alpha = 0.5
+            self.currentMovingButton!.backgroundColor = FCMovingButton.greenColor
+            var attrString = self.currentMovingButton!.titleLabel!.attributedText!.mutableCopy()
+            attrString.removeAttribute(NSForegroundColorAttributeName, range: NSMakeRange(0, attrString.length))
+            attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor(), range: NSMakeRange(0, attrString.length))
+            self.currentMovingButton!.setAttributedTitle(attrString as! NSAttributedString, forState: .Normal)
+        }
     }
-    
-//    func findNulls() {
-//        let snapshot = self.webView.pb_takeSnapshot()
-//        let points = (ImageProcessor.sharedProcessor().findNullsInImage(snapshot, inColor: UIColor.redColor()) as! [CGPointWrapper]).map { (input) -> CGPoint in
-//            return input.point
-//        }
-//        
-//        
-//        
-//        NSLog("ss")
-//    }
     
     func draggingPending(gestureRecognizer: UIPanGestureRecognizer) {
         switch(gestureRecognizer.state) {
@@ -74,23 +82,45 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate {
             return
         }
         
+        NSLog(String(self.currentMovingButton!.titleLabel!.text))
         
-        
-        
-//        let eq = self.equationView.equation.nulls()[0].nullView!.frame.
         for nullSymbol in self.equationView.equation.nulls() {
-//            NSLog(String(nullView.convertPoint(point, fromView: nil)) + " contains " + String(nullView.frame))
             if (nullSymbol.nullView!.frame.contains(nullSymbol.nullView!.convertPoint(point, fromView: nil))) {
-                nullSymbol.parentSymbol.fillNull(nullSymbol, symbol: FCNumberSymbol(value: 12))
-                self.equationView.update()
+                self.selectedSymbol(self.currentMovingButton!.titleLabel!.text!, completion: { (newSymbol) -> () in
+                    nullSymbol.parentSymbol.fillNull(nullSymbol, symbol: newSymbol as! AnyObject)
+                    self.equationView.update()
+                })
             }
         }
         
         
+        
+        
+//        self.currentMovingButton!.transform = CGAffineTransformMakeScale(0, 0)
+//        UIView.animateWithDuration(0.2) { () -> Void in
+//            self.currentMovingButton!.transform = CGAffineTransformIdentity
+//        }
+        
+        let movingButton = self.currentMovingButton!
+        movingButton.alpha = 1.0
+        movingButton.backgroundColor = UIColor.whiteColor()
+        var attrString = movingButton.titleLabel!.attributedText!.mutableCopy()
+        attrString.removeAttribute(NSForegroundColorAttributeName, range: NSMakeRange(0, attrString.length))
+        attrString.addAttribute(NSForegroundColorAttributeName, value: FCMovingButton.greenColor, range: NSMakeRange(0, attrString.length))
+        movingButton.setAttributedTitle(attrString as! NSAttributedString, forState: .Normal)
+        
         self.currentMovingButton!.transform = CGAffineTransformMakeScale(0, 0)
-        UIView.animateWithDuration(0.2) { () -> Void in
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.currentMovingButton!.transform = CGAffineTransformIdentity
+            }) { (finished) -> Void in
+//                    movingButton.alpha = 1.0
+//                    movingButton.backgroundColor = UIColor.whiteColor()
+//                    var attrString = movingButton.titleLabel!.attributedText!.mutableCopy()
+//                    attrString.removeAttribute(NSForegroundColorAttributeName, range: NSMakeRange(0, attrString.length))
+//                    attrString.addAttribute(NSForegroundColorAttributeName, value: FCMovingButton.greenColor, range: NSMakeRange(0, attrString.length))
+//                    movingButton.setAttributedTitle(attrString as! NSAttributedString, forState: .Normal)
         }
+        
         self.currentMovingButton = nil
         
     }

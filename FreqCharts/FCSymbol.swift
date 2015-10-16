@@ -443,6 +443,11 @@ class FCAddSymbol: FCSidedSymbol {
         super.init(LHSSymbol: LHSSymbol, RHSSymbol: RHSSymbol, operatorSymbol: "+")
     }
     
+    override init() {
+        super.init()
+        self.operationSymbol = "+"
+    }
+    
     override func dictionaryValue() -> [String: AnyObject] {
         return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": "+"]]
     }

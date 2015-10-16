@@ -24,5 +24,8 @@ class FCMovingButton: UIButton {
 ////            self.Add(touches)
 ////        }
 //    }
+    
+    
+    static var greenColor = UIColor(red: 68.0/255.0, green: 193.0/255.0, blue: 145.0/255.0, alpha: 1.0)
 
 }
