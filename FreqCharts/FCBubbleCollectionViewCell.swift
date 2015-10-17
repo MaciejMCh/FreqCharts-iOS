@@ -10,7 +10,7 @@ import UIKit
 
 class FCBubbleCollectionViewCell: UICollectionViewCell {
     
-    var webView = UIWebView ()
+    var equationView: FCEquationView = FCEquationView()
     var widthConstraint: NSLayoutConstraint!
     var heightConstraint: NSLayoutConstraint!
     
@@ -20,23 +20,20 @@ class FCBubbleCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = UIColor.whiteColor()
         self.clipsToBounds = true
         
-        self.webView.backgroundColor = UIColor.redColor()
-        self.contentView.addSubview(self.webView)
+//        self.webView.backgroundColor = UIColor.redColor()
+        self.contentView.addSubview(self.equationView)
         
         self.initConstraints()
-        
-        
-        self.webView.alpha = 0.0
     }
     
     func initConstraints() {
-        self.webView.translatesAutoresizingMaskIntoConstraints = false
+        self.equationView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.heightConstraint = NSLayoutConstraint(item: self.webView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
-        self.widthConstraint = NSLayoutConstraint(item: self.webView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
+        self.heightConstraint = NSLayoutConstraint(item: self.equationView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
+        self.widthConstraint = NSLayoutConstraint(item: self.equationView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100.0)
         
-        let xCenterConstraint = NSLayoutConstraint(item: self.contentView, attribute: .CenterX, relatedBy: .Equal, toItem: self.webView, attribute: .CenterX, multiplier: 1, constant: 0)
-        let yCenterConstraint = NSLayoutConstraint(item: self.contentView, attribute: .CenterY, relatedBy: .Equal, toItem: self.webView, attribute: .CenterY, multiplier: 1, constant: 0)
+        let xCenterConstraint = NSLayoutConstraint(item: self.contentView, attribute: .CenterX, relatedBy: .Equal, toItem: self.equationView, attribute: .CenterX, multiplier: 1, constant: 0)
+        let yCenterConstraint = NSLayoutConstraint(item: self.contentView, attribute: .CenterY, relatedBy: .Equal, toItem: self.equationView, attribute: .CenterY, multiplier: 1, constant: 0)
         
         self.contentView.addConstraints([self.widthConstraint, self.heightConstraint, xCenterConstraint, yCenterConstraint])
     }

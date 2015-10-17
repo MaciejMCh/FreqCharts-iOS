@@ -21,8 +21,6 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     
     private var viewModels: [FCBubbleViewModel]!
     
-    private var calculator = FCSymbolSizeCalculator()
-    
     func exitAnimation() {
         for cell in self.collectionView!.visibleCells() {
             let animation = CABasicAnimation(keyPath: "transform.scale")
@@ -56,6 +54,7 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FCEquation(mainSymbol: FCOperatorSymbol(multipler: 100), font: UIFont())
         
 //        self.viewModels = [
 //            FCBubbleViewModel(radius: 70, equation: self.equation),
@@ -76,19 +75,12 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         
         self.viewModels = [FCBubbleViewModel]()
         for dict in array {
-            for index in 1...30 {
-                self.viewModels.append(FCBubbleViewModel(equation: FCSymbolParser.parse(dict) as! FCEquation))
-            }
+            self.viewModels.append(FCBubbleViewModel(equation: FCSymbolParser.parse(dict) as! FCEquation))
         }
         
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
         NSLog(String(self.collectionView!.collectionViewLayout.collectionViewContentSize()))
-    }
-    
-    func dupa(eq: FCEquation, size: CGSize) {
-        eq.displayingSize = size
-        NSKeyedArchiver.archiveRootObject([eq.dictionaryValue()], toFile: self.storagePath())
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -99,7 +91,9 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FCBubbleCollectionViewCell
     
         cell.layer.cornerRadius = CGFloat(self.viewModels[indexPath.row].radius)
-        cell.webView.loadHTMLString(self.viewModels[indexPath.row].equation.htmlRepresentation(), baseURL: nil)
+        cell.equationView.equation = self.viewModels[indexPath.row].equation
+        cell.equationView.update()
+        
         cell.widthConstraint.constant = self.viewModels[indexPath.row].equation.displayingSize!.width
         cell.heightConstraint.constant = self.viewModels[indexPath.row].equation.displayingSize!.height
         

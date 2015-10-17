@@ -17,50 +17,50 @@ class FCNumberFormatter {
     }
 }
 
-extension UIView {
-    
-    func pb_takeSnapshot() -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
-        
-        drawViewHierarchyInRect(self.bounds, afterScreenUpdates: true)
-        
-        // old style: layer.renderInContext(UIGraphicsGetCurrentContext())
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-}
+//extension UIView {
+//    
+//    func pb_takeSnapshot() -> UIImage {
+//        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
+//        
+//        drawViewHierarchyInRect(self.bounds, afterScreenUpdates: true)
+//        
+//        // old style: layer.renderInContext(UIGraphicsGetCurrentContext())
+//        
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return image
+//    }
+//}
 
 protocol spierdolonyNSCodingWSwifcie {
     func dictionaryValue() -> [String: AnyObject]
 }
 
-class FCSymbolSizeCalculator: NSObject, UIWebViewDelegate {
-    
-    private var webView = UIWebView(frame: CGRectMake(0, 0, 10, 10))
-    private var completionBlock: ((size: CGSize) -> ())!
-    
-    func calculateSizeOfEquation(equation: FCEquation, completionBlock: (size: CGSize) -> ()) {
-        self.completionBlock = completionBlock
-        self.webView.delegate = self
-        self.webView.loadHTMLString(equation.htmlRepresentation(), baseURL: nil)
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        
-        let image = webView.pb_takeSnapshot()
-        
-        var frame = webView.frame
-        frame.size.height = 1
-        frame.size.width = 1
-        webView.frame = frame
-        var fittingSize = webView.sizeThatFits(CGSizeZero)
-        frame.size = fittingSize
-        self.completionBlock(size: fittingSize)
-    }
-    
-}
+//class FCSymbolSizeCalculator: NSObject, UIWebViewDelegate {
+//    
+//    private var webView = UIWebView(frame: CGRectMake(0, 0, 10, 10))
+//    private var completionBlock: ((size: CGSize) -> ())!
+//    
+//    func calculateSizeOfEquation(equation: FCEquation, completionBlock: (size: CGSize) -> ()) {
+//        self.completionBlock = completionBlock
+//        self.webView.delegate = self
+//        self.webView.loadHTMLString(equation.htmlRepresentation(), baseURL: nil)
+//    }
+//    
+//    func webViewDidFinishLoad(webView: UIWebView) {
+//        
+//        let image = webView.pb_takeSnapshot()
+//        
+//        var frame = webView.frame
+//        frame.size.height = 1
+//        frame.size.width = 1
+//        webView.frame = frame
+//        var fittingSize = webView.sizeThatFits(CGSizeZero)
+//        frame.size = fittingSize
+//        self.completionBlock(size: fittingSize)
+//    }
+//    
+//}
 
 class FCSymbolParser {
     class func parse(dictionary: [String: AnyObject]) -> FCSymbol {
@@ -96,14 +96,27 @@ class FCEquation: NSObject, FCSymbol {
     var displayingSize: CGSize?
     
     init(mainSymbol: FCSymbol, font: UIFont) {
+        super.init()
         self.mainSymbol = mainSymbol
         self.font = font
+        self.displayingSize = self.calculateSizeOfEquation(self, font: UIFont.systemFontOfSize(20))
     }
     
     override init() {
         super.init()
         self.mainSymbol = FCNullSymbol(parent: self)
         self.font = UIFont()
+        self.displayingSize = self.calculateSizeOfEquation(self, font: UIFont.systemFontOfSize(20))
+    }
+    
+    func calculateSizeOfEquation(equation: FCEquation, font: UIFont) -> CGSize {
+        let equationView = FCEquationView()
+        equationView.equation = equation
+        equationView.update()
+        equationView.setNeedsLayout()
+        equationView.layoutIfNeeded()
+        let frame = equationView.subviews[0].frame
+        return CGSizeMake(CGRectGetWidth(frame), CGRectGetHeight(frame))
     }
     
     func htmlRepresentation() -> String {
