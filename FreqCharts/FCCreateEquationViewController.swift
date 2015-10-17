@@ -15,8 +15,38 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     @IBOutlet var equationView: FCEquationView!
     
     var completion: ((Double)->())!
-    
     var currentMovingButton: FCMovingButton?
+    var lineController: FCDottedLineTableViewController?
+    var propellerHeight: NSLayoutConstraint?
+    
+    
+    @IBAction func Back(sender: AnyObject) {
+        
+        (self.parentViewController as! FCFABViewController).enterAnimation()
+        
+        self.removeFromParentViewController()
+        self.view.removeFromSuperview()
+    }
+    
+    
+    func createDot() {
+        self.lineController = FCDottedLineTableViewController()
+        self.addChildViewController(self.lineController!)
+        self.lineController!.didMoveToParentViewController(self)
+        
+        let propeller = UIView()
+        
+        propeller.addSubview(self.lineController!.view)
+        self.view.addSubview(propeller)
+        
+        self.propellerHeight = propeller.autoSetDimension(.Height, toSize: 100)
+        propeller.autoSetDimension(.Width, toSize: 10)
+        
+        propeller.autoCenterInSuperview()
+        
+        self.lineController!.view.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+        self.lineController!.view.autoMatchDimension(.Height, toDimension: .Height, ofView: propeller, withMultiplier: 0.5)
+    }
     
     func selectedSymbol(symbol: String, completion: (FCSymbol)->()) {
         switch (symbol) {
@@ -88,7 +118,13 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
         
         self.operatorsContainer.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: Selector("draggingPending:")))
     }
+    
     @IBAction func movingButtonStartDraggingAction(sender: FCMovingButton) {
+        
+        if (self.equationView.equation.mainSymbol is FCNullSymbol) {
+            self.createDot()
+        }
+        
         self.currentMovingButton = sender
         
         UIView.animateWithDuration(0.3) { () -> Void in
@@ -99,6 +135,8 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
             attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor(), range: NSMakeRange(0, attrString.length))
             self.currentMovingButton!.setAttributedTitle(attrString as! NSAttributedString, forState: .Normal)
         }
+        
+        self.updateDragging(CGPointMake(CGRectGetMinX(sender.frame) + CGFloat(25), CGRectGetMinY(sender.frame) + CGFloat(25)))
     }
     
     func draggingPending(gestureRecognizer: UIPanGestureRecognizer) {
@@ -110,6 +148,11 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     }
     
     func updateDragging(var point: CGPoint) {
+        
+        if (self.currentMovingButton == nil) {
+            return
+        }
+        
         point.x -= 50
         point.y -= 50
         if let currentMovingButton = self.currentMovingButton {
@@ -120,6 +163,22 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
                 }
             }
         }
+        
+        point.x += 25
+        point.y += 25
+        
+        let point1 = Point(px: point.x, py: point.y)
+        let point2 = Point(px: CGRectGetMidX(self.view.frame), py: CGRectGetMidY(self.view.frame))
+        
+        self.propellerHeight?.constant = point1.distance(point2) * 2
+        
+        let yDiff = point2.y - point1.y
+        let xDiff = point2.x - point1.x
+        let angle = atan2(xDiff, yDiff)
+        
+        let rotation = CGAffineTransformMakeRotation(-angle)
+        self.lineController?.view.superview?.transform = rotation
+        
     }
     
     func draggingFinish(var point: CGPoint) {
@@ -154,6 +213,10 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
         }
         
         self.currentMovingButton = nil
+        
+        self.lineController?.view.superview?.removeFromSuperview()
+        self.lineController = nil
+        self.propellerHeight = nil
         
     }
     

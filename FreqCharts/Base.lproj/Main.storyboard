@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cfd-0r-I4f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uve-xa-34r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -291,6 +291,13 @@
                                             <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="Obk-Tz-AdE"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dk6-T1-cRh">
+                                        <rect key="frame" x="277" y="50" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="Back:" destination="cfd-0r-I4f" eventType="touchUpInside" id="Thd-MT-9Ee"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -306,10 +313,12 @@
                                     <constraint firstItem="ZIU-pG-6jR" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="ZTC-Gq-KlK"/>
                                     <constraint firstItem="vGF-Ie-8k7" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="bAa-qZ-esd"/>
                                     <constraint firstItem="GQB-sU-UlS" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="c3V-8V-l8f"/>
+                                    <constraint firstItem="Dk6-T1-cRh" firstAttribute="centerX" secondItem="bdw-Jm-Je8" secondAttribute="centerX" id="cnN-hW-5eo"/>
                                     <constraint firstItem="4mZ-pG-Xde" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="oyR-r5-yQw"/>
                                     <constraint firstItem="ZIU-pG-6jR" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="r7i-LP-xjS"/>
                                     <constraint firstItem="4mZ-pG-Xde" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="rza-I4-X4W"/>
                                     <constraint firstItem="FG6-pG-iJQ" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="xx5-9s-WPf"/>
+                                    <constraint firstItem="Dk6-T1-cRh" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="50" id="zfD-HY-oh4"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -357,6 +366,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fww-gB-UzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-191" y="398"/>
+        </scene>
+        <!--Dotted Line Table View Controller-->
+        <scene sceneID="gG2-KE-NA2">
+            <objects>
+                <tableViewController id="PEs-ps-IUZ" customClass="FCDottedLineTableViewController" customModule="FreqCharts" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JHY-uJ-uTk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ri" id="SHf-if-1Pr">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SHf-if-1Pr" id="C8f-oW-ZMh">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PEs-ps-IUZ" id="87i-Iv-I6F"/>
+                            <outlet property="delegate" destination="PEs-ps-IUZ" id="fxF-Kn-eby"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HNb-J4-p2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-205" y="1091"/>
         </scene>
         <!--Bubbles Collection View Controller-->
         <scene sceneID="9y5-v3-s8l">

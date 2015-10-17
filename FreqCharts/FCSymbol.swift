@@ -91,7 +91,7 @@ extension FCSymbol {
 }
 
 class FCEquation: NSObject, FCSymbol {
-    private var mainSymbol: FCSymbol!
+    var mainSymbol: FCSymbol!
     private var font: UIFont!
     var displayingSize: CGSize?
     

@@ -12,6 +12,8 @@
 		5229EA051BCFFA4300B7276D /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229E9FE1BCFFA4300B7276D /* NSArray+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		5229EA061BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5229EA001BCFFA4300B7276D /* NSLayoutConstraint+PureLayout.m */; settings = {ASSET_TAGS = (); }; };
 		5229EA0A1BD0138B00B7276D /* FCDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229EA091BD0138B00B7276D /* FCDropView.swift */; settings = {ASSET_TAGS = (); }; };
+		524BE3121BD1630D00E7534C /* FCDottedLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BE3111BD1630D00E7534C /* FCDottedLineTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		5252EB5D1BD1CDDB00D694CD /* FCEquationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252EB5C1BD1CDDB00D694CD /* FCEquationsDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		525BA07A1BCBF30900D00556 /* FCBubblesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA0791BCBF30900D00556 /* FCBubblesCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		525BA07C1BCBF37A00D00556 /* FCBubbleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA07B1BCBF37A00D00556 /* FCBubbleViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		525BA07E1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BA07D1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -56,6 +58,8 @@
 		5229EA021BCFFA4300B7276D /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
 		5229EA031BCFFA4300B7276D /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		5229EA091BD0138B00B7276D /* FCDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCDropView.swift; sourceTree = "<group>"; };
+		524BE3111BD1630D00E7534C /* FCDottedLineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCDottedLineTableViewController.swift; sourceTree = "<group>"; };
+		5252EB5C1BD1CDDB00D694CD /* FCEquationsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCEquationsDataSource.swift; sourceTree = "<group>"; };
 		525BA0791BCBF30900D00556 /* FCBubblesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubblesCollectionViewController.swift; sourceTree = "<group>"; };
 		525BA07B1BCBF37A00D00556 /* FCBubbleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubbleViewModel.swift; sourceTree = "<group>"; };
 		525BA07D1BCBF3E500D00556 /* FCBubbleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBubbleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				529E230A1BCFDBB6008A1EBA /* ImageProcess.m */,
 				529E230F1BCFE0AF008A1EBA /* FCRectCreator.swift */,
 				5229E9F81BCFF71D00B7276D /* FCEquationView.swift */,
+				524BE3111BD1630D00E7534C /* FCDottedLineTableViewController.swift */,
+				5252EB5C1BD1CDDB00D694CD /* FCEquationsDataSource.swift */,
 			);
 			path = FreqCharts;
 			sourceTree = "<group>";
@@ -284,7 +290,9 @@
 				52A0C88A1BCE82B2000504FD /* FCFABViewController.swift in Sources */,
 				525BA07C1BCBF37A00D00556 /* FCBubbleViewModel.swift in Sources */,
 				525D0C321BCBC8E700EFFC31 /* FCEquationViewController.swift in Sources */,
+				5252EB5D1BD1CDDB00D694CD /* FCEquationsDataSource.swift in Sources */,
 				525BA07A1BCBF30900D00556 /* FCBubblesCollectionViewController.swift in Sources */,
+				524BE3121BD1630D00E7534C /* FCDottedLineTableViewController.swift in Sources */,
 				529E23051BCFABEE008A1EBA /* FCCircleView.swift in Sources */,
 				52A2CD581BCD6898000A7B0E /* FCSwiftShitness.m in Sources */,
 				52A0C8921BCEA952000504FD /* FCMovingView.swift in Sources */,

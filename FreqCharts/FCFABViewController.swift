@@ -14,6 +14,10 @@ class FCFABViewController: UIViewController {
     
     @IBOutlet var FAB: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     @IBAction func FABAction(sender: AnyObject) {
         
         self.childController.exitAnimation()
@@ -52,6 +56,16 @@ class FCFABViewController: UIViewController {
         self.FAB.layer.addAnimation(animation, forKey: "explode bubble")
         
         self.showCreatingController()
+    }
+    
+    func enterAnimation() {
+        FAB.layer.removeAllAnimations()
+        
+        FAB.transform = CGAffineTransformMakeScale(0, 0)
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.FAB.transform = CGAffineTransformIdentity
+        }
+        self.childController.enterAnimation()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

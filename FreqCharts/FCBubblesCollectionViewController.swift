@@ -35,6 +35,24 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         }
     }
     
+    func enterAnimation() {
+        for cell in self.collectionView!.visibleCells() {
+            cell.layer.removeAllAnimations()
+        }
+        
+        for cell in self.collectionView!.visibleCells() {
+            cell.transform = CGAffineTransformMakeScale(0, 0)
+        }
+        
+        UIView.animateWithDuration(0.3) { () -> Void in
+            for cell in self.collectionView!.visibleCells() {
+                cell.transform = CGAffineTransformIdentity
+            }
+        }
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
