@@ -25,6 +25,21 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 if (attributes.indexPath.row > self.viewModels.count) {
                     continue
                 }
+                
+                let visibleRect = CGRectMake(self.collectionView!.contentOffset.x, self.collectionView!.contentOffset.y, CGRectGetWidth(self.collectionView!.frame), CGRectGetHeight(self.collectionView!.frame))
+                
+                var fullSizeRect = visibleRect
+                let margin = CGFloat(30)
+                fullSizeRect.origin.x += margin
+                fullSizeRect.origin.y += margin
+                fullSizeRect.size.height -= margin * 2
+                fullSizeRect.size.width -= margin * 2
+                
+                let circleRect = self.calculatedCircles[attributes.indexPath.row].frame()
+                
+                let intersection = CGRectIntersection(fullSizeRect, circleRect)
+                let scale = min(CGRectGetWidth(intersection), CGRectGetHeight(intersection)) / CGRectGetWidth(circleRect)
+                attributes.transform = CGAffineTransformMakeScale(scale, scale)
                 layoutAttributes.append(attributes)
             }
         }
