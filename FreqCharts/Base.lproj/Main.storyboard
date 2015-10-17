@@ -291,11 +291,52 @@
                                             <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="Obk-Tz-AdE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dk6-T1-cRh">
-                                        <rect key="frame" x="277" y="50" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dk6-T1-cRh" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="260" y="40" width="80" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Fqk-1o-ZBX"/>
+                                            <constraint firstAttribute="height" constant="80" id="Lc8-Bp-ech"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="Back:" destination="cfd-0r-I4f" eventType="touchUpInside" id="Thd-MT-9Ee"/>
+                                            <action selector="undoButtonAction:" destination="cfd-0r-I4f" eventType="touchUpInside" id="bgO-w7-pJv"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90C-D6-may" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="360" y="40" width="80" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="KmB-gq-NyV"/>
+                                            <constraint firstAttribute="height" constant="80" id="tGV-a8-7RT"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="doneButtonAction:" destination="cfd-0r-I4f" eventType="touchUpInside" id="Z5U-PB-eax"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDO-8F-Eax" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="160" y="40" width="80" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="ctA-wy-eiL"/>
+                                            <constraint firstAttribute="height" constant="80" id="gDT-QV-6ML"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="backButtonAction:" destination="cfd-0r-I4f" eventType="touchUpInside" id="XtQ-eL-KPZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -304,8 +345,11 @@
                                     <constraint firstItem="FG6-pG-iJQ" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="0YX-0a-I5G"/>
                                     <constraint firstItem="BrR-9D-u5h" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="1KU-9p-R6J"/>
                                     <constraint firstItem="087-nL-vCH" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="9OG-AY-WLm"/>
+                                    <constraint firstItem="iDO-8F-Eax" firstAttribute="top" secondItem="Dk6-T1-cRh" secondAttribute="top" id="BhM-Va-Enm"/>
                                     <constraint firstItem="BrR-9D-u5h" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="FYL-hS-CfF"/>
                                     <constraint firstItem="ZZ6-DP-b46" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="Jqc-Ei-pOW"/>
+                                    <constraint firstAttribute="trailing" secondItem="90C-D6-may" secondAttribute="trailing" constant="20" id="MrW-31-pT8"/>
+                                    <constraint firstItem="iDO-8F-Eax" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="20" id="NDZ-8b-iRA"/>
                                     <constraint firstItem="087-nL-vCH" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="RG6-Ug-G8d"/>
                                     <constraint firstItem="ZZ6-DP-b46" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="VzP-qR-aK3"/>
                                     <constraint firstItem="GQB-sU-UlS" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="XYD-hA-IrO"/>
@@ -314,11 +358,12 @@
                                     <constraint firstItem="vGF-Ie-8k7" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="bAa-qZ-esd"/>
                                     <constraint firstItem="GQB-sU-UlS" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="c3V-8V-l8f"/>
                                     <constraint firstItem="Dk6-T1-cRh" firstAttribute="centerX" secondItem="bdw-Jm-Je8" secondAttribute="centerX" id="cnN-hW-5eo"/>
+                                    <constraint firstItem="90C-D6-may" firstAttribute="top" secondItem="Dk6-T1-cRh" secondAttribute="top" id="nc3-TF-vSI"/>
                                     <constraint firstItem="4mZ-pG-Xde" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="oyR-r5-yQw"/>
                                     <constraint firstItem="ZIU-pG-6jR" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="r7i-LP-xjS"/>
                                     <constraint firstItem="4mZ-pG-Xde" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="265" id="rza-I4-X4W"/>
                                     <constraint firstItem="FG6-pG-iJQ" firstAttribute="leading" secondItem="bdw-Jm-Je8" secondAttribute="leading" constant="275" id="xx5-9s-WPf"/>
-                                    <constraint firstItem="Dk6-T1-cRh" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="50" id="zfD-HY-oh4"/>
+                                    <constraint firstItem="Dk6-T1-cRh" firstAttribute="top" secondItem="bdw-Jm-Je8" secondAttribute="top" constant="40" id="zfD-HY-oh4"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -342,9 +387,12 @@
                         <outlet property="b5" destination="BrR-9D-u5h" id="Eot-Wx-KCh"/>
                         <outlet property="b6" destination="087-nL-vCH" id="579-TD-LKE"/>
                         <outlet property="b7" destination="4mZ-pG-Xde" id="0r3-cL-6ja"/>
+                        <outlet property="backButton" destination="iDO-8F-Eax" id="OFT-YF-wl2"/>
+                        <outlet property="doneButton" destination="90C-D6-may" id="CmW-G3-PHY"/>
                         <outlet property="equationBubble" destination="PQn-V5-esw" id="fUM-dr-f3p"/>
                         <outlet property="equationView" destination="PQV-eo-Ft8" id="QR1-o3-JNo"/>
                         <outlet property="operatorsContainer" destination="bdw-Jm-Je8" id="IQk-Hs-pbx"/>
+                        <outlet property="undoButton" destination="Dk6-T1-cRh" id="5Mz-6K-uov"/>
                         <outlet property="x0" destination="Jqc-Ei-pOW" id="awa-a3-lkw"/>
                         <outlet property="x1" destination="xx5-9s-WPf" id="SYf-ue-Tkv"/>
                         <outlet property="x2" destination="r7i-LP-xjS" id="5I2-tH-j3r"/>

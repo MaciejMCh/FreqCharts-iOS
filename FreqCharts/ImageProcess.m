@@ -134,7 +134,6 @@
                 CGPointWrapper *point = [CGPointWrapper new];
                 point.point = CGPointMake(i, j);
                 [frames addObject:point];
-                NSLog(@"%d, %d", i, j);
             }
             UInt32 averageColor = (255 - G(color));
             *currentPixel = RGBAMake(0, 0, 0, averageColor);

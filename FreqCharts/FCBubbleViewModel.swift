@@ -35,7 +35,6 @@ class FCBubbleViewModel: NSObject {
             return
         }
         self.connections.append(bubble)
-        NSLog("connecitons " + String(radius) + String(self.connections))
     }
     
     func isConnected(bubble: FCBubbleViewModel) -> Bool {

@@ -17,17 +17,11 @@ class FCEquationViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         self.webView.opaque = false
         
-//        let frac = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(), RHSSymbol: FCNumberSymbol(value: 1000)))
-//        let par = FCParenthesesSymbol(childSymbol: frac)
-//        var mainEquation = FCEquation(mainSymbol: par, font: UIFont.systemFontOfSize(16, weight: UIFontWeightLight))
-//        NSLog(mainEquation.htmlRepresentation())
-        
         let filePath = NSBundle.mainBundle().pathForResource("test", ofType: "html")
         let data = NSData(contentsOfFile: filePath!)
         
         self.webView.delegate = self
         self.webView.loadData(data!, MIMEType: "text/html", textEncodingName: "UTF-8", baseURL: NSURL())
-//        self.webView.loadHTMLString(mainEquation.htmlRepresentation(), baseURL: nil)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -38,7 +32,6 @@ class FCEquationViewController: UIViewController, UIWebViewDelegate {
         var fittingSize = webView.sizeThatFits(CGSizeZero)
         frame.size = fittingSize
         webView.frame = frame
-        NSLog(String(frame))
     }
     
     func displayEquation(equation: FCEquation) {

@@ -17,57 +17,22 @@ class FCNumberFormatter {
     }
 }
 
-//extension UIView {
-//    
-//    func pb_takeSnapshot() -> UIImage {
-//        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
-//        
-//        drawViewHierarchyInRect(self.bounds, afterScreenUpdates: true)
-//        
-//        // old style: layer.renderInContext(UIGraphicsGetCurrentContext())
-//        
-//        let image = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        return image
-//    }
-//}
-
 protocol spierdolonyNSCodingWSwifcie {
     func dictionaryValue() -> [String: AnyObject]
 }
-
-//class FCSymbolSizeCalculator: NSObject, UIWebViewDelegate {
-//    
-//    private var webView = UIWebView(frame: CGRectMake(0, 0, 10, 10))
-//    private var completionBlock: ((size: CGSize) -> ())!
-//    
-//    func calculateSizeOfEquation(equation: FCEquation, completionBlock: (size: CGSize) -> ()) {
-//        self.completionBlock = completionBlock
-//        self.webView.delegate = self
-//        self.webView.loadHTMLString(equation.htmlRepresentation(), baseURL: nil)
-//    }
-//    
-//    func webViewDidFinishLoad(webView: UIWebView) {
-//        
-//        let image = webView.pb_takeSnapshot()
-//        
-//        var frame = webView.frame
-//        frame.size.height = 1
-//        frame.size.width = 1
-//        webView.frame = frame
-//        var fittingSize = webView.sizeThatFits(CGSizeZero)
-//        frame.size = fittingSize
-//        self.completionBlock(size: fittingSize)
-//    }
-//    
-//}
 
 class FCSymbolParser {
     class func parse(dictionary: [String: AnyObject]) -> FCSymbol {
         let className = "FreqCharts." + Array(dictionary.keys)[0]
         let parseClass = NSClassFromString(className)!
-        let parseDict: [String: AnyObject] = dictionary[Array(dictionary.keys)[0]]! as! [String : AnyObject]
-        let object = FCSwiftShitness.instantiateClass(parseClass, dictionary: parseDict)
+        
+        var object: FCSymbol
+        if let parseDict: [String: AnyObject] = dictionary[Array(dictionary.keys)[0]]! as? [String : AnyObject] {
+            object = FCSwiftShitness.instantiateClass(parseClass, dictionary: parseDict) as! FCSymbol
+        } else {
+            object = FCNullSymbol(parent: FCNumberSymbol(value: 0))
+        }
+        
         return object as! FCSymbol
     }
 }

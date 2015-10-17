@@ -14,15 +14,34 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     @IBOutlet var operatorsContainer: UIView!
     @IBOutlet var equationView: FCEquationView!
     
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var undoButton: UIButton!
+    @IBOutlet var doneButton: UIButton!
+    
+    
     var completion: ((Double)->())!
     var currentMovingButton: FCMovingButton?
     var lineController: FCDottedLineTableViewController?
     var propellerHeight: NSLayoutConstraint?
     
     
-    @IBAction func Back(sender: AnyObject) {
+    @IBAction func backButtonAction(sender: AnyObject) {
+        self.Back(sender)
+    }
+    
+    @IBAction func doneButtonAction(sender: AnyObject) {
         self.equationView.equation.calculateSizeOfEquation(UIFont.systemFontOfSize(20))
         FCEquationsDataSource().addEquation(self.equationView.equation)
+        self.Back(sender)
+    }
+    
+    @IBAction func undoButtonAction(sender: AnyObject) {
+        
+    }
+    
+    
+    
+    @IBAction func Back(sender: AnyObject) {
         
         (self.parentViewController as! FCFABViewController).enterAnimation()
         self.removeFromParentViewController()
@@ -194,6 +213,8 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
                 self.selectedSymbol(self.currentMovingButton!.titleLabel!.text!, completion: { (newSymbol) -> () in
                     nullSymbol.parentSymbol.fillNull(nullSymbol, symbol: newSymbol as! AnyObject)
                     self.equationView.update()
+                    self.doneButton.enabled = self.equationView.equation.nulls().count == 0
+                    self.undoButton.enabled = true
                 })
             }
         }

@@ -12,7 +12,6 @@ class FCDropView: UIView {
 
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
-        NSLog(String(event?.type))
     }
 
 }

@@ -135,15 +135,16 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let validPossibilities = possibilities.filter{self.isCircleValid($0)}
         
         let screenCenterPoint = Point(px: 0, py: 0)
+        let scale = CGRectGetWidth(self.collectionView!.frame) / CGRectGetHeight(self.collectionView!.frame)
         let sortedPossibilities = validPossibilities.sort { (first, second) -> Bool in
-            return Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: first.x, py: first.y)) < Point(px: screenCenterPoint.x, py: screenCenterPoint.y).distance(Point(px: second.x, py: second.y))
+            return Point(px: screenCenterPoint.x, py: screenCenterPoint.y).scaledDistance(Point(px: first.x, py: first.y), scale: scale) < Point(px: screenCenterPoint.x, py: screenCenterPoint.y).scaledDistance(Point(px: second.x, py: second.y), scale: scale)
         }
         
-        let chosencircle = validPossibilities[0]
+        let chosenCircle = sortedPossibilities[0]
         
-        circle.x = chosencircle.x
-        circle.y = chosencircle.y
-        circle.connections = chosencircle.connections
+        circle.x = chosenCircle.x
+        circle.y = chosenCircle.y
+        circle.connections = chosenCircle.connections
         self.calculatedCircles.append(circle)
     }
     
@@ -176,6 +177,14 @@ class Point {
     
     func distance(p2: Point) -> CGFloat {
         return sqrt((x - p2.x)*(x - p2.x) + (y - p2.y)*(y - p2.y));
+    }
+    
+    func scaledDistance(p2: Point, scale: CGFloat) -> CGFloat {
+        
+        let xDiff = x - p2.x
+        let yDiff = (y - p2.y) * scale
+        
+        return sqrt(xDiff*xDiff + yDiff*yDiff);
     }
     
     func normal() -> Point {
