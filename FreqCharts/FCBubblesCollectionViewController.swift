@@ -38,61 +38,20 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         for equation in FCEquationsDataSource().equations() {
             self.viewModels.append(FCBubbleViewModel(equation: equation))
         }
-        self.collectionView!.reloadData()
-        
-        for cell in self.collectionView!.visibleCells() {
-            cell.layer.removeAllAnimations()
-        }
-        
-        for cell in self.collectionView!.visibleCells() {
-            cell.transform = CGAffineTransformMakeScale(0, 0)
-        }
-        
-        UIView.animateWithDuration(0.3) { () -> Void in
-            for cell in self.collectionView!.visibleCells() {
-                cell.transform = CGAffineTransformIdentity
-            }
-        }
+        self.collectionView?.reloadData()
+        (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        FCEquation(mainSymbol: FCOperatorSymbol(multipler: 100), font: UIFont())
-        
-//        self.viewModels = [
-//            FCBubbleViewModel(radius: 70, equation: self.equation),
-//            FCBubbleViewModel(radius: 90, equation: self.equation),
-//            FCBubbleViewModel(radius: 110, equation: self.equation),
-//            ]
-//
-//        
-//        self.calculator.calculateSizeOfEquation(self.equation) { (size) -> () in
-//            self.dupa(self.equation, size: size)
-////            self.equation.displayingSize = size
-//            NSKeyedArchiver.archiveRootObject([self.equation.dictionaryValue()], toFile: self.storagePath())
-//            NSLog(String(size))
-//        }
-        
-//        let eqs = FCEquationsDataSource().equations()
-//        
-//        let array: [[String: AnyObject]] = NSKeyedUnarchiver.unarchiveObjectWithFile(self.storagePath()) as! [[String: AnyObject]]
-        
-        FCEquation(mainSymbol: FCNumberSymbol(value: 10), font: UIFont())
-        FCEquation(mainSymbol: FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCNumberSymbol(value: 10)), font: UIFont())
-//        FCEquationsDataSource().addEquation(FCEquation(mainSymbol: FCNumberSymbol(value: 100000), font: UIFont()))
-        
+        self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         self.viewModels = [FCBubbleViewModel]()
         for equation in FCEquationsDataSource().equations() {
             self.viewModels.append(FCBubbleViewModel(equation: equation))
         }
-        
-        self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
-        NSLog(String(self.collectionView!.collectionViewLayout.collectionViewContentSize()))
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -110,12 +69,6 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         cell.heightConstraint.constant = self.viewModels[indexPath.row].equation.displayingSize!.height
         
         return cell
-    }
-    
-    func storagePath() -> String {
-        var storageDirectory = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).last as String!
-        storageDirectory = storageDirectory + "/models"
-        return storageDirectory
     }
     
 }
