@@ -25,7 +25,7 @@ class FCBubbleViewModel: NSObject {
     }
     
     init(equation: FCEquation) {
-        self.radius = Float(equation.displayingSize!.width / 2)
+        self.radius = Float(max(equation.displayingSize!.width, equation.displayingSize!.height) / 2)
         self.equation = equation
     }
     

@@ -99,24 +99,25 @@ class FCEquation: NSObject, FCSymbol {
         super.init()
         self.mainSymbol = mainSymbol
         self.font = font
-        self.displayingSize = self.calculateSizeOfEquation(self, font: UIFont.systemFontOfSize(20))
+        self.calculateSizeOfEquation(UIFont.systemFontOfSize(20))
+        NSLog(String(self.displayingSize))
     }
     
     override init() {
         super.init()
         self.mainSymbol = FCNullSymbol(parent: self)
         self.font = UIFont()
-        self.displayingSize = self.calculateSizeOfEquation(self, font: UIFont.systemFontOfSize(20))
+        self.calculateSizeOfEquation(UIFont.systemFontOfSize(20))
     }
     
-    func calculateSizeOfEquation(equation: FCEquation, font: UIFont) -> CGSize {
+    func calculateSizeOfEquation(font: UIFont) {
         let equationView = FCEquationView()
-        equationView.equation = equation
+        equationView.equation = self
         equationView.update()
         equationView.setNeedsLayout()
         equationView.layoutIfNeeded()
         let frame = equationView.subviews[0].frame
-        return CGSizeMake(CGRectGetWidth(frame), CGRectGetHeight(frame))
+        self.displayingSize = CGSizeMake(CGRectGetWidth(frame), CGRectGetHeight(frame))
     }
     
     func htmlRepresentation() -> String {

@@ -15,7 +15,6 @@ class FCEquationView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.grayColor()
     }
 
     required init?(coder aDecoder: NSCoder) {

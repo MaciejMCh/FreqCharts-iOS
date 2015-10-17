@@ -249,23 +249,26 @@ class Foam {
     init(circles: [Circle]) {
         self.circles = circles
         
-        let minXCircle = self.circles.sort { (first, second) -> Bool in return first.x - first.r < second.x - second.r }[0]
-        let minX = minXCircle.x - minXCircle.r
-        let maxXCircle = self.circles.sort { (first, second) -> Bool in return first.x + first.r > second.x + second.r }[0]
-        let maxX = maxXCircle.x + maxXCircle.r
-        
-        let minYCircle = self.circles.sort { (first, second) -> Bool in return first.y - first.r < second.y - second.r }[0]
-        let minY = minYCircle.y - minYCircle.r
-        let maxYCircle = self.circles.sort { (first, second) -> Bool in return first.y + first.r > second.y + second.r }[0]
-        let maxY = maxYCircle.y + maxYCircle.r
-        
-        self.size = CGSizeMake(maxX - minX, maxY - minY)
-        
-        for circle in self.circles {
-            circle.x -= minX
-            circle.y -= minY
+        if (circles.count > 0) {
+            let minXCircle = self.circles.sort { (first, second) -> Bool in return first.x - first.r < second.x - second.r }[0]
+            let minX = minXCircle.x - minXCircle.r
+            let maxXCircle = self.circles.sort { (first, second) -> Bool in return first.x + first.r > second.x + second.r }[0]
+            let maxX = maxXCircle.x + maxXCircle.r
+            
+            let minYCircle = self.circles.sort { (first, second) -> Bool in return first.y - first.r < second.y - second.r }[0]
+            let minY = minYCircle.y - minYCircle.r
+            let maxYCircle = self.circles.sort { (first, second) -> Bool in return first.y + first.r > second.y + second.r }[0]
+            let maxY = maxYCircle.y + maxYCircle.r
+            
+            self.size = CGSizeMake(maxX - minX, maxY - minY)
+            
+            for circle in self.circles {
+                circle.x -= minX
+                circle.y -= minY
+            }
+        } else {
+            self.size = CGSizeZero
         }
-        
     }
 }
 

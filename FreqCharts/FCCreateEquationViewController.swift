@@ -21,13 +21,13 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     
     
     @IBAction func Back(sender: AnyObject) {
+        self.equationView.equation.calculateSizeOfEquation(UIFont.systemFontOfSize(20))
+        FCEquationsDataSource().addEquation(self.equationView.equation)
         
         (self.parentViewController as! FCFABViewController).enterAnimation()
-        
         self.removeFromParentViewController()
         self.view.removeFromSuperview()
     }
-    
     
     func createDot() {
         self.lineController = FCDottedLineTableViewController()

@@ -34,6 +34,12 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     }
     
     func enterAnimation() {
+        self.viewModels = [FCBubbleViewModel]()
+        for equation in FCEquationsDataSource().equations() {
+            self.viewModels.append(FCBubbleViewModel(equation: equation))
+        }
+        self.collectionView!.reloadData()
+        
         for cell in self.collectionView!.visibleCells() {
             cell.layer.removeAllAnimations()
         }
@@ -54,7 +60,7 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FCEquation(mainSymbol: FCOperatorSymbol(multipler: 100), font: UIFont())
+//        FCEquation(mainSymbol: FCOperatorSymbol(multipler: 100), font: UIFont())
         
 //        self.viewModels = [
 //            FCBubbleViewModel(radius: 70, equation: self.equation),
@@ -70,12 +76,18 @@ class FCBubblesCollectionViewController: UICollectionViewController {
 //            NSLog(String(size))
 //        }
         
-        let array: [[String: AnyObject]] = NSKeyedUnarchiver.unarchiveObjectWithFile(self.storagePath()) as! [[String: AnyObject]]
+//        let eqs = FCEquationsDataSource().equations()
+//        
+//        let array: [[String: AnyObject]] = NSKeyedUnarchiver.unarchiveObjectWithFile(self.storagePath()) as! [[String: AnyObject]]
+        
+        FCEquation(mainSymbol: FCNumberSymbol(value: 10), font: UIFont())
+        FCEquation(mainSymbol: FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCNumberSymbol(value: 10)), font: UIFont())
+//        FCEquationsDataSource().addEquation(FCEquation(mainSymbol: FCNumberSymbol(value: 100000), font: UIFont()))
         
         
         self.viewModels = [FCBubbleViewModel]()
-        for dict in array {
-            self.viewModels.append(FCBubbleViewModel(equation: FCSymbolParser.parse(dict) as! FCEquation))
+        for equation in FCEquationsDataSource().equations() {
+            self.viewModels.append(FCBubbleViewModel(equation: equation))
         }
         
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
