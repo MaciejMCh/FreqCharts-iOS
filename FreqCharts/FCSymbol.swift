@@ -103,9 +103,13 @@ class FCEquation: NSObject, FCSymbol {
     }
     
     init(dictionary: [String: AnyObject]) {
+        super.init()
         self.mainSymbol = FCSymbolParser.parse(dictionary["mainSymbol"]! as! [String : AnyObject])
         self.displayingSize = CGSizeMake(CGFloat(dictionary["width"] as! NSNumber), CGFloat(dictionary["height"] as! NSNumber))
         self.font = UIFont()
+        if mainSymbol is FCNullSymbol {
+            self.mainSymbol = FCNullSymbol(parent: self)
+        }
     }
     
     func view(color: UIColor, font: UIFont) -> UIView {
@@ -218,7 +222,11 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
     }
     
     init(dictionary: [String: AnyObject]) {
+        super.init()
         self.childSymbol = FCSymbolParser.parse(dictionary["childSymbol"]! as! [String : AnyObject])
+        if childSymbol is FCNullSymbol {
+            self.childSymbol = FCNullSymbol(parent: self)
+        }
     }
     
     func view(color: UIColor, font: UIFont) -> UIView {
@@ -329,8 +337,15 @@ class FCFractionSymbol: NSObject, FCSymbol {
     }
     
     init(dictionary: [String: AnyObject]) {
+        super.init()
         self.overSymbol = FCSymbolParser.parse(dictionary["overSymbol"]! as! [String : AnyObject])
         self.underSymbol = FCSymbolParser.parse(dictionary["underSymbol"]! as! [String : AnyObject])
+        if overSymbol is FCNullSymbol {
+            self.overSymbol = FCNullSymbol(parent: self)
+        }
+        if underSymbol is FCNullSymbol {
+            self.underSymbol = FCNullSymbol(parent: self)
+        }
     }
     
     func view(color: UIColor, font: UIFont) -> UIView {
@@ -451,6 +466,15 @@ class FCSidedSymbol: NSObject, FCSymbol {
             self.RHSSymbol = symbol as? FCSymbol
         }
     }
+    
+    func resetNulls() {
+        if LHSSymbol is FCNullSymbol {
+            self.LHSSymbol = FCNullSymbol(parent: self)
+        }
+        if RHSSymbol is FCNullSymbol {
+            self.RHSSymbol = FCNullSymbol(parent: self)
+        }
+    }
 }
 
 class FCAddSymbol: FCSidedSymbol {
@@ -471,6 +495,7 @@ class FCAddSymbol: FCSidedSymbol {
         self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
         self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
         self.operationSymbol = dictionary["oeprator"] as! String
+        self.resetNulls()
     }
 }
 
@@ -492,6 +517,7 @@ class FCSubstractSymbol: FCSidedSymbol {
         self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
         self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
         self.operationSymbol = dictionary["oeprator"] as! String
+        self.resetNulls()
     }
 }
 
@@ -513,6 +539,7 @@ class FCMultipleSymbol: FCSidedSymbol {
         self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
         self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
         self.operationSymbol = dictionary["oeprator"] as! String
+        self.resetNulls()
     }
     
 }

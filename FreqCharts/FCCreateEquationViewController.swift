@@ -18,6 +18,7 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     @IBOutlet var undoButton: UIButton!
     @IBOutlet var doneButton: UIButton!
     
+    var history: [[String: AnyObject]] = [[String: AnyObject]]()
     
     var completion: ((Double)->())!
     var currentMovingButton: FCMovingButton?
@@ -36,7 +37,11 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     }
     
     @IBAction func undoButtonAction(sender: AnyObject) {
-        
+        let lastDict = self.history.removeLast()
+        self.equationView.equation = FCSymbolParser.parse(lastDict) as! FCEquation
+        self.equationView.update()
+        self.undoButton.enabled = self.history.count > 0
+        self.doneButton.enabled = self.equationView.equation.nulls().count == 0
     }
     
     
@@ -211,6 +216,9 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
         for nullSymbol in self.equationView.equation.nulls() {
             if (CGRectMake(0, 0, CGRectGetWidth(nullSymbol.nullView!.frame), CGRectGetHeight(nullSymbol.nullView!.frame)).contains(nullSymbol.nullView!.convertPoint(point, fromView: nil))) {
                 self.selectedSymbol(self.currentMovingButton!.titleLabel!.text!, completion: { (newSymbol) -> () in
+                    let dict = self.equationView.equation.dictionaryValue()
+                    self.history.append(dict)
+                    
                     nullSymbol.parentSymbol.fillNull(nullSymbol, symbol: newSymbol as! AnyObject)
                     self.equationView.update()
                     self.doneButton.enabled = self.equationView.equation.nulls().count == 0

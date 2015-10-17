@@ -22,8 +22,9 @@ class FCMenuButton: UIButton {
                 self.hidden = false
             }
             
-            let fromT = newValue ? CGAffineTransformMakeScale(0, 0) : CGAffineTransformIdentity
-            let toT = newValue ? CGAffineTransformIdentity : CGAffineTransformMakeScale(0, 0)
+            
+            let fromT = newValue ? CGAffineTransformMakeScale(0.01, 0.01) : CGAffineTransformIdentity
+            let toT = newValue ? CGAffineTransformIdentity : CGAffineTransformMakeScale(0.01, 0.01)
             
             self.transform = fromT
             UIView.animateWithDuration(0.3, animations: { () -> Void in
