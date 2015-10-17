@@ -19,10 +19,7 @@ class FCBubbleCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
         self.clipsToBounds = true
-        
-//        self.webView.backgroundColor = UIColor.redColor()
         self.contentView.addSubview(self.equationView)
-        
         self.initConstraints()
     }
     

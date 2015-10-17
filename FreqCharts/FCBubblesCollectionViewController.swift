@@ -34,24 +34,41 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     }
     
     func enterAnimation() {
-        self.viewModels = [FCBubbleViewModel]()
-        for equation in FCEquationsDataSource().equations() {
-            self.viewModels.append(FCBubbleViewModel(equation: equation))
-        }
-        self.collectionView?.reloadData()
-        (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
+        self.update()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView!.registerClass(FCBubbleCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
+        self.update()
+    }
+    
+    func update() {
         self.viewModels = [FCBubbleViewModel]()
         for equation in FCEquationsDataSource().equations() {
             self.viewModels.append(FCBubbleViewModel(equation: equation))
         }
+        self.collectionView?.reloadData()
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
+        
+        let foam = (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).foam
+        let topInset = max(0, (CGRectGetHeight(self.collectionView!.frame) - foam.size.height) / 2)
+        let leftInset = max(0, (CGRectGetWidth(self.collectionView!.frame) - foam.size.width) / 2)
+        self.collectionView!.contentInset = UIEdgeInsetsMake(topInset, leftInset, 0, 0)
+        
+        let topOffset = max(0, (foam.size.height - CGRectGetHeight(UIScreen.mainScreen().bounds)) / 2)
+        let leftOffset = max(0, (foam.size.width - CGRectGetWidth(UIScreen.mainScreen().bounds)) / 2)
+        self.collectionView?.contentOffset = CGPointMake(leftOffset, leftOffset)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let foam = (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).foam
+        let topOffset = max(0, (foam.size.height - CGRectGetHeight(UIScreen.mainScreen().bounds)) / 2)
+        let leftOffset = max(0, (foam.size.width - CGRectGetWidth(UIScreen.mainScreen().bounds)) / 2)
+        self.collectionView?.contentOffset = CGPointMake(leftOffset, leftOffset)
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
