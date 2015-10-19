@@ -565,11 +565,12 @@ class FCPowerSymbol: NSObject, FCSymbol {
     }
     
     func dictionaryValue() -> [String: AnyObject] {
-        return [String(self.classForCoder): ["exponent" : self.exponent]]
+        return [String(self.classForCoder): ["exponent" : self.exponent, "baseSymbol" : self.baseSymbol.dictionaryValue()]]
     }
     
     init(dictionary: [String: AnyObject]) {
         self.exponent = dictionary["exponent"] as! Int
+        self.baseSymbol = FCSymbolParser.parse(dictionary["baseSymbol"]! as! [String : AnyObject])
     }
     
     func view(color: UIColor, font: UIFont) -> UIView {

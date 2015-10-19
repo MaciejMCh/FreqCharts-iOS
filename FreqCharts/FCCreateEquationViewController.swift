@@ -28,11 +28,15 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     
     @IBAction func backButtonAction(sender: AnyObject) {
         self.Back(sender)
+        (self.parentViewController as! FCFABViewController).childController.backAnimation()
+        (self.parentViewController as! FCFABViewController).resetFAB()
     }
     
     @IBAction func doneButtonAction(sender: AnyObject) {
         self.equationView.equation.calculateSizeOfEquation(UIFont.systemFontOfSize(20))
         FCEquationsDataSource().addEquation(self.equationView.equation)
+        
+        (self.parentViewController as! FCFABViewController).enterAnimation()
         self.Back(sender)
     }
     
@@ -48,9 +52,24 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     
     @IBAction func Back(sender: AnyObject) {
         
-        (self.parentViewController as! FCFABViewController).enterAnimation()
-        self.removeFromParentViewController()
-        self.view.removeFromSuperview()
+        equationBubble.transform = CGAffineTransformIdentity
+        equationBubble.alpha = 0.0
+        
+        for operatorBubble in self.operatorsContainer.subviews {
+            operatorBubble.transform = CGAffineTransformIdentity
+        }
+        
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.equationBubble.transform = CGAffineTransformMakeScale(0.01, 0.01)
+            self.equationBubble.alpha = 1.0
+            
+            for operatorBubble in self.operatorsContainer.subviews {
+                operatorBubble.transform = CGAffineTransformMakeScale(0.01, 0.01)
+            }
+            }) { (finished) -> Void in
+                self.removeFromParentViewController()
+                self.view.removeFromSuperview()
+        }
     }
     
     func createDot() {

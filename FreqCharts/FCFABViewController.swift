@@ -10,9 +10,14 @@ import UIKit
 
 class FCFABViewController: UIViewController {
     
-    private var childController: FCBubblesCollectionViewController!
+    var childController: FCBubblesCollectionViewController!
     
     @IBOutlet var FAB: UIButton!
+    
+    @IBOutlet var nyquistButton: UIButton!
+    @IBOutlet var phaseButton: UIButton!
+    @IBOutlet var amplitudeButton: UIButton!
+    @IBOutlet var deleteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,20 +63,36 @@ class FCFABViewController: UIViewController {
         self.showCreatingController()
     }
     
-    func enterAnimation() {
+    func resetFAB() {
         FAB.layer.removeAllAnimations()
-        
         FAB.transform = CGAffineTransformMakeScale(0, 0)
         UIView.animateWithDuration(0.3) { () -> Void in
             self.FAB.transform = CGAffineTransformIdentity
         }
+    }
+    
+    func enterAnimation() {
+        self.resetFAB()
         self.childController.enterAnimation()
+    }
+    
+    func showMenu(show: Bool) {
+        self.nyquistButton.enabled = show
+        self.phaseButton.enabled = show
+        self.amplitudeButton.enabled = show
+        self.deleteButton.enabled = show
+    }
+    
+    @IBAction func nyquistAction(sender: AnyObject) {
+        NSLog("saas")
+    }
+    @IBAction func deleteAction(sender: AnyObject) {
+        self.childController.deleteSelected()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         self.childController = segue.destinationViewController as! FCBubblesCollectionViewController
     }
-    
     
     func showCreatingController() {
         var newVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FCCreateEquationViewController")

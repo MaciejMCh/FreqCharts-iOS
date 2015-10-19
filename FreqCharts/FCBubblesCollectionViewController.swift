@@ -12,6 +12,9 @@ private let reuseIdentifier = "FCBubbleCollectionViewCell"
 
 class FCBubblesCollectionViewController: UICollectionViewController {
 
+    var menuIsShowing = false
+    private var selectedCell: FCBubbleCollectionViewCell!
+    
     private var equation: FCEquation {
         let frac = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(), RHSSymbol: FCNumberSymbol(value: 1000)))
         let par = FCParenthesesSymbol(childSymbol: frac)
@@ -33,8 +36,22 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         }
     }
     
+    func backAnimation() {
+        self.collectionView?.reloadData()
+        self.collectionView!.alpha = 0.0
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.collectionView!.alpha = 1.0
+        }
+    }
+    
     func enterAnimation() {
+        self.collectionView!.alpha = 0.0
         self.update()
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            UIView.animateWithDuration(0.3) { () -> Void in
+                self.collectionView!.alpha = 1.0
+            }
+        })
     }
     
     override func viewDidLoad() {
@@ -49,8 +66,6 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         for equation in FCEquationsDataSource().equations() {
             self.viewModels.append(FCBubbleViewModel(equation: equation))
         }
-        
-        self.viewModels.appendContentsOf(self.viewModels)
         
         self.collectionView?.reloadData()
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)
@@ -90,5 +105,32 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         
         return cell
     }
+    
+    func deleteSelected() {
+        (self.parentViewController as! FCFABViewController).showMenu(false)
+        self.menuIsShowing = false
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.selectedCell.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+        }
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.menuIsShowing = !self.menuIsShowing
+        
+        let transform = self.menuIsShowing ? CGAffineTransformMakeScale(0.0001, 0.0001) : CGAffineTransformIdentity
+        let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)
+        self.selectedCell = selectedCell as! FCBubbleCollectionViewCell
+        UIView.animateWithDuration(0.3) { () -> Void in
+            for cell in self.collectionView!.visibleCells() {
+                if (cell == selectedCell) {
+                    continue
+                }
+                cell.transform = transform
+            }
+        }
+        
+        (self.parentViewController as! FCFABViewController).showMenu(self.menuIsShowing)
+    }
+    
     
 }
