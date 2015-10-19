@@ -361,13 +361,14 @@
                                             <action selector="movingButtonStartDraggingAction:" destination="cfd-0r-I4f" eventType="touchDown" id="Obk-Tz-AdE"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dk6-T1-cRh" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                        <rect key="frame" x="260" y="40" width="80" height="80"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dk6-T1-cRh" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="284" y="65" width="33" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="Fqk-1o-ZBX"/>
                                             <constraint firstAttribute="height" constant="80" id="Lc8-Bp-ech"/>
                                         </constraints>
+                                        <state key="normal" image="undo17"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="40"/>
@@ -377,13 +378,14 @@
                                             <action selector="undoButtonAction:" destination="cfd-0r-I4f" eventType="touchUpInside" id="bgO-w7-pJv"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90C-D6-may" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                        <rect key="frame" x="360" y="40" width="80" height="80"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90C-D6-may" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="381" y="65" width="38" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="KmB-gq-NyV"/>
                                             <constraint firstAttribute="height" constant="80" id="tGV-a8-7RT"/>
                                         </constraints>
+                                        <state key="normal" image="tick11"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="40"/>
@@ -393,13 +395,14 @@
                                             <action selector="doneButtonAction:" destination="cfd-0r-I4f" eventType="touchUpInside" id="Z5U-PB-eax"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDO-8F-Eax" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                        <rect key="frame" x="160" y="40" width="80" height="80"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDO-8F-Eax" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                        <rect key="frame" x="183" y="63" width="34" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="ctA-wy-eiL"/>
                                             <constraint firstAttribute="height" constant="80" id="gDT-QV-6ML"/>
                                         </constraints>
+                                        <state key="normal" image="cross106"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="40"/>
@@ -593,4 +596,9 @@
             <point key="canvasLocation" x="1174" y="-322"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cross106" width="34" height="34"/>
+        <image name="tick11" width="38" height="30"/>
+        <image name="undo17" width="33" height="30"/>
+    </resources>
 </document>

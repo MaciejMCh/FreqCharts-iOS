@@ -177,6 +177,9 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
             attrString.removeAttribute(NSForegroundColorAttributeName, range: NSMakeRange(0, attrString.length))
             attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor(), range: NSMakeRange(0, attrString.length))
             self.currentMovingButton!.setAttributedTitle(attrString as! NSAttributedString, forState: .Normal)
+            
+            self.backButton.imageView!.image = self.backButton.imageView!.image!.imageWithRenderingMode(.AlwaysTemplate)
+            self.backButton.imageView!.tintColor = UIColor.redColor()
         }
         
         self.updateDragging(CGPointMake(CGRectGetMinX(sender.frame) + CGFloat(25), CGRectGetMinY(sender.frame) + CGFloat(25)))
