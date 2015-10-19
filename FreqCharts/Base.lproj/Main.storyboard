@@ -52,7 +52,6 @@
                                     <constraint firstAttribute="width" constant="80" id="4Zl-vn-3os"/>
                                     <constraint firstAttribute="height" constant="80" id="GfB-zd-xJN"/>
                                 </constraints>
-                                <state key="normal" title="kurwa"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
@@ -69,7 +68,6 @@
                                     <constraint firstAttribute="height" constant="80" id="5so-e7-eES"/>
                                     <constraint firstAttribute="width" constant="80" id="alx-Ak-lvW"/>
                                 </constraints>
-                                <state key="normal" title="kurwa"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
@@ -83,7 +81,6 @@
                                     <constraint firstAttribute="height" constant="80" id="ObK-4K-7Uk"/>
                                     <constraint firstAttribute="width" constant="80" id="x0e-M3-KeC"/>
                                 </constraints>
-                                <state key="normal" title="kurwa"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
@@ -97,7 +94,6 @@
                                     <constraint firstAttribute="width" constant="80" id="WGg-k3-H8A"/>
                                     <constraint firstAttribute="height" constant="80" id="hNC-yN-XkT"/>
                                 </constraints>
-                                <state key="normal" title="kurwa"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
