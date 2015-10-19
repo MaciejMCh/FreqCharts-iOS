@@ -45,89 +45,93 @@
                                     <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="5ZT-u7-hY1"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVT-Dg-2AM" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAv-pT-xZX" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                <rect key="frame" x="510" y="160" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="4Zl-vn-3os"/>
+                                    <constraint firstAttribute="height" constant="80" id="GfB-zd-xJN"/>
+                                </constraints>
+                                <state key="normal" title="kurwa"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="nyquistAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="1SK-9v-6h1"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NF-Ts-Idl" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                <rect key="frame" x="510" y="360" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="5so-e7-eES"/>
+                                    <constraint firstAttribute="width" constant="80" id="alx-Ak-lvW"/>
+                                </constraints>
+                                <state key="normal" title="kurwa"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKO-Mh-klM" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
                                 <rect key="frame" x="510" y="260" width="80" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="AUW-4I-IEr"/>
-                                    <constraint firstAttribute="height" constant="80" id="gxB-Se-qQs"/>
+                                    <constraint firstAttribute="height" constant="80" id="ObK-4K-7Uk"/>
+                                    <constraint firstAttribute="width" constant="80" id="x0e-M3-KeC"/>
                                 </constraints>
+                                <state key="normal" title="kurwa"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fiF-z5-sth" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                <rect key="frame" x="510" y="170" width="80" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="7O5-Jz-zf4"/>
-                                    <constraint firstAttribute="height" constant="80" id="Jfr-UC-TH9"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="40"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="nyquistAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="1cb-Vi-qVe"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsJ-1r-LWR" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                <rect key="frame" x="510" y="350" width="80" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="C7j-wC-Jc1"/>
-                                    <constraint firstAttribute="height" constant="80" id="T09-M1-tf5"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="40"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jsL-Vo-hJw" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFX-Ec-QNF" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
                                 <rect key="frame" x="510" y="510" width="80" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ew6-bE-WRM"/>
-                                    <constraint firstAttribute="width" constant="80" id="mbM-oZ-nAB"/>
+                                    <constraint firstAttribute="width" constant="80" id="WGg-k3-H8A"/>
+                                    <constraint firstAttribute="height" constant="80" id="hNC-yN-XkT"/>
                                 </constraints>
+                                <state key="normal" title="kurwa"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="deleteAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="reV-jZ-jqa"/>
+                                    <action selector="deleteAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="jEF-HU-Qaj"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="fiF-z5-sth" firstAttribute="trailing" secondItem="SVT-Dg-2AM" secondAttribute="trailing" id="Hqy-NP-4dg"/>
                             <constraint firstItem="5vk-kx-rNk" firstAttribute="leading" secondItem="EwH-SH-orC" secondAttribute="leading" id="Hwy-vE-zft"/>
-                            <constraint firstItem="SVT-Dg-2AM" firstAttribute="centerY" secondItem="EwH-SH-orC" secondAttribute="centerY" id="P1s-Md-B90"/>
-                            <constraint firstItem="NsJ-1r-LWR" firstAttribute="top" secondItem="SVT-Dg-2AM" secondAttribute="bottom" constant="10" id="QN7-tN-RdW"/>
+                            <constraint firstItem="gAv-pT-xZX" firstAttribute="leading" secondItem="oKO-Mh-klM" secondAttribute="leading" id="M5k-pP-rRc"/>
+                            <constraint firstAttribute="trailing" secondItem="oKO-Mh-klM" secondAttribute="trailing" constant="10" id="Qun-1h-evJ"/>
                             <constraint firstItem="Qn6-Xd-ne0" firstAttribute="top" secondItem="5vk-kx-rNk" secondAttribute="bottom" id="Qyf-gb-bRK"/>
-                            <constraint firstItem="NsJ-1r-LWR" firstAttribute="trailing" secondItem="SVT-Dg-2AM" secondAttribute="trailing" id="S4C-VL-ZD2"/>
+                            <constraint firstItem="4NF-Ts-Idl" firstAttribute="leading" secondItem="oKO-Mh-klM" secondAttribute="leading" id="S6K-ea-O25"/>
+                            <constraint firstItem="Qn6-Xd-ne0" firstAttribute="top" secondItem="fFX-Ec-QNF" secondAttribute="bottom" constant="10" id="Vnc-WR-bCY"/>
+                            <constraint firstItem="4NF-Ts-Idl" firstAttribute="top" secondItem="oKO-Mh-klM" secondAttribute="bottom" constant="20" id="WIL-Z8-Szr"/>
                             <constraint firstItem="Qn6-Xd-ne0" firstAttribute="top" secondItem="gqc-yM-cle" secondAttribute="bottom" constant="15" id="Y58-1e-YWf"/>
-                            <constraint firstAttribute="trailing" secondItem="SVT-Dg-2AM" secondAttribute="trailing" constant="10" id="Zcu-zk-p7l"/>
                             <constraint firstItem="5vk-kx-rNk" firstAttribute="top" secondItem="EwH-SH-orC" secondAttribute="top" id="fgA-OI-OOF"/>
-                            <constraint firstItem="SVT-Dg-2AM" firstAttribute="top" secondItem="fiF-z5-sth" secondAttribute="bottom" constant="10" id="m77-K9-BtV"/>
+                            <constraint firstItem="oKO-Mh-klM" firstAttribute="centerY" secondItem="EwH-SH-orC" secondAttribute="centerY" id="kRr-XW-vqX"/>
                             <constraint firstAttribute="trailing" secondItem="5vk-kx-rNk" secondAttribute="trailing" id="q4m-WB-JxH"/>
-                            <constraint firstItem="Qn6-Xd-ne0" firstAttribute="top" secondItem="jsL-Vo-hJw" secondAttribute="bottom" constant="10" id="qV2-Fy-MOT"/>
-                            <constraint firstAttribute="trailing" secondItem="jsL-Vo-hJw" secondAttribute="trailing" constant="10" id="tRc-sI-URM"/>
                             <constraint firstAttribute="trailing" secondItem="gqc-yM-cle" secondAttribute="trailing" constant="15" id="tuw-6W-ax8"/>
+                            <constraint firstItem="oKO-Mh-klM" firstAttribute="top" secondItem="gAv-pT-xZX" secondAttribute="bottom" constant="20" id="vhK-VX-vZn"/>
+                            <constraint firstAttribute="trailing" secondItem="fFX-Ec-QNF" secondAttribute="trailing" constant="10" id="zLQ-pr-5DM"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="FAB" destination="gqc-yM-cle" id="v1z-4y-d8D"/>
-                        <outlet property="amplitudeButton" destination="NsJ-1r-LWR" id="f03-S4-5X9"/>
-                        <outlet property="deleteButton" destination="jsL-Vo-hJw" id="4Wa-9c-vRg"/>
-                        <outlet property="nyquistButton" destination="fiF-z5-sth" id="peZ-lj-RUq"/>
-                        <outlet property="phaseButton" destination="SVT-Dg-2AM" id="PPO-1E-rLk"/>
+                        <outlet property="amplitudeButton" destination="oKO-Mh-klM" id="iCS-qJ-54O"/>
+                        <outlet property="deleteButton" destination="fFX-Ec-QNF" id="8XD-cl-wXl"/>
+                        <outlet property="nyquistButton" destination="gAv-pT-xZX" id="xGt-oj-hqa"/>
+                        <outlet property="phaseButton" destination="4NF-Ts-Idl" id="02c-d3-eTN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9m-2C-k6V" userLabel="First Responder" sceneMemberID="firstResponder"/>
