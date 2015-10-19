@@ -45,13 +45,14 @@
                                     <action selector="FABAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="5ZT-u7-hY1"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAv-pT-xZX" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                <rect key="frame" x="510" y="160" width="80" height="80"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAv-pT-xZX" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                <rect key="frame" x="525" y="174" width="51" height="51"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="4Zl-vn-3os"/>
                                     <constraint firstAttribute="height" constant="80" id="GfB-zd-xJN"/>
                                 </constraints>
+                                <state key="normal" image="nyquist"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
@@ -61,39 +62,42 @@
                                     <action selector="nyquistAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="1SK-9v-6h1"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NF-Ts-Idl" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                <rect key="frame" x="510" y="360" width="80" height="80"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NF-Ts-Idl" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                <rect key="frame" x="523" y="382" width="55" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="5so-e7-eES"/>
                                     <constraint firstAttribute="width" constant="80" id="alx-Ak-lvW"/>
                                 </constraints>
+                                <state key="normal" image="phase"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKO-Mh-klM" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                <rect key="frame" x="510" y="260" width="80" height="80"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKO-Mh-klM" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                <rect key="frame" x="526" y="278" width="49" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="ObK-4K-7Uk"/>
                                     <constraint firstAttribute="width" constant="80" id="x0e-M3-KeC"/>
                                 </constraints>
+                                <state key="normal" image="amplitude"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFX-Ec-QNF" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
-                                <rect key="frame" x="510" y="510" width="80" height="80"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFX-Ec-QNF" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
+                                <rect key="frame" x="534" y="527" width="33" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="WGg-k3-H8A"/>
                                     <constraint firstAttribute="height" constant="80" id="hNC-yN-XkT"/>
                                 </constraints>
+                                <state key="normal" image="garbage21"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
@@ -597,8 +601,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cross106" width="34" height="34"/>
+        <image name="amplitude" width="49" height="44"/>
+        <image name="cross106" width="35" height="35"/>
+        <image name="garbage21" width="33" height="45"/>
+        <image name="nyquist" width="51" height="51"/>
+        <image name="phase" width="55" height="35"/>
         <image name="tick11" width="38" height="30"/>
-        <image name="undo17" width="33" height="30"/>
+        <image name="undo17" width="34" height="30"/>
     </resources>
 </document>
