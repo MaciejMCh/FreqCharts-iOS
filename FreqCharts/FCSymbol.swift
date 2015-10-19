@@ -42,7 +42,7 @@ protocol FCSymbol: spierdolonyNSCodingWSwifcie {
     func view(color: UIColor, font: UIFont) -> UIView
     func nulls() -> [FCNullSymbol]
     func fillNull(null: AnyObject, symbol: AnyObject)
-//    func responseForFrequency(frequency: Double) -> Double
+    func responseForFrequency(frequency: Double) -> Double
     
 }
 
@@ -124,6 +124,9 @@ class FCEquation: NSObject, FCSymbol {
         self.mainSymbol = symbol as? FCSymbol
     }
     
+    func responseForFrequency(frequency: Double) -> Double {
+        return self.mainSymbol.responseForFrequency(frequency)
+    }
 }
 
 class FCNumberSymbol: NSObject, FCSymbol {
@@ -161,6 +164,10 @@ class FCNumberSymbol: NSObject, FCSymbol {
         label.text = FCNumberFormatter.stringForDouble(self.value)
         return label
     }
+    
+    func responseForFrequency(frequency: Double) -> Double {
+        return self.value
+    }
 }
 
 class FCNullSymbol: NSObject, FCSymbol {
@@ -195,6 +202,10 @@ class FCNullSymbol: NSObject, FCSymbol {
     
     func nulls() -> [FCNullSymbol] {
         return [self]
+    }
+    
+    func responseForFrequency(frequency: Double) -> Double {
+        return 0
     }
     
 }
@@ -271,6 +282,10 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
     func fillNull(null: AnyObject, symbol: AnyObject) {
         self.childSymbol = symbol as? FCSymbol
     }
+    
+    func responseForFrequency(frequency: Double) -> Double {
+        return self.childSymbol.responseForFrequency(frequency)
+    }
 }
 
 class FCOperatorSymbol: NSObject, FCSymbol {
@@ -296,7 +311,6 @@ class FCOperatorSymbol: NSObject, FCSymbol {
         self.multipler = dictionary["multipler"] as! Double
     }
     
-
     func view(color: UIColor, font: UIFont) -> UIView {
         let label = UILabel()
         label.font = font
@@ -391,6 +405,10 @@ class FCFractionSymbol: NSObject, FCSymbol {
             self.underSymbol = symbol as? FCSymbol
         }
     }
+    
+    func responseForFrequency(frequency: Double) -> Double {
+        return self.overSymbol.responseForFrequency(frequency) / self.underSymbol.responseForFrequency(frequency)
+    }
 }
 
 class FCSidedSymbol: NSObject, FCSymbol {
@@ -475,6 +493,10 @@ class FCSidedSymbol: NSObject, FCSymbol {
             self.RHSSymbol = FCNullSymbol(parent: self)
         }
     }
+    
+    func responseForFrequency(frequency: Double) -> Double {
+        return 0
+    }
 }
 
 class FCAddSymbol: FCSidedSymbol {
@@ -490,12 +512,17 @@ class FCAddSymbol: FCSidedSymbol {
     override func dictionaryValue() -> [String: AnyObject] {
         return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": "+"]]
     }
+    
     init(dictionary: [String: AnyObject]) {
         super.init()
         self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
         self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
         self.operationSymbol = dictionary["oeprator"] as! String
         self.resetNulls()
+    }
+    
+    override func responseForFrequency(frequency: Double) -> Double {
+        return LHSSymbol.responseForFrequency(frequency) + RHSSymbol.responseForFrequency(frequency)
     }
 }
 
@@ -512,12 +539,17 @@ class FCSubstractSymbol: FCSidedSymbol {
     override func dictionaryValue() -> [String: AnyObject] {
         return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": "-"]]
     }
+    
     init(dictionary: [String: AnyObject]) {
         super.init()
         self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
         self.RHSSymbol = FCSymbolParser.parse(dictionary["RHS"]! as! [String : AnyObject])
         self.operationSymbol = dictionary["oeprator"] as! String
         self.resetNulls()
+    }
+    
+    override func responseForFrequency(frequency: Double) -> Double {
+        return LHSSymbol.responseForFrequency(frequency) - RHSSymbol.responseForFrequency(frequency)
     }
 }
 
@@ -534,6 +566,7 @@ class FCMultipleSymbol: FCSidedSymbol {
     override func dictionaryValue() -> [String: AnyObject] {
         return [String(self.classForCoder): ["LHS": self.LHSSymbol.dictionaryValue(), "RHS": self.RHSSymbol.dictionaryValue(), "oeprator": ""]]
     }
+    
     init(dictionary: [String: AnyObject]) {
         super.init()
         self.LHSSymbol = FCSymbolParser.parse(dictionary["LHS"]! as! [String : AnyObject])
@@ -542,6 +575,9 @@ class FCMultipleSymbol: FCSidedSymbol {
         self.resetNulls()
     }
     
+    override func responseForFrequency(frequency: Double) -> Double {
+        return LHSSymbol.responseForFrequency(frequency) * RHSSymbol.responseForFrequency(frequency)
+    }
 }
 
 class FCPowerSymbol: NSObject, FCSymbol {
@@ -598,6 +634,15 @@ class FCPowerSymbol: NSObject, FCSymbol {
     
     func fillNull(null: AnyObject, symbol: AnyObject) {
         self.baseSymbol = symbol as! FCSymbol
+    }
+    
+    func responseForFrequency(frequency: Double) -> Double {
+        let response = self.baseSymbol.responseForFrequency(frequency)
+        var result = Double(1)
+        for index in 1...self.exponent {
+            result *= response
+        }
+        return result
     }
 }
 
