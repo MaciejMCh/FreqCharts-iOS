@@ -9,22 +9,41 @@
 import UIKit
 
 class FCEquationsDataSource: NSObject {
+    
+    static var cache: [FCEquation]?
 
     func equations() -> [FCEquation] {
-        let array = NSKeyedUnarchiver.unarchiveObjectWithFile(self.storagePath()) as! [[String: AnyObject]]?
-        if (array == nil) {
-            return []
+        if (FCEquationsDataSource.cache != nil) {
+            return FCEquationsDataSource.cache!
         }
         
-        return array!.map({ (input) -> FCEquation in
+        let array = NSKeyedUnarchiver.unarchiveObjectWithFile(self.storagePath()) as! [[String: AnyObject]]?
+        if (array == nil) {
+            FCEquationsDataSource.cache = []
+            return FCEquationsDataSource.cache!
+        }
+        
+        FCEquationsDataSource.cache =  array!.map({ (input) -> FCEquation in
             FCSymbolParser.parse(input) as! FCEquation
         })
+        return FCEquationsDataSource.cache!
     }
 
     func addEquation(equation: FCEquation) {
-        var array = self.equations()
-        array.append(equation)
-        NSKeyedArchiver.archiveRootObject(array.map { (input) -> [String: AnyObject] in
+        FCEquationsDataSource.cache!.append(equation)
+        self.synchronize()
+    }
+    
+    func removeEquation(equation: FCEquation) {
+        let index = FCEquationsDataSource.cache!.indexOf(equation)
+        if (index != nil) {
+            FCEquationsDataSource.cache!.removeAtIndex(index!)
+        }
+        self.synchronize()
+    }
+    
+    func synchronize() {
+        NSKeyedArchiver.archiveRootObject(FCEquationsDataSource.cache!.map { (input) -> [String: AnyObject] in
             return input.dictionaryValue()
             }, toFile: self.storagePath())
     }

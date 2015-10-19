@@ -109,8 +109,11 @@ class FCBubblesCollectionViewController: UICollectionViewController {
     func deleteSelected() {
         (self.parentViewController as! FCFABViewController).showMenu(false)
         self.menuIsShowing = false
-        UIView.animateWithDuration(0.3) { () -> Void in
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.selectedCell.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
+            }) { (finished) -> Void in
+                FCEquationsDataSource().removeEquation(self.selectedCell.equationView.equation)
+                self.update()
         }
     }
     
