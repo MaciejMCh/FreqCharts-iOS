@@ -27,6 +27,8 @@
 		525D0C451BCBC8E700EFFC31 /* FreqChartsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D0C441BCBC8E700EFFC31 /* FreqChartsTests.swift */; };
 		525D0C501BCBD35F00EFFC31 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 525D0C4F1BCBD35F00EFFC31 /* test.html */; settings = {ASSET_TAGS = (); }; };
 		525D0C521BCBD79500EFFC31 /* FCSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D0C511BCBD79500EFFC31 /* FCSymbol.swift */; settings = {ASSET_TAGS = (); }; };
+		525EBE201BD5909A00187370 /* FCBezierPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EBE1F1BD5909A00187370 /* FCBezierPathView.swift */; settings = {ASSET_TAGS = (); }; };
+		525EBE221BD59EBC00187370 /* FCBezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EBE211BD59EBC00187370 /* FCBezierViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		529E23051BCFABEE008A1EBA /* FCCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E23041BCFABEE008A1EBA /* FCCircleView.swift */; settings = {ASSET_TAGS = (); }; };
 		529E230B1BCFDBB6008A1EBA /* ImageProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 529E230A1BCFDBB6008A1EBA /* ImageProcess.m */; settings = {ASSET_TAGS = (); }; };
 		529E23101BCFE0AF008A1EBA /* FCRectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E230F1BCFE0AF008A1EBA /* FCRectCreator.swift */; settings = {ASSET_TAGS = (); }; };
@@ -79,6 +81,8 @@
 		525D0C461BCBC8E700EFFC31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525D0C4F1BCBD35F00EFFC31 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		525D0C511BCBD79500EFFC31 /* FCSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCSymbol.swift; sourceTree = "<group>"; };
+		525EBE1F1BD5909A00187370 /* FCBezierPathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBezierPathView.swift; sourceTree = "<group>"; };
+		525EBE211BD59EBC00187370 /* FCBezierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBezierViewController.swift; sourceTree = "<group>"; };
 		529E23041BCFABEE008A1EBA /* FCCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCCircleView.swift; sourceTree = "<group>"; };
 		529E23091BCFDBB6008A1EBA /* ImageProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcess.h; sourceTree = "<group>"; };
 		529E230A1BCFDBB6008A1EBA /* ImageProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcess.m; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 				5229E9F81BCFF71D00B7276D /* FCEquationView.swift */,
 				524BE3111BD1630D00E7534C /* FCDottedLineTableViewController.swift */,
 				5252EB5C1BD1CDDB00D694CD /* FCEquationsDataSource.swift */,
+				525EBE1F1BD5909A00187370 /* FCBezierPathView.swift */,
+				525EBE211BD59EBC00187370 /* FCBezierViewController.swift */,
 			);
 			path = FreqCharts;
 			sourceTree = "<group>";
@@ -293,12 +299,14 @@
 				524DCC1C1BD296CD005C4335 /* FCMenuButton.swift in Sources */,
 				52A0C88A1BCE82B2000504FD /* FCFABViewController.swift in Sources */,
 				525BA07C1BCBF37A00D00556 /* FCBubbleViewModel.swift in Sources */,
+				525EBE201BD5909A00187370 /* FCBezierPathView.swift in Sources */,
 				525D0C321BCBC8E700EFFC31 /* FCEquationViewController.swift in Sources */,
 				5252EB5D1BD1CDDB00D694CD /* FCEquationsDataSource.swift in Sources */,
 				525BA07A1BCBF30900D00556 /* FCBubblesCollectionViewController.swift in Sources */,
 				524BE3121BD1630D00E7534C /* FCDottedLineTableViewController.swift in Sources */,
 				529E23051BCFABEE008A1EBA /* FCCircleView.swift in Sources */,
 				52A2CD581BCD6898000A7B0E /* FCSwiftShitness.m in Sources */,
+				525EBE221BD59EBC00187370 /* FCBezierViewController.swift in Sources */,
 				52A0C8921BCEA952000504FD /* FCMovingView.swift in Sources */,
 				5229EA041BCFFA4300B7276D /* ALView+PureLayout.m in Sources */,
 				525D0C301BCBC8E700EFFC31 /* AppDelegate.swift in Sources */,
