@@ -11,6 +11,7 @@ import UIKit
 class FCBezierPathView: UIView {
     
     private var points = [CGPoint]()
+    private var axisRect: CGRect!
     
     func passPoints(points: [CGPoint]) {
         self.points = points
@@ -26,10 +27,16 @@ class FCBezierPathView: UIView {
         
         let context = UIGraphicsGetCurrentContext();
         
+        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor);
+        CGContextSetLineWidth(context, 2.0)
+        CGContextMoveToPoint(context, CGRectGetMinX(self.axisRect), CGRectGetMidY(self.axisRect))
+        CGContextAddLineToPoint(context, CGRectGetMaxX(self.axisRect), CGRectGetMidY(self.axisRect))
+        CGContextMoveToPoint(context, CGRectGetMidX(self.axisRect), CGRectGetMinY(self.axisRect))
+        CGContextAddLineToPoint(context, CGRectGetMidX(self.axisRect), CGRectGetMaxY(self.axisRect))
+        
         CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor);
         CGContextSetLineWidth(context, 2.0)
         CGContextMoveToPoint(context, points.first!.x, points.first!.y)
-        
         for point in self.points {
             CGContextAddLineToPoint(context, point.x, point.y);
         }
@@ -63,6 +70,8 @@ class FCBezierPathView: UIView {
         self.points = self.points.map { (me) -> CGPoint in
             return CGPointMake(me.x / scaleX, me.y / scaleY)
         }
+        
+        self.axisRect = CGRectMake(0, 0, size.width, size.height)
     }
 
 }
