@@ -67,17 +67,14 @@ class FCBezierPathView: UIView {
         CGPathAddLineToPoint(pathRef, nil, self.axisPoint.x + xCenter - (arrowSize / 3), (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset + arrowSize)
         CGPathAddLineToPoint(pathRef, nil, self.axisPoint.x + xCenter + (arrowSize / 3), (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset + arrowSize)
         CGPathCloseSubpath(pathRef);
-        
         CGPathMoveToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
         CGPathAddLineToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset - arrowSize, self.axisPoint.y + yCenter + (arrowSize / 3))
         CGPathAddLineToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset - arrowSize, self.axisPoint.y + yCenter - (arrowSize / 3))
         CGPathCloseSubpath(pathRef);
-        
         CGContextAddPath(axisArrowContext, pathRef);
         CGContextFillPath(axisArrowContext);
         
-        CGContextAddPath(axisArrowContext, pathRef);
-        CGContextStrokePath(axisArrowContext);
+        UIGraphicsPushContext(axisArrowContext!)
         
     }
     

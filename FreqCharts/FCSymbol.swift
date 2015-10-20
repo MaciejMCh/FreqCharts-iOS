@@ -594,6 +594,12 @@ class FCPowerSymbol: NSObject, FCSymbol {
         self.exponent = exponent
     }
     
+    init(exponent: Int, baseSymbol: FCSymbol) {
+        super.init()
+        self.baseSymbol = baseSymbol
+        self.exponent = exponent
+    }
+    
     override init() {
         super.init()
         self.baseSymbol = FCNullSymbol(parent: self)

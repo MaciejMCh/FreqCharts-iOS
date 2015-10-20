@@ -14,12 +14,21 @@ class FCBezierViewController: UIViewController {
         super.viewDidLoad()
 //        (self.view as! FCBezierPathView).passPoints([CGPointMake(100, 100), CGPointMake(120, 100), CGPointMake(100, 140), CGPointMake(200, 200), CGPointMake(140, 89)])
         
-        var iner: FCSymbol = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 1), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 1), RHSSymbol: FCNumberSymbol(value: 1)))
+        var iner: FCSymbol = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 1), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 1), RHSSymbol: FCNumberSymbol(value: 1000)))
+        
+        iner = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 1), underSymbol: FCPowerSymbol(exponent: 2, baseSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 1), RHSSymbol: FCNumberSymbol(value: 1))))
         
 //        iner = FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 1), RHSSymbol: FCNumberSymbol(value: 10))
         
         let zeroResponse = iner.responseForFrequency(0)
-        let infinityResponse = iner.responseForFrequency(Double.infinity)
+        var infinityResponse = iner.responseForFrequency(Double.infinity)
+        if infinityResponse.re.isNaN {
+            infinityResponse.re = 0
+        }
+        if infinityResponse.im.isNaN {
+            infinityResponse.im = 0
+        }
+        
         
         let size = (zeroResponse - infinityResponse).abs
         
