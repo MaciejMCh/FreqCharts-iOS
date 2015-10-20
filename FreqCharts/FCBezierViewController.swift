@@ -28,7 +28,6 @@ class FCNyquistViewController: UIViewController {
         var complexesStraight = [Complex<Double>]()
         var complexesInverse = [Complex<Double>]()
         
-        
         let stepFrac = 0.1
         var straightStep = Double(1)
         var inverseStep = Double(1)
@@ -41,18 +40,6 @@ class FCNyquistViewController: UIViewController {
             straightStep *= 1 + stepFrac
             inverseStep *= 1 - stepFrac
         }
-        
-        
-//        complexes.append(zeroResponse)
-//        
-//        while(true) {
-//            step *= (1 + stepDiff)
-//            complexes.append(self.symbol.responseForFrequency(step))
-//            
-//            if (complexes.count > numberOfSteps) {
-//                break
-//            }
-//        }
         
         let complexes = complexesInverse + complexesStraight
         

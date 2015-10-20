@@ -66,6 +66,7 @@ class FCBubbleCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
         
         self.foam = Foam(circles: self.calculatedCircles)
+        self.foam.normalizeToSize(self.collectionView!.frame.size)
         
         self.attributesCache = [UICollectionViewLayoutAttributes]()
         for circle in self.calculatedCircles {
@@ -263,6 +264,20 @@ class Circle: NSObject {
 class Foam {
     var circles: [Circle]
     var size: CGSize
+    
+    func normalizeToSize(size: CGSize) {
+        if (self.size.width < size.width) {
+            let xFix = (size.width / 2) - (self.size.width / 2)
+            for circle in self.circles {
+                circle.x += xFix
+            }
+            let yFix = (size.height / 2) - (self.size.height / 2)
+            for circle in self.circles {
+                circle.y += yFix
+            }
+        }
+        self.size = size
+    }
     
     init() {
         self.circles = [Circle]()
