@@ -34,8 +34,6 @@ class FCBezierPathView: UIView {
             CGContextAddLineToPoint(context, point.x, point.y);
         }
         
-        CGContextAddRect(context, CGRectMake(0, 0, 100, 100))
-        
         CGContextStrokePath(context);
     }
     
@@ -56,8 +54,8 @@ class FCBezierPathView: UIView {
         let minY = ySortedPoints.first!.y
         let maxY = ySortedPoints.last!.y
         
-        let scaleX = ((maxX - minX) / size.width)
-        let scaleY = ((maxY - minY) / size.height)
+        let scaleX = max(((maxX - minX) / size.width), 0.00000000000001)
+        let scaleY = max(((maxY - minY) / size.height), 0.00000000000001)
         
         self.points = self.points.map { (me) -> CGPoint in
             return CGPointMake(me.x - minX, me.y - minY)

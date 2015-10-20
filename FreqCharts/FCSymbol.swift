@@ -42,7 +42,7 @@ protocol FCSymbol: spierdolonyNSCodingWSwifcie {
     func view(color: UIColor, font: UIFont) -> UIView
     func nulls() -> [FCNullSymbol]
     func fillNull(null: AnyObject, symbol: AnyObject)
-    func responseForFrequency(frequency: Double) -> Double
+    func responseForFrequency(frequency: Double) -> Complex<Double>
     
 }
 
@@ -124,7 +124,7 @@ class FCEquation: NSObject, FCSymbol {
         self.mainSymbol = symbol as? FCSymbol
     }
     
-    func responseForFrequency(frequency: Double) -> Double {
+    func responseForFrequency(frequency: Double) -> Complex<Double> {
         return self.mainSymbol.responseForFrequency(frequency)
     }
 }
@@ -165,8 +165,8 @@ class FCNumberSymbol: NSObject, FCSymbol {
         return label
     }
     
-    func responseForFrequency(frequency: Double) -> Double {
-        return self.value
+    func responseForFrequency(frequency: Double) -> Complex<Double> {
+        return Complex(self.value, 0)
     }
 }
 
@@ -204,8 +204,8 @@ class FCNullSymbol: NSObject, FCSymbol {
         return [self]
     }
     
-    func responseForFrequency(frequency: Double) -> Double {
-        return 0
+    func responseForFrequency(frequency: Double) -> Complex<Double> {
+        return Complex(0, 0)
     }
     
 }
@@ -283,7 +283,7 @@ class FCParenthesesSymbol: NSObject, FCSymbol {
         self.childSymbol = symbol as? FCSymbol
     }
     
-    func responseForFrequency(frequency: Double) -> Double {
+    func responseForFrequency(frequency: Double) -> Complex<Double> {
         return self.childSymbol.responseForFrequency(frequency)
     }
 }
@@ -319,6 +319,10 @@ class FCOperatorSymbol: NSObject, FCSymbol {
         string.stringByReplacingOccurrencesOfString("1s", withString: "s")
         label.text = string
         return label
+    }
+    
+    func responseForFrequency(frequency: Double) -> Complex<Double> {
+        return Complex(0, multipler * frequency)
     }
     
 }
@@ -406,7 +410,7 @@ class FCFractionSymbol: NSObject, FCSymbol {
         }
     }
     
-    func responseForFrequency(frequency: Double) -> Double {
+    func responseForFrequency(frequency: Double) -> Complex<Double> {
         return self.overSymbol.responseForFrequency(frequency) / self.underSymbol.responseForFrequency(frequency)
     }
 }
@@ -494,8 +498,8 @@ class FCSidedSymbol: NSObject, FCSymbol {
         }
     }
     
-    func responseForFrequency(frequency: Double) -> Double {
-        return 0
+    func responseForFrequency(frequency: Double) -> Complex<Double> {
+        return Complex(0, 0)
     }
 }
 
@@ -521,7 +525,7 @@ class FCAddSymbol: FCSidedSymbol {
         self.resetNulls()
     }
     
-    override func responseForFrequency(frequency: Double) -> Double {
+    override func responseForFrequency(frequency: Double) -> Complex<Double> {
         return LHSSymbol.responseForFrequency(frequency) + RHSSymbol.responseForFrequency(frequency)
     }
 }
@@ -548,7 +552,7 @@ class FCSubstractSymbol: FCSidedSymbol {
         self.resetNulls()
     }
     
-    override func responseForFrequency(frequency: Double) -> Double {
+    override func responseForFrequency(frequency: Double) -> Complex<Double> {
         return LHSSymbol.responseForFrequency(frequency) - RHSSymbol.responseForFrequency(frequency)
     }
 }
@@ -575,7 +579,7 @@ class FCMultipleSymbol: FCSidedSymbol {
         self.resetNulls()
     }
     
-    override func responseForFrequency(frequency: Double) -> Double {
+    override func responseForFrequency(frequency: Double) -> Complex<Double> {
         return LHSSymbol.responseForFrequency(frequency) * RHSSymbol.responseForFrequency(frequency)
     }
 }
@@ -636,10 +640,10 @@ class FCPowerSymbol: NSObject, FCSymbol {
         self.baseSymbol = symbol as! FCSymbol
     }
     
-    func responseForFrequency(frequency: Double) -> Double {
+    func responseForFrequency(frequency: Double) -> Complex<Double> {
         let response = self.baseSymbol.responseForFrequency(frequency)
-        var result = Double(1)
-        for index in 1...self.exponent {
+        var result = response
+        for index in 1...self.exponent - 1 {
             result *= response
         }
         return result
