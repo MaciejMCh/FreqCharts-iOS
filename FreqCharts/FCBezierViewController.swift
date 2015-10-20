@@ -54,6 +54,7 @@ class FCNyquistViewController: UIViewController {
         let maxError = stepDiff * accuracy
         
         var tooBig = false
+        let moduleTightenInverse = ((zeroResponse - self.symbol.responseForFrequency(10)).abs > (zeroResponse - self.symbol.responseForFrequency(100)).abs)
         var changesCount = Int(0)
         
         while(true) {
@@ -67,6 +68,11 @@ class FCNyquistViewController: UIViewController {
             } else {
                 tooBig = false
             }
+            
+            if (moduleTightenInverse) {
+                tooBig = !tooBig
+            }
+            
             if (previousToo != tooBig) {
                 changesCount += 1
             } else {
