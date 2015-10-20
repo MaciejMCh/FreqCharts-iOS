@@ -11,11 +11,12 @@ import UIKit
 class FCBezierPathView: UIView {
     
     private var points = [CGPoint]()
-    private var axisRect: CGRect!
+    private var axisPoint: CGPoint!
+    private var visibleSize = CGSizeMake(100, 100)
     
     func passPoints(points: [CGPoint]) {
         self.points = points
-        self.normalizeToSize(CGSizeMake(100, 100))
+        self.normalizeToSize(self.visibleSize)
     }
     
     override func drawRect(rect: CGRect) {
@@ -27,18 +28,23 @@ class FCBezierPathView: UIView {
         
         let context = UIGraphicsGetCurrentContext();
         
+        let xCenter = (rect.width / 2) - (self.visibleSize.width / 2)
+        let yCenter = (rect.height / 2) - (self.visibleSize.height / 2)
+        let axisOffset = CGFloat(20)
+        
         CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor);
-        CGContextSetLineWidth(context, 2.0)
-        CGContextMoveToPoint(context, CGRectGetMinX(self.axisRect), CGRectGetMidY(self.axisRect))
-        CGContextAddLineToPoint(context, CGRectGetMaxX(self.axisRect), CGRectGetMidY(self.axisRect))
-        CGContextMoveToPoint(context, CGRectGetMidX(self.axisRect), CGRectGetMinY(self.axisRect))
-        CGContextAddLineToPoint(context, CGRectGetMidX(self.axisRect), CGRectGetMaxY(self.axisRect))
+        CGContextSetLineWidth(context, 1.0)
+        CGContextMoveToPoint(context, (rect.width / 2) - (self.visibleSize.width / 2) - axisOffset, self.axisPoint.y + yCenter)
+        CGContextAddLineToPoint(context, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
+        
+        CGContextMoveToPoint(context, self.axisPoint.x + xCenter, (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset)
+        CGContextAddLineToPoint(context, self.axisPoint.x + xCenter, (rect.height / 2) + (self.visibleSize.height / 2) + axisOffset)
         
         CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor);
         CGContextSetLineWidth(context, 2.0)
-        CGContextMoveToPoint(context, points.first!.x, points.first!.y)
+        CGContextMoveToPoint(context, points.first!.x + xCenter, points.first!.y + yCenter)
         for point in self.points {
-            CGContextAddLineToPoint(context, point.x, point.y);
+            CGContextAddLineToPoint(context, point.x + xCenter, point.y + yCenter);
         }
         
         CGContextStrokePath(context);
@@ -64,14 +70,19 @@ class FCBezierPathView: UIView {
         let scaleX = max(((maxX - minX) / size.width), 0.00000000000001)
         let scaleY = max(((maxY - minY) / size.height), 0.00000000000001)
         
+        
         self.points = self.points.map { (me) -> CGPoint in
             return CGPointMake(me.x - minX, me.y - minY)
         }
+        
+        self.axisPoint = CGPointZero
+        self.axisPoint.x -= minX / scaleX
+        self.axisPoint.y -= minY / scaleY
         self.points = self.points.map { (me) -> CGPoint in
             return CGPointMake(me.x / scaleX, me.y / scaleY)
         }
         
-        self.axisRect = CGRectMake(0, 0, size.width, size.height)
+        
     }
 
 }
