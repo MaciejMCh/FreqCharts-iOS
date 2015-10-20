@@ -83,10 +83,14 @@ class FCBezierPathView: UIView {
             return
         }
         
-        let xSortedPoints = self.points.sort{ (first, second) -> Bool in
+        self.points = self.points.filter({ (point) -> Bool in
+            return point.x.isFinite && point.y.isFinite
+        })
+        
+        var xSortedPoints = self.points.sort{ (first, second) -> Bool in
             return first.x < second.x
         }
-        let ySortedPoints = self.points.sort{ (first, second) -> Bool in
+        var ySortedPoints = self.points.sort{ (first, second) -> Bool in
             return first.y < second.y
         }
         

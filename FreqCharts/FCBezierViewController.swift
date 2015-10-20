@@ -25,88 +25,36 @@ class FCNyquistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var zeroResponse = self.symbol.responseForFrequency(0)
-        var infinityResponse = self.symbol.responseForFrequency(Double.infinity)
-//        if infinityResponse.re.isNaN {
-//            infinityResponse.re = 0
+        var complexesStraight = [Complex<Double>]()
+        var complexesInverse = [Complex<Double>]()
+        
+        
+        let stepFrac = 0.1
+        var straightStep = Double(1)
+        var inverseStep = Double(1)
+        
+        for index in 0...1000 {
+            
+            complexesStraight.append(self.symbol.responseForFrequency(straightStep))
+            complexesInverse.insert(self.symbol.responseForFrequency(inverseStep), atIndex: 0)
+            
+            straightStep *= 1 + stepFrac
+            inverseStep *= 1 - stepFrac
+        }
+        
+        
+//        complexes.append(zeroResponse)
+//        
+//        while(true) {
+//            step *= (1 + stepDiff)
+//            complexes.append(self.symbol.responseForFrequency(step))
+//            
+//            if (complexes.count > numberOfSteps) {
+//                break
+//            }
 //        }
-//        if infinityResponse.im.isNaN {
-//            infinityResponse.im = 0
-//        }
         
-        zeroResponse = self.normalize(zeroResponse)
-        infinityResponse = self.normalize(infinityResponse)
-        
-        var size = (zeroResponse - infinityResponse).abs
-        if size == 0 {
-            size = 1
-        }
-        
-        let numberOfSteps = 100
-        
-        let stepSize = size / Double(numberOfSteps)
-        
-        var step = Double(1)
-        
-        var stepDiff = 0.1
-        
-        let accuracy = 0.01
-        let maxError = stepDiff * accuracy
-        
-        var tooBig = false
-        let moduleTightenInverse = ((zeroResponse - self.symbol.responseForFrequency(10)).abs > (zeroResponse - self.symbol.responseForFrequency(100)).abs)
-        var changesCount = Int(0)
-        
-        while(true) {
-            
-            let response = self.symbol.responseForFrequency(step)
-            let diff = (zeroResponse - response).abs
-            
-            let previousToo = tooBig
-            if (diff > stepSize) {
-                tooBig = true
-            } else {
-                tooBig = false
-            }
-            
-            if (moduleTightenInverse) {
-                tooBig = !tooBig
-            }
-            
-            if (previousToo != tooBig) {
-                changesCount += 1
-            } else {
-                changesCount = 0
-            }
-            if (changesCount > 4) {
-                stepDiff /= 2
-                changesCount = 0
-            }
-            
-            if (tooBig) {
-                step *= (1 - stepDiff)
-            } else {
-                step *= (1 + stepDiff)
-            }
-            
-            NSLog(String(diff))
-            if (abs(diff - stepSize) < maxError) {
-                break
-            }
-            
-        }
-        
-        var complexes = [Complex<Double>]()
-        complexes.append(zeroResponse)
-        
-        while(true) {
-            step *= (1 + stepDiff)
-            complexes.append(self.symbol.responseForFrequency(step))
-            
-            if (complexes.count > numberOfSteps) {
-                break
-            }
-        }
+        let complexes = complexesInverse + complexesStraight
         
         let points = complexes.map { (me) -> CGPoint in
             return CGPointMake(CGFloat(me.real), CGFloat(me.imag))
