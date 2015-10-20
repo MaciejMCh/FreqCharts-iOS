@@ -26,28 +26,59 @@ class FCBezierPathView: UIView {
             return
         }
         
-        let context = UIGraphicsGetCurrentContext();
+        let axisContext = UIGraphicsGetCurrentContext();
         
         let xCenter = (rect.width / 2) - (self.visibleSize.width / 2)
         let yCenter = (rect.height / 2) - (self.visibleSize.height / 2)
         let axisOffset = CGFloat(20)
         
-        CGContextSetStrokeColorWithColor(context, UIColor.blackColor().CGColor);
-        CGContextSetLineWidth(context, 1.0)
-        CGContextMoveToPoint(context, (rect.width / 2) - (self.visibleSize.width / 2) - axisOffset, self.axisPoint.y + yCenter)
-        CGContextAddLineToPoint(context, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
+        CGContextSetStrokeColorWithColor(axisContext, UIColor.blackColor().CGColor);
+        CGContextSetLineWidth(axisContext, 1.0)
+        CGContextMoveToPoint(axisContext, (rect.width / 2) - (self.visibleSize.width / 2) - axisOffset, self.axisPoint.y + yCenter)
+        CGContextAddLineToPoint(axisContext, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
+        CGContextMoveToPoint(axisContext, self.axisPoint.x + xCenter, (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset)
+        CGContextAddLineToPoint(axisContext, self.axisPoint.x + xCenter, (rect.height / 2) + (self.visibleSize.height / 2) + axisOffset)
+        CGContextStrokePath(axisContext)
         
-        CGContextMoveToPoint(context, self.axisPoint.x + xCenter, (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset)
-        CGContextAddLineToPoint(context, self.axisPoint.x + xCenter, (rect.height / 2) + (self.visibleSize.height / 2) + axisOffset)
+        UIGraphicsPushContext(axisContext!)
         
-        CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor);
-        CGContextSetLineWidth(context, 2.0)
-        CGContextMoveToPoint(context, points.first!.x + xCenter, points.first!.y + yCenter)
+        let curveContext = UIGraphicsGetCurrentContext()
+        CGContextSetStrokeColorWithColor(curveContext, UIColor.redColor().CGColor);
+        CGContextSetLineWidth(curveContext, 2.0)
+        CGContextMoveToPoint(curveContext, points.first!.x + xCenter, points.first!.y + yCenter)
         for point in self.points {
-            CGContextAddLineToPoint(context, point.x + xCenter, point.y + yCenter);
+            CGContextAddLineToPoint(curveContext, point.x + xCenter, point.y + yCenter);
         }
+        CGContextStrokePath(curveContext)
         
-        CGContextStrokePath(context);
+        UIGraphicsPushContext(curveContext!)
+        
+        let axisArrowContext = UIGraphicsGetCurrentContext()
+        
+        CGContextSetRGBStrokeColor(axisArrowContext, 0.0, 0.0, 0.0, 1.0);
+        CGContextSetRGBFillColor(axisArrowContext, 0.0, 0.0, 0.0, 1.0);
+        CGContextSetLineJoin(axisArrowContext, CGLineJoin.Round);
+        CGContextSetLineWidth(axisArrowContext, 1.0);
+        
+        let pathRef = CGPathCreateMutable();
+        let arrowSize = CGFloat(10)
+        
+        CGPathMoveToPoint(pathRef, nil, self.axisPoint.x + xCenter, (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset)
+        CGPathAddLineToPoint(pathRef, nil, self.axisPoint.x + xCenter - (arrowSize / 3), (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset + arrowSize)
+        CGPathAddLineToPoint(pathRef, nil, self.axisPoint.x + xCenter + (arrowSize / 3), (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset + arrowSize)
+        CGPathCloseSubpath(pathRef);
+        
+        CGPathMoveToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
+        CGPathAddLineToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset - arrowSize, self.axisPoint.y + yCenter + (arrowSize / 3))
+        CGPathAddLineToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset - arrowSize, self.axisPoint.y + yCenter - (arrowSize / 3))
+        CGPathCloseSubpath(pathRef);
+        
+        CGContextAddPath(axisArrowContext, pathRef);
+        CGContextFillPath(axisArrowContext);
+        
+        CGContextAddPath(axisArrowContext, pathRef);
+        CGContextStrokePath(axisArrowContext);
+        
     }
     
     func normalizeToSize(size: CGSize) {
