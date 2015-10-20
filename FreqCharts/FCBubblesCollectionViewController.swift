@@ -13,7 +13,7 @@ private let reuseIdentifier = "FCBubbleCollectionViewCell"
 class FCBubblesCollectionViewController: UICollectionViewController {
 
     var menuIsShowing = false
-    private var selectedCell: FCBubbleCollectionViewCell!
+    var selectedCell: FCBubbleCollectionViewCell!
     
     private var equation: FCEquation {
         let frac = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 10), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(), RHSSymbol: FCNumberSymbol(value: 1000)))

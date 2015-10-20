@@ -8,29 +8,39 @@
 
 import UIKit
 
-class FCBezierViewController: UIViewController {
+class FCNyquistViewController: UIViewController {
 
+    var symbol: FCSymbol!
+    
+    class func controllerWithSymbol(symbol: FCSymbol) -> FCNyquistViewController {
+        var controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("FCNyquistViewController") as! FCNyquistViewController
+        controller.symbol = symbol
+        return controller
+    }
+    
+    @IBAction func backAction(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        (self.view as! FCBezierPathView).passPoints([CGPointMake(100, 100), CGPointMake(120, 100), CGPointMake(100, 140), CGPointMake(200, 200), CGPointMake(140, 89)])
         
-        var iner: FCSymbol = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 1), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 1), RHSSymbol: FCNumberSymbol(value: 1000)))
+        var zeroResponse = self.symbol.responseForFrequency(0)
+        var infinityResponse = self.symbol.responseForFrequency(Double.infinity)
+//        if infinityResponse.re.isNaN {
+//            infinityResponse.re = 0
+//        }
+//        if infinityResponse.im.isNaN {
+//            infinityResponse.im = 0
+//        }
         
-        iner = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 1), underSymbol: FCPowerSymbol(exponent: 2, baseSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 1), RHSSymbol: FCNumberSymbol(value: 1))))
+        zeroResponse = self.normalize(zeroResponse)
+        infinityResponse = self.normalize(infinityResponse)
         
-//        iner = FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 1), RHSSymbol: FCNumberSymbol(value: 10))
-        
-        let zeroResponse = iner.responseForFrequency(0)
-        var infinityResponse = iner.responseForFrequency(Double.infinity)
-        if infinityResponse.re.isNaN {
-            infinityResponse.re = 0
+        var size = (zeroResponse - infinityResponse).abs
+        if size == 0 {
+            size = 1
         }
-        if infinityResponse.im.isNaN {
-            infinityResponse.im = 0
-        }
-        
-        
-        let size = (zeroResponse - infinityResponse).abs
         
         let numberOfSteps = 100
         
@@ -48,7 +58,7 @@ class FCBezierViewController: UIViewController {
         
         while(true) {
             
-            let response = iner.responseForFrequency(step)
+            let response = self.symbol.responseForFrequency(step)
             let diff = (zeroResponse - response).abs
             
             let previousToo = tooBig
@@ -85,7 +95,7 @@ class FCBezierViewController: UIViewController {
         
         while(true) {
             step *= (1 + stepDiff)
-            complexes.append(iner.responseForFrequency(step))
+            complexes.append(self.symbol.responseForFrequency(step))
             
             if (complexes.count > numberOfSteps) {
                 break
@@ -100,4 +110,21 @@ class FCBezierViewController: UIViewController {
         
     }
     
+    func normalize(var complex: Complex<Double>) -> Complex<Double>{
+        if (complex.re.isNaN) {
+            complex.re = 0
+        }
+        if (complex.im.isNaN) {
+            complex.im = 0
+        }
+        if (complex.re.isInfinite) {
+            complex.re = 99999
+        }
+        if (complex.im.isInfinite) {
+            complex.im = 99999
+        }
+        return complex
+    }
+    
 }
+

@@ -84,6 +84,7 @@ class FCFABViewController: UIViewController {
     }
     
     @IBAction func nyquistAction(sender: AnyObject) {
+        self.presentViewController(FCNyquistViewController.controllerWithSymbol(self.childController.selectedCell.equationView.equation), animated: true, completion: nil)
         NSLog("saas")
     }
     @IBAction func deleteAction(sender: AnyObject) {
