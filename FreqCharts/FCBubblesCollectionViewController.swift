@@ -66,6 +66,10 @@ class FCBubblesCollectionViewController: UICollectionViewController {
         for equation in FCEquationsDataSource().equations() {
             self.viewModels.append(FCBubbleViewModel(equation: equation))
         }
+        self.viewModels.appendContentsOf(self.viewModels)
+        self.viewModels.appendContentsOf(self.viewModels)
+        self.viewModels.appendContentsOf(self.viewModels)
+        self.viewModels.appendContentsOf(self.viewModels)
         
         self.collectionView?.reloadData()
         (self.collectionViewLayout as! FCBubbleCollectionViewFlowLayout).passViewModels(self.viewModels)

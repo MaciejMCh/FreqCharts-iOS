@@ -18,6 +18,9 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     @IBOutlet var undoButton: UIButton!
     @IBOutlet var doneButton: UIButton!
     
+    var confirmButton: FCMenuButton!
+    var pickerTextView: UITextField!
+    
     var history: [[String: AnyObject]] = [[String: AnyObject]]()
     
     var completion: ((Double)->())!
@@ -113,13 +116,22 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
         }
     }
     
+    func confirmButtonAction(sender: UIButton) {
+        self.textFieldShouldReturn(self.pickerTextView)
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.completion(Double(textField.text!)!)
         
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             textField.transform = CGAffineTransformMakeScale(0, 0)
+            self.pickerTextView.transform = CGAffineTransformMakeScale(0, 0)
             }) { (finished) -> Void in
                 textField.removeFromSuperview()
+                self.pickerTextView.removeFromSuperview()
+                self.pickerTextView = nil
+                self.confirmButton.removeFromSuperview()
+                self.confirmButton = nil
         }
         
         return true
@@ -128,13 +140,13 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
     func pickNumber(completion: (Double)->()) {
         self.completion = completion
         
-        let pickerTextView = UITextField()
-        pickerTextView.keyboardType = .NamePhonePad
+        pickerTextView = UITextField()
+        pickerTextView.keyboardType = .NumberPad
         pickerTextView.delegate = self
         pickerTextView.textColor = FCMovingButton.greenColor
         pickerTextView.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
         pickerTextView.textAlignment = NSTextAlignment.Center
-        pickerTextView.font = UIFont.systemFontOfSize(100, weight: UIFontWeightThin)
+        pickerTextView.font = UIFont.systemFontOfSize(100)
         self.view.addSubview(pickerTextView)
         let height = CGRectGetWidth(self.view.frame) - 30
         pickerTextView.layer.cornerRadius = height / 2
@@ -148,8 +160,19 @@ class FCCreateEquationViewController: UIViewController, UIWebViewDelegate, UITex
         
         pickerTextView.transform = CGAffineTransformMakeScale(0, 0)
         UIView.animateWithDuration(0.2) { () -> Void in
-            pickerTextView.transform = CGAffineTransformIdentity
+            self.pickerTextView.transform = CGAffineTransformIdentity
         }
+        
+        confirmButton = FCMenuButton()
+        confirmButton.addTarget(self, action: NSSelectorFromString("confirmButtonAction:"), forControlEvents: .TouchUpInside)
+        confirmButton.translatesAutoresizingMaskIntoConstraints = false
+        confirmButton.backgroundColor = FCMovingButton.greenColor
+        confirmButton.setAttributedTitle(NSAttributedString(string: "OK", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(20), NSForegroundColorAttributeName: UIColor.whiteColor()]), forState: .Normal)
+        self.view.addSubview(confirmButton)
+        confirmButton.autoSetDimensionsToSize(CGSizeMake(50, 50))
+        confirmButton.layer.cornerRadius = 25
+        confirmButton.autoPinEdge(.Top, toEdge: .Top, ofView: pickerTextView)
+        confirmButton.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: pickerTextView)
     }
     
     override func viewDidLoad() {

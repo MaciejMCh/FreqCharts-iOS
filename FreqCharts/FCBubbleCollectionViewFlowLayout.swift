@@ -271,12 +271,15 @@ class Foam {
             for circle in self.circles {
                 circle.x += xFix
             }
+            self.size.width = size.width
+        }
+        if (self.size.height < size.height) {
             let yFix = (size.height / 2) - (self.size.height / 2)
             for circle in self.circles {
                 circle.y += yFix
             }
+            self.size.height = size.height
         }
-        self.size = size
     }
     
     init() {
