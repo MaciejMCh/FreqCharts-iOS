@@ -30,6 +30,8 @@
 		525EBE201BD5909A00187370 /* FCBezierPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EBE1F1BD5909A00187370 /* FCBezierPathView.swift */; settings = {ASSET_TAGS = (); }; };
 		525EBE221BD59EBC00187370 /* FCBezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EBE211BD59EBC00187370 /* FCBezierViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		525EBE241BD5A56B00187370 /* complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525EBE231BD5A56B00187370 /* complex.swift */; settings = {ASSET_TAGS = (); }; };
+		5283A7D31BD79D7200FBA685 /* FCAmpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5283A7D21BD79D7200FBA685 /* FCAmpViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		5283A7D51BD7A05100FBA685 /* FCBodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5283A7D41BD7A05100FBA685 /* FCBodeView.swift */; settings = {ASSET_TAGS = (); }; };
 		529E23051BCFABEE008A1EBA /* FCCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E23041BCFABEE008A1EBA /* FCCircleView.swift */; settings = {ASSET_TAGS = (); }; };
 		529E230B1BCFDBB6008A1EBA /* ImageProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 529E230A1BCFDBB6008A1EBA /* ImageProcess.m */; settings = {ASSET_TAGS = (); }; };
 		529E23101BCFE0AF008A1EBA /* FCRectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E230F1BCFE0AF008A1EBA /* FCRectCreator.swift */; settings = {ASSET_TAGS = (); }; };
@@ -85,6 +87,8 @@
 		525EBE1F1BD5909A00187370 /* FCBezierPathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBezierPathView.swift; sourceTree = "<group>"; };
 		525EBE211BD59EBC00187370 /* FCBezierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBezierViewController.swift; sourceTree = "<group>"; };
 		525EBE231BD5A56B00187370 /* complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = complex.swift; sourceTree = "<group>"; };
+		5283A7D21BD79D7200FBA685 /* FCAmpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCAmpViewController.swift; sourceTree = "<group>"; };
+		5283A7D41BD7A05100FBA685 /* FCBodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCBodeView.swift; sourceTree = "<group>"; };
 		529E23041BCFABEE008A1EBA /* FCCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCCircleView.swift; sourceTree = "<group>"; };
 		529E23091BCFDBB6008A1EBA /* ImageProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcess.h; sourceTree = "<group>"; };
 		529E230A1BCFDBB6008A1EBA /* ImageProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcess.m; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				5252EB5C1BD1CDDB00D694CD /* FCEquationsDataSource.swift */,
 				525EBE1F1BD5909A00187370 /* FCBezierPathView.swift */,
 				525EBE211BD59EBC00187370 /* FCBezierViewController.swift */,
+				5283A7D21BD79D7200FBA685 /* FCAmpViewController.swift */,
+				5283A7D41BD7A05100FBA685 /* FCBodeView.swift */,
 			);
 			path = FreqCharts;
 			sourceTree = "<group>";
@@ -314,7 +320,9 @@
 				52A0C8921BCEA952000504FD /* FCMovingView.swift in Sources */,
 				5229EA041BCFFA4300B7276D /* ALView+PureLayout.m in Sources */,
 				525D0C301BCBC8E700EFFC31 /* AppDelegate.swift in Sources */,
+				5283A7D31BD79D7200FBA685 /* FCAmpViewController.swift in Sources */,
 				52A0C8901BCE9D7D000504FD /* FCMovingButton.swift in Sources */,
+				5283A7D51BD7A05100FBA685 /* FCBodeView.swift in Sources */,
 				5229E9F91BCFF71D00B7276D /* FCEquationView.swift in Sources */,
 				529E23101BCFE0AF008A1EBA /* FCRectCreator.swift in Sources */,
 				5229EA0A1BD0138B00B7276D /* FCDropView.swift in Sources */,
