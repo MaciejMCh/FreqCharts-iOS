@@ -12,7 +12,7 @@ class FCBezierPathView: UIView {
     
     private var points = [CGPoint]()
     private var axisPoint: CGPoint!
-    private var visibleSize = CGSizeMake(100, 100)
+    private var visibleSize = CGSizeMake(200, 200)
     
     func passPoints(points: [CGPoint]) {
         self.points = points

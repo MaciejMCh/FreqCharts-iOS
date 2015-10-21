@@ -18,11 +18,12 @@ class FCAmpViewController: UIViewController {
         return controller
     }
     
+    @IBAction func backAction(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.symbol = FCFractionSymbol(overSymbol: FCNumberSymbol(value: 1), underSymbol: FCAddSymbol(LHSSymbol: FCOperatorSymbol(multipler: 1), RHSSymbol: FCNumberSymbol(value: 1)))
-        
-        
         
         var complexesStraight = [Complex<Double>]()
         var complexesInverse = [Complex<Double>]()

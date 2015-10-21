@@ -12,7 +12,7 @@ class FCBodeView: UIView {
     
     private var points = [CGPoint]()
     private var axisPoint: CGPoint!
-    private var visibleSize = CGSizeMake(100, 100)
+    private var visibleSize = CGSizeMake(200, 200)
     
     func passPoints(points: [CGPoint]) {
         self.points = points
@@ -63,24 +63,21 @@ class FCBodeView: UIView {
             return
         }
         
-//        let axisContext = UIGraphicsGetCurrentContext();
-//        
-//        let xCenter = (rect.width / 2) - (self.visibleSize.width / 2)
-//        let yCenter = (rect.height / 2) - (self.visibleSize.height / 2)
-//        let axisOffset = CGFloat(20)
-//        
-//        CGContextSetStrokeColorWithColor(axisContext, UIColor.blackColor().CGColor);
-//        CGContextSetLineWidth(axisContext, 1.0)
-//        CGContextMoveToPoint(axisContext, (rect.width / 2) - (self.visibleSize.width / 2) - axisOffset, self.axisPoint.y + yCenter)
-//        CGContextAddLineToPoint(axisContext, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
-//        CGContextMoveToPoint(axisContext, self.axisPoint.x + xCenter, (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset)
-//        CGContextAddLineToPoint(axisContext, self.axisPoint.x + xCenter, (rect.height / 2) + (self.visibleSize.height / 2) + axisOffset)
-//        CGContextStrokePath(axisContext)
-//        
-//        UIGraphicsPushContext(axisContext!)
+        let axisContext = UIGraphicsGetCurrentContext();
         
-        let xCenter = CGFloat(100)
-        let yCenter = CGFloat(300)
+        let xCenter = (rect.width / 2) - (self.visibleSize.width / 2)
+        let yCenter = (rect.height / 2) - (self.visibleSize.height / 2)
+        let axisOffset = CGFloat(20)
+        
+        CGContextSetStrokeColorWithColor(axisContext, UIColor.blackColor().CGColor);
+        CGContextSetLineWidth(axisContext, 1.0)
+        CGContextMoveToPoint(axisContext, (rect.width / 2) - (self.visibleSize.width / 2) - axisOffset, self.axisPoint.y + yCenter)
+        CGContextAddLineToPoint(axisContext, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
+        CGContextMoveToPoint(axisContext, self.axisPoint.x + xCenter, (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset)
+        CGContextAddLineToPoint(axisContext, self.axisPoint.x + xCenter, (rect.height / 2) + (self.visibleSize.height / 2) + axisOffset)
+        CGContextStrokePath(axisContext)
+        
+        UIGraphicsPushContext(axisContext!)
         
         let curveContext = UIGraphicsGetCurrentContext()
         CGContextSetStrokeColorWithColor(curveContext, UIColor.redColor().CGColor);
@@ -91,30 +88,30 @@ class FCBodeView: UIView {
         }
         CGContextStrokePath(curveContext)
         
-//        UIGraphicsPushContext(curveContext!)
-//        
-//        let axisArrowContext = UIGraphicsGetCurrentContext()
-//        
-//        CGContextSetRGBStrokeColor(axisArrowContext, 0.0, 0.0, 0.0, 1.0);
-//        CGContextSetRGBFillColor(axisArrowContext, 0.0, 0.0, 0.0, 1.0);
-//        CGContextSetLineJoin(axisArrowContext, CGLineJoin.Round);
-//        CGContextSetLineWidth(axisArrowContext, 1.0);
-//        
-//        let pathRef = CGPathCreateMutable();
-//        let arrowSize = CGFloat(10)
-//        
-//        CGPathMoveToPoint(pathRef, nil, self.axisPoint.x + xCenter, (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset)
-//        CGPathAddLineToPoint(pathRef, nil, self.axisPoint.x + xCenter - (arrowSize / 3), (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset + arrowSize)
-//        CGPathAddLineToPoint(pathRef, nil, self.axisPoint.x + xCenter + (arrowSize / 3), (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset + arrowSize)
-//        CGPathCloseSubpath(pathRef);
-//        CGPathMoveToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
-//        CGPathAddLineToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset - arrowSize, self.axisPoint.y + yCenter + (arrowSize / 3))
-//        CGPathAddLineToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset - arrowSize, self.axisPoint.y + yCenter - (arrowSize / 3))
-//        CGPathCloseSubpath(pathRef);
-//        CGContextAddPath(axisArrowContext, pathRef);
-//        CGContextFillPath(axisArrowContext);
-//        
-//        UIGraphicsPushContext(axisArrowContext!)
+        UIGraphicsPushContext(curveContext!)
+        
+        let axisArrowContext = UIGraphicsGetCurrentContext()
+        
+        CGContextSetRGBStrokeColor(axisArrowContext, 0.0, 0.0, 0.0, 1.0);
+        CGContextSetRGBFillColor(axisArrowContext, 0.0, 0.0, 0.0, 1.0);
+        CGContextSetLineJoin(axisArrowContext, CGLineJoin.Round);
+        CGContextSetLineWidth(axisArrowContext, 1.0);
+        
+        let pathRef = CGPathCreateMutable();
+        let arrowSize = CGFloat(10)
+        
+        CGPathMoveToPoint(pathRef, nil, self.axisPoint.x + xCenter, (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset)
+        CGPathAddLineToPoint(pathRef, nil, self.axisPoint.x + xCenter - (arrowSize / 3), (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset + arrowSize)
+        CGPathAddLineToPoint(pathRef, nil, self.axisPoint.x + xCenter + (arrowSize / 3), (rect.height / 2) - (self.visibleSize.height / 2) - axisOffset + arrowSize)
+        CGPathCloseSubpath(pathRef);
+        CGPathMoveToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset, self.axisPoint.y + yCenter)
+        CGPathAddLineToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset - arrowSize, self.axisPoint.y + yCenter + (arrowSize / 3))
+        CGPathAddLineToPoint(pathRef, nil, (rect.width / 2) + (self.visibleSize.width / 2) + axisOffset - arrowSize, self.axisPoint.y + yCenter - (arrowSize / 3))
+        CGPathCloseSubpath(pathRef);
+        CGContextAddPath(axisArrowContext, pathRef);
+        CGContextFillPath(axisArrowContext);
+        
+        UIGraphicsPushContext(axisArrowContext!)
         
     }
     
@@ -144,8 +141,8 @@ class FCBodeView: UIView {
         }
         
         self.axisPoint = CGPointZero
-        self.axisPoint.x -= minX / scaleX
-        self.axisPoint.y -= minY / scaleY
+        self.axisPoint.x = 0
+        self.axisPoint.y = self.visibleSize.height / 2
         self.points = self.points.map { (me) -> CGPoint in
             return CGPointMake(me.x / scaleX, me.y / scaleY)
         }
