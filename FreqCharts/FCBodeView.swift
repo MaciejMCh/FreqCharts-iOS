@@ -17,6 +17,7 @@ class FCBodeView: UIView {
     func passPoints(points: [CGPoint]) {
         self.points = points
         self.validate()
+        self.normalizeToSize(self.visibleSize)
         self.trim()
         self.normalizeToSize(self.visibleSize)
     }
