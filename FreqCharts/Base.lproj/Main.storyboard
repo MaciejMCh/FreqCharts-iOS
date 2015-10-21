@@ -120,6 +120,9 @@
                                         <integer key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="phaseAction:" destination="Uve-xa-34r" eventType="touchUpInside" id="cB8-ra-055"/>
+                                </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKO-Mh-klM" customClass="FCMenuButton" customModule="FreqCharts" customModuleProvider="target">
                                 <rect key="frame" x="526" y="278" width="49" height="44"/>
@@ -691,6 +694,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBi-am-8Vd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="437" y="-1023"/>
+        </scene>
+        <!--Phase View Controller-->
+        <scene sceneID="hW0-FX-L0o">
+            <objects>
+                <viewController storyboardIdentifier="FCPhaseViewController" id="2fX-jd-842" customClass="FCPhaseViewController" customModule="FreqCharts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wr6-bY-cIc"/>
+                        <viewControllerLayoutGuide type="bottom" id="cQf-hT-noO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M6N-3r-HJW" customClass="FCPhaseView" customModule="FreqCharts" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKn-EM-YF6">
+                                <rect key="frame" x="10" y="30" width="80" height="80"/>
+                                <color key="backgroundColor" red="0.1843137255" green="0.57254901960000004" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="NPn-gb-JA1"/>
+                                    <constraint firstAttribute="width" constant="80" id="hU5-pw-pvO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="5"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backAction:" destination="2fX-jd-842" eventType="touchUpInside" id="HxV-dc-hsO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lKn-EM-YF6" firstAttribute="leading" secondItem="M6N-3r-HJW" secondAttribute="leading" constant="10" id="uLc-gK-yap"/>
+                            <constraint firstItem="lKn-EM-YF6" firstAttribute="top" secondItem="wr6-bY-cIc" secondAttribute="bottom" constant="10" id="uTN-4h-jZx"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D2c-j3-RPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1113" y="-1023"/>
         </scene>
     </scenes>
     <resources>

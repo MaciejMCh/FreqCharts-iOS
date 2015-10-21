@@ -89,8 +89,11 @@ class FCFABViewController: UIViewController {
     
     @IBAction func amplitudeAction(sender: AnyObject) {
         self.presentViewController(FCAmpViewController.controllerWithSymbol(self.childController.selectedCell.equationView.equation), animated: true, completion: nil)
-    }
+     }
     
+    @IBAction func phaseAction(sender: AnyObject) {
+        self.presentViewController(FCPhaseViewController.controllerWithSymbol(self.childController.selectedCell.equationView.equation), animated: true, completion: nil)
+    }
     
     @IBAction func deleteAction(sender: AnyObject) {
         self.childController.deleteSelected()
