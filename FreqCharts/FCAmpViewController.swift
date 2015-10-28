@@ -32,7 +32,7 @@ class FCAmpViewController: UIViewController {
         var straightStep = Double(1)
         var inverseStep = Double(1)
         
-        for index in 0...1000 {
+        for index in 0...100 {
             
             complexesStraight.append(self.symbol.responseForFrequency(straightStep))
             complexesInverse.insert(self.symbol.responseForFrequency(inverseStep), atIndex: 0)
@@ -76,7 +76,7 @@ class FCPhaseViewController: UIViewController {
         var straightStep = Double(1)
         var inverseStep = Double(1)
         
-        for index in 0...1000 {
+        for index in 0...100 {
             
             complexesStraight.append(self.symbol.responseForFrequency(straightStep))
             complexesInverse.insert(self.symbol.responseForFrequency(inverseStep), atIndex: 0)
